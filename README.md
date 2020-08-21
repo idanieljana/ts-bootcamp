@@ -1,4 +1,5 @@
-# Workshops: TypeScript and JavaScript Bootcamp
+# Workshops: TypeScript and JavaScript Bootcamp ⛺
+
 
 ![image](assets/logo.gif)
 
@@ -67,3 +68,4 @@ Additional topics to discuss on demand by course participants
 * Desktop application development (e.g. Electron.js, NW.js)
 * Chrome application development
 
+## Enjoy 🥤🚀

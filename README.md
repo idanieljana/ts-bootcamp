@@ -1,7 +1,8 @@
 # Workshops: TypeScript and JavaScript Bootcamp ⛺
 
-
+---
 ![image](assets/logo.gif)
+---
 
 In this course we will learn how to write modern web applications. Short description of the course:
 
@@ -18,7 +19,7 @@ we start at `w-01` folder and each directory should be self driving.
 
 ## Topics
 
-- workshop 1: javascript project: npm, yarn, dependencies management (installation, working with cache and registry), project structuring examples (for web, for nodejs). After this workshop you will be able to create your own projects.
+- [Workshop 1](src/w-01/README.md) javascript project: npm, yarn, dependencies management (installation, working with cache and registry), project structuring examples (for web, for nodejs). After this workshop you will be able to create your own projects.
 - workshop 2: variables, objects, collections - we will practice on daily routine tasks, this part could be a bit boring, but very important as will improve your coding skills.
 From the topics: object and collections desctructuring, spread operator, map, filter, reduce.
 After this workshop you will be able to effectively manipulate and transform data structures.
@@ -69,3 +70,4 @@ Additional topics to discuss on demand by course participants
 * Chrome application development
 
 ## Enjoy 🥤🚀
+

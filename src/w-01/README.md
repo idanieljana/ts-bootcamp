@@ -12,6 +12,6 @@ After this workshop you will be able to create your own simple projects.
 
 ##Sections:
 
-1. `01-static-assets`
-2. `02-nodejs-base`
-3. `03-npm-yarn`
+1. [01-static-assets](01-static-assets/01-static-assets.md)
+2. [02-nodejs-base](02-nodejs-base/02-nodejs-base.md)
+3. [03-npm-yarn](03-npm-yarn/03-npm-yarn.md)

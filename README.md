@@ -1,5 +1,7 @@
 # Workshops: TypeScript and JavaScript Bootcamp
 
+![image](assets/logo.gif)
+
 In this course we will learn how to write modern web applications. Short description of the course:
 
 * Javascript and Typescript core features
@@ -64,3 +66,4 @@ Additional topics to discuss on demand by course participants
 * Introduction to Canvas and WebGL (e.g. Pixi.js, Babylon.js)
 * Desktop application development (e.g. Electron.js, NW.js)
 * Chrome application development
+

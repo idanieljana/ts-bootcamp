@@ -1,4 +1,4 @@
-# Workshop 1: Javascript Project
+#Workshop 1: Javascript Project
 
 ##Topics described:
 

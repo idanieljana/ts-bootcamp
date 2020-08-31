@@ -9,7 +9,7 @@ In this course we will learn how to write modern web applications. Short descrip
 * Javascript and Typescript core features
 * Testable code
 * Async code
-* Client side development React, Redux and Mobx
+* Client side development:  React, Mobx, Redux 
 * Utilities and APIs development
 
 ## Material

@@ -1,0 +1,17 @@
+{
+  "name": "greeting-utils",
+  "version": "1.0.0",
+  "description": "A package with greetings utils",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jest",
+    "lint": "./node_modules/.bin/eslint *.js",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.7.0",
+    "jest": "^26.4.2"
+  }
+}

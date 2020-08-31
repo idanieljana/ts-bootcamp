@@ -90,9 +90,9 @@ beginner could be the express.
 
 Create a new project with `npm init`
 
-Install `express` nodejs module https://www.npmjs.com/package/express
+Install `express` nodejs module `npm install express` https://www.npmjs.com/package/express
 
-Replace `index.js` with the express botstrap code:
+Replace `index.js` with the express bootstrap code:
 
 ```javascript
 const express = require('express')
@@ -111,10 +111,66 @@ For http call we could use the `node-fetch`
 It could be recommended for you to start, as it is similar to
 Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
-Other options: nodejs core http module, axios, got libraries.
-
 Install `node-fetch` library
 (https://www.npmjs.com/package/node-fetch)
+
+Note: alternatives are nodejs core http module, axios, got libraries.
+
+For the template we will need to select a template
+engine. There are several options you could use
+with express, however we will use `ejs`, as it is very
+close to html syntax. Think of it as of "extended
+html with js".
+
+https://ejs.co/
+
+https://www.npmjs.com/package/ejs
+
+Install `ejs` with  `npm install ejs`
+
+Then we will need to adjust our configuration in `index.js` file.
+It should enable express template view engine, it
+support ejs templates.
+
+```javascript
+const path = require('path');
+const viewsPath = path.join(__dirname, 'views');
+app.set('views', viewsPath);
+app.set('view engine', 'ejs');
+```
+
+Then create a `views/index.ejs` file.
+
+And fill it with the ejs markup:
+
+```ejs
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuck Norris Jokes</title>
+</head>
+<body>
+    <div>
+        <img alt="ChuckNorris" src="imageToBeHere"/>
+        <br/>
+        <h1>joke to be here</h1>
+    </div>
+</body>
+</html>
+```
+
+Now replace your home endpoint with the
+rending code:
+
+```javascript
+app.get('/', (req, res) => {
+    res.render("index", {})
+})
+```
+Run `node index.js` and verify the
+template was loaded
+
 
 ### Notes
 

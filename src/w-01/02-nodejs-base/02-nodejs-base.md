@@ -85,6 +85,37 @@ How to do it:
 2) Write http call to the api to get the joke
 3) Prepare html markup template
 
+The best option to create a webserver for the
+beginner could be the express.
+
+Create a new project with `npm init`
+
+Install `express` nodejs module https://www.npmjs.com/package/express
+
+Replace `index.js` with the express botstrap code:
+
+```javascript
+const express = require('express')
+const app = express()
+ 
+app.get('/', (req, res) => {
+  res.send('Hello World')
+})
+ 
+app.listen(3000)
+```
+
+For http call we could use the `node-fetch`
+(https://www.npmjs.com/package/node-fetch) library.
+
+It could be recommended for you to start, as it is similar to
+Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+
+Other options: nodejs core http module, axios, got libraries.
+
+Install `node-fetch` library
+(https://www.npmjs.com/package/node-fetch)
+
 ### Notes
 
 Take in mind your output, good frameworks have additional filtering

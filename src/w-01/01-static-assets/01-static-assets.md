@@ -54,6 +54,24 @@ input {
     background:#000;
     opacity:0;
 }
+
+body {
+    background: #000;
+    color: white;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+#phrase {
+    opacity: 1;
+    width: 100%;
+    border: none;
+    font: 24pt monospace;
+    color: #00FFFF;
+    background: #000;
+    outline: none;
+}
 ```
 
 Move your "hello" js code to inline script and replace app.js file with the content of the wallpaper lib in the assets folder: 

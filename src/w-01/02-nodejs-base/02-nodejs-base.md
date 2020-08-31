@@ -65,18 +65,25 @@ Open the url in the browser and you will see the greeting:
 
 ### Exercise 2
 
-`Estimated time: 5-15 min`
+`Estimated time: 15-20 min`
 
 Update project structure with the following shape:
 - `/src`
     - `/cn.js` - copy file content from `src/w-01/02-nodejs-base/assets/cn.js`
 - `/index.js` - keep existing file
 
-Your task here will be to create a simple web application that will return the random joke about
-Chuck Norris and output it on the screen:
+Your task here will be to create a simple
+web application that will interact with http://api.icndb.com/jokes/random API and return
+the random joke about Chuck Norris
+and output it on the webpage:
 
 ![image](assets/nodejs-base-2.png)
 
+How to do it:
+
+1) Prepare a web server to return html page
+2) Write http call to the api to get the joke
+3) Prepare html markup template
 
 ### Notes
 
@@ -92,6 +99,10 @@ HTML Sanitizing and XSS prevention libraries:
 https://www.npmjs.com/package/sanitize-html
 
 https://www.npmjs.com/package/xss
+
+Nodejs __dirname:
+
+https://www.digitalocean.com/community/tutorials/nodejs-how-to-use__dirname#:~:text=__dirname%20tells%20you%20the,containing%20the%20currently%20executing%20file.&text=If%20you%20noticed%2C%20__dirname,js%20utility)%20is%20different.
 
 
 

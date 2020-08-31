@@ -95,13 +95,13 @@ let's extend scripts's section in package.json with the following line:
 Now run this command with npm - `npm run lint`, you should get the following output:
 
 ```shell script
-(base) User:greeting-utiles $ npm run lint
+(base) User:greeting-utils $ npm run lint
 
-> greeting-utils@1.0.0 lint .../greeting-utiles
+> greeting-utils@1.0.0 lint .../greeting-utils
 > eslint *.js
 
 
-.../greeting-utiles/index.js
+.../greeting-utils/index.js
   2:3   warning  Unexpected console statement  no-console
   2:31  error    Extra semicolon               semi
   2:32  error    Unnecessary semicolon         no-extra-semi

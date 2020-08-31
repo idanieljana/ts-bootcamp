@@ -1,18 +1,22 @@
-const http = require("http");
+const express = require('express')
+const path = require('path')
+const {
+    getChuckNorrisJoke,
+    getChuckNorrisBase64Image
+} = require("./src/cn");
 
-const { getChuckNorrisJoke, getChuckNorrisMarkup } = require("./src/cn");
+const app = express()
 
-const hostname = "127.0.0.1";
-const port = 3000;
+const viewsPath = path.join(__dirname, 'views');
+app.set('views', viewsPath);
+app.set('view engine', 'ejs');
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader("Content-Type", "text/html");
+app.get('/', (req, res) => {
     getChuckNorrisJoke(joke => {
-        res.end(getChuckNorrisMarkup(joke))
+        res.render("index", {
+            image: getChuckNorrisBase64Image(),
+            joke: joke,
+        })
     })
-});
-
-server.listen(port, hostname, () => {
-    console.log(`Chuck Norris is waiting you: http://${hostname}:${port}/`);
-});
+})
+app.listen(3000)

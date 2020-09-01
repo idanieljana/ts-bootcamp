@@ -3,7 +3,7 @@
 ```text
 
 In this section we will learn about project setup and dependencies management.
-We we will cover most typical use cases from package installation,
+We will cover most typical use cases from package installation,
 versions bumping and special cases, like working with cache and registry.
 We will shortly touch code validation and testing topics.
 You will learn how to setup linter and unit tests.

@@ -79,11 +79,15 @@ and output it on the webpage:
 
 ![image](assets/nodejs-base-2.png)
 
+___
+
 How to do it:
 
 1) Prepare a web server to return html page
 2) Write http call to the api to get the joke
 3) Prepare html markup template
+
+___
 
 The best option to create a webserver for the
 beginner could be the express.
@@ -105,6 +109,8 @@ app.get('/', (req, res) => {
 app.listen(3000)
 ```
 
+___
+
 For http call we could use the `node-fetch`
 (https://www.npmjs.com/package/node-fetch) library.
 
@@ -114,7 +120,58 @@ Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 Install `node-fetch` library
 (https://www.npmjs.com/package/node-fetch)
 
-Note: alternatives are nodejs core http module, axios, got libraries.
+Note: alternatives are - nodejs core http module, axios, got libraries.
+
+Now open `src/cn.js`.
+
+Let's start with external API call.
+
+Hint - let's use the node-fetch module documentation
+example:
+
+`https://www.npmjs.com/package/node-fetch`
+
+```javascript
+fetch('https://api.github.com/users/github')
+    .then(res => res.json())
+    .then(json => console.log(json));
+```
+
+Add above code to the `cn.js` and replace url with api.
+
+Then export this function and call it before template rendering.
+
+Don't forget to import `node-fetch`
+
+Finally, you should see in the console output:
+
+```shell script
+{
+  type: 'success',
+  value: {
+    id: 4,
+    joke: 'If you ask Chuck Norris...',
+    categories: []
+  }
+}
+```
+
+Let's handle error case (e.g. api may stop working) 
+and return default joke from the list described below.
+
+How to catch promise rejection:
+
+`https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch`
+
+At the final result your joke will be 
+posted in console, e.g. :
+
+```shell script
+user@user-pac 02-nodejs-base % node index.js
+Chuck Norris doesn't turn on his faucet, he stares at it until it cries.
+```
+
+___
 
 For the template we will need to select a template
 engine. There are several options you could use
@@ -160,16 +217,43 @@ And fill it with the ejs markup:
 </html>
 ```
 
-Now replace your home endpoint with the
-rending code:
+Now replace your home endpoint with code
+which will render your `index.ejs` template:
 
 ```javascript
 app.get('/', (req, res) => {
-    res.render("index", {})
+    getChuckNorrisJoke((joke) =>{
+        console.log(joke)
+        res.render("index", {})
+    })
 })
 ```
-Run `node index.js` and verify the
-template was loaded
+
+Run `node index.js` and verify that
+the template loaded.
+
+Image will be corrupted and no joke.
+
+To fix this, last step left is to pass parameters to template:
+
+```javascript
+    res.render("index", {
+        image: "image_src",
+        joke: "joke",
+    })
+```
+
+And fix template (an example below how to output var `user_name`)
+
+```ejs
+<div><%=user_name%></div>
+```
+Image could be any you want, but a base64 image string
+is prepared in `cn.js`. 
+
+Enjoy your app:
+
+![image](assets/nodejs-base-2.png)
 
 
 ### Notes

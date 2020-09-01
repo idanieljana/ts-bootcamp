@@ -558,6 +558,23 @@ Enjoy the fun of the final project:
 
 ![image](assets/npm-yarn-1.png)
 
+Additional task:
+
+There is an option to set dependencies 
+from local directories.
+
+Extend the package.json dependencies with a new line:
+
+`"greeting-utils" : "file:../greeting-utils"`
+
+Now run `yarn` and see the final `yarn.lock`
+contents, our utils package appeared:
+
+```
+"greeting-utils@file:../greeting-utils":
+  version "1.0.0"
+```
+
 ### Notes
 
 Rules and tips for package naming:

@@ -37,6 +37,7 @@ Requirements and notes:
 7. Use pug or ejs template engine if using express
 8. Main page `/` endpoint internally should get QR Code
 image from your API endpoint described in `1.`
+9. Deploy your application in Heroku
 
 Links:
 

@@ -20,15 +20,16 @@ we start at `w-01` folder and each directory should be self driving.
 ## Topics
 
 - [Workshop 1](src/w-01/README.md) javascript project: npm, yarn, dependencies management (installation, working with cache and registry), project structuring examples (for web, for nodejs). After this workshop you will be able to create your own projects.
-- workshop 2: variables, objects, collections - we will practice on daily routine tasks, this part could be a bit boring, but very important as will improve your coding skills.
+- [Workshop 2](src/w-02/README.md) typescript project: tsconfig, jest & typescript, eslint & typescript, typescript + bundlers. 
+- workshop 3: variables, objects, collections - we will practice on daily routine tasks, this part could be a bit boring, but very important as will improve your coding skills.
 From the topics: object and collections desctructuring, spread operator, map, filter, reduce.
 After this workshop you will be able to effectively manipulate and transform data structures.
-- workshop 3: functions, classes - the main goal of this workshop is to share knowledge how to write and combine functions, how to model the data and create reusable data structures.
+- workshop 4: functions, classes - the main goal of this workshop is to share knowledge how to write and combine functions, how to model the data and create reusable data structures.
 After this workshop you will be able to write reusable code, omit poor functions design and work with classes composition and learn couple of basic patterns.
-- workshop 4: testable code, unit testing using jest. Knowing how to test your code is very important and essential topic in software development. As we already know how to model the program data flow and how to transform it, it is time to learn how to write the tests. We will refer back to the tasks we alredy did in previous workshops and cover them with unit tests. We will think about how to design and write testable code.
+- workshop 5: testable code, unit testing using jest. Knowing how to test your code is very important and essential topic in software development. As we already know how to model the program data flow and how to transform it, it is time to learn how to write the tests. We will refer back to the tasks we alredy did in previous workshops and cover them with unit tests. We will think about how to design and write testable code.
 After this workshop you will be able to write testable code, know how to write the tests for your code and get familiar with TDD.
-- workshop 5: asyncronous code. In the previous workshops main focus was on working and testing syncronous code, however, in JS you will write lot of asyncronous code and should know how to handle it's results and how to control asyncronous data flow. In this workshop we will work with callbacks, promises and with async/await. We will take a look how to test this code.
-- workshop 6: type safe code. In the previous workshops our focus was on writing primitive type safe code. In this workshop we will master our skills how to write more advanced typescript code. From the most important topics: type aliases, type guards, interfaces, union and intersection types, index types, mapped types, tuples, utility types, enums, immutability with readonly and const, generics
+- workshop 6: asyncronous code. In the previous workshops main focus was on working and testing syncronous code, however, in JS you will write lot of asyncronous code and should know how to handle it's results and how to control asyncronous data flow. In this workshop we will work with callbacks, promises and with async/await. We will take a look how to test this code.
+- workshop 7: type safe code. In the previous workshops our focus was on writing primitive type safe code. In this workshop we will master our skills how to write more advanced typescript code. From the most important topics: type aliases, type guards, interfaces, union and intersection types, index types, mapped types, tuples, utility types, enums, immutability with readonly and const, generics
 
 Next topics:
 IO - working with network:, axios, got, fetch, http module, sockets(if have time)

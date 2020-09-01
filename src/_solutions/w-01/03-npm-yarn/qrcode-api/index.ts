@@ -34,7 +34,8 @@ function getQRCode(url, callback) {
 
 app.get('/', (req, res) => {
     const text = req.query.text || "Hello";
-    getQRCode(`${baseUrl}/api/qr/${text}`, (err, response) => {
+    const encoded = encodeURIComponent(text);
+    getQRCode(`${baseUrl}/api/qr/${encoded}`, (err, response) => {
         if (err) {
             console.error(err);
             res.status(500);

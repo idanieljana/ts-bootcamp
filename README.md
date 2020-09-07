@@ -20,7 +20,7 @@ we start at `w-01` folder and each directory should be self driving.
 ## Topics
 
 - [Workshop 1](src/w-01/README.md) javascript project: npm, yarn, dependencies management (installation, working with cache and registry), project structuring examples (for web, for nodejs). After this workshop you will be able to create your own projects.
-- [Workshop 2](src/w-02/README.md) typescript project: tsconfig, jest & typescript, eslint & typescript, typescript + bundlers. 
+- [Workshop 2](src/w-02/README.md) typescript setup: tsconfig, jest & typescript, eslint & typescript, typescript + bundlers. 
 - workshop 3: variables, objects, collections - we will practice on daily routine tasks, this part could be a bit boring, but very important as will improve your coding skills.
 From the topics: object and collections desctructuring, spread operator, map, filter, reduce.
 After this workshop you will be able to effectively manipulate and transform data structures.

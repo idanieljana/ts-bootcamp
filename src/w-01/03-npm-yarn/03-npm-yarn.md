@@ -618,3 +618,7 @@ Jest Testing Framework:
 
 https://jestjs.io/
 
+Important note regarding jest:
+
+`node` version is important as there could be problems with jest,
+e.g. in one of previous workshops jest was not working correctly with nodejs v10

@@ -1,25 +1,15 @@
-function cypher(m: string, offset: number): string {
-    return m
+function cypher(message: string, offset: number): string {
+    return message
         .split("")
         .map((c, i) => {
-            return c ? String.fromCharCode(
-                m.charCodeAt(i) + offset
-            ) : c
+            return c
+                ? String.fromCharCode(
+                    message.charCodeAt(i) + offset
+                )
+                : c
         })
         .join("")
 }
-
-/**
- * TODO
- */
-// const delta = 22456
-// export function encrypt(m: string): string {
-//     return cypher(m, delta)
-// }
-//
-// export function decrypt(m: string): string {
-//     return cypher(m, -delta)
-// }
 
 function bruteForceDecrypt(message: string, needle: string) {
     let encrypted = ""

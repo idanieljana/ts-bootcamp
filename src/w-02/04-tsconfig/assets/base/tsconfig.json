@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "lib",
+    "lib": ["ES2019"],
+    "module": "commonjs",
+    "target": "ES2019"
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

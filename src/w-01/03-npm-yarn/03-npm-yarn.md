@@ -38,6 +38,12 @@ https://eslint.org/
 
 https://eslint.org/docs/rules/
 
+Typescript Declaration Files: 
+
+https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html
+
+https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html
+
 ### Exercise 1
 
 `Estimated time: 10-15 min`
@@ -313,7 +319,7 @@ test("should post exclamation message to console", () => {
 
 No more console logging should be seen in jest output.
 
-Additionally you could test your argument `expect(logSpy).toBeCalledWith("hi!!!")`.
+Additionally, you could test your argument `expect(logSpy).toBeCalledWith("hi!!!")`.
 
 ### Exercise 3
 
@@ -435,7 +441,7 @@ Now extend `package.json` with start section
 }
 ```
 
-Create a file `index.tx` with the following contents:
+Create a file `index.ts` with the following contents:
 
 ```typescript
 const message: number = "hello";

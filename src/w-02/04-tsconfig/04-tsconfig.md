@@ -27,8 +27,7 @@ that the directory is the root of a TypeScript project.
 The tsconfig.json file specifies the root files and 
 the compiler options required to compile the project.
 
-Open base project
-`ts-bootcamp/src/w-02/04-tsconfig/assets/base` dir.
+Open `ts-bootcamp/src/w-02/04-tsconfig` dir.
 
 Call `yarn init -y` to generate default `package.json` file.
 

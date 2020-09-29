@@ -11,8 +11,6 @@ tsconfig:
 
 https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
 
-Typescript Strict Mode
-https://www.typescriptlang.org/tsconfig#strict
 
 *rm* utility:
 
@@ -22,25 +20,26 @@ https://en.wikipedia.org/wiki/Rm_(Unix)
 
 `Estimated time: 10-15 min`
 
+#### Typescript installation and basic config
+
 The presence of a tsconfig.json file in a directory indicates 
 that the directory is the root of a TypeScript project. 
 The tsconfig.json file specifies the root files and 
 the compiler options required to compile the project.
-
 
 Open base project
 `ts-bootcamp/src/w-02/04-tsconfig/assets/base` dir.
 
 Call `yarn init -y` to generate default `package.json` file.
 
-Install Typescript - `yarn add -D typescript`.
+Install Typescript - `yarn add -D typescript`
 
 Add the following section to the scripts in `package.json`. 
 
 ```json
 "scripts": {
-    "tsc": "tsc"
-  },
+   "tsc": "tsc"
+ },
 ```
 
 Call `yarn tsc --init`:
@@ -136,7 +135,35 @@ just include --lib es2015.collection,es2015.promise.
 
 -----
 
-Returning back to setting up project:
+### Exercise 2
+
+`Estimated time: 5-10 min`
+
+#### Node.js ambient types - @types/node
+
+Now we are ready to check how compiler works.
+
+Create dummy `index.ts` file and add 
+the following contents from previous lessons:
+
+```typescript
+function pow(message: string, power = 2): number {
+    return Math.pow(message.length, power);
+}
+
+const power = parseInt(process.env.power) || 3;
+
+console.log(pow("hello", power));
+```
+
+Call `yarn tsc` again and see the output:
+
+```shell script
+index.ts:5:15 - error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i @types/node`.
+
+5 const power = process.env.power || 3;
+                ~~~~~~~
+```  
 
 We will need additional types for Nodejs setup:
 
@@ -147,11 +174,20 @@ require, setImmediate, setInterval, setTimeout`
 
 Install `yarn add -D @types/node` - https://www.npmjs.com/package/@types/node
 
-Now we are ready to check how compiler works.
+Run `yarn tsc`, now it should compile successfully:
 
-Create dummy `index.ts` file with `console.log(42)`.
+```shell script
+$ tsc
+✨  Done in 1.33s.
+``` 
 
-Run `yarn tsc` and see the lib folder.
+### Exercise 3
+
+`Estimated time: 5 min`
+
+#### Build preparation
+
+Now take a look at the `lib` folder.
 
 If there is `index.js` then your file compiled correctly.
 
@@ -167,25 +203,105 @@ Now extend the scripts section in `package.json`
 "build": "yarn clear && yarn tsc",
 ```
 
-Run `yarn clear` to verify that command works.
+- Run `yarn clear` and verify `lib` folder was deleted.
+- Run `yarn build` and verify that `lib` folder is presented with output.
 
+### Exercise 4
 
-### Exercise 2
+`Estimated time: 5-10 min`
 
-TODO: 
+#### Cold reloading
 
+Having build process is great, however it is 
+not convenient as you work.
+
+Cold reloading technique is nice for local development. 
+In order to do this, we'll need to rely on a couple more 
+packages: `ts-node` for running TypeScript code directly 
+without having to wait for it be compiled, and `nodemon`, 
+to watch for changes to our code and automatically restart 
+when a file is changed.
+
+`yarn add -D ts-node` - install `ts-node`
+
+`yarn add -D nodemon` - install `nodemon`
+
+Add a `nodemon.json` config:
+
+```json
+{
+  "watch": ["src", "yarn.lock"],
+  "ext": ".ts",
+  "ignore": [],
+  "exec": "ts-node ./src/index.ts"
+}
+```
+
+Move `index.ts` file to `src` folder.
+
+Adjust the `tsconfig` `include` section:
+```json
+"include": [
+  "src/**/*.ts"
+],
+```
+
+Extend `package.json` scripts section with:
+
+```json
+"start:watch": "nodemon",
+```
+
+Run this command with `yarn start:watch`, you should see something like :
+
+```shell script
+$ nodemon
+[nodemon] 2.0.4
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): src/**/* yarn.lock
+[nodemon] watching extensions: ts
+[nodemon] starting `ts-node ./src/index.ts`
+5
+```
+
+### Exercise 5
+
+`Estimated time: 5-10 min`
+
+#### Declaration files and sourcemaps
+
+We already described the purpose and of declaration files.
+
+We will need one more part in the puzzle - sourcemaps.
+
+Final JS running is machine-generated.
+When compiled, it's much easier to debug the original source, 
+rather than the source in the transformed state.
+A source map is a file that maps from the transformed source to the original source, 
+enabling  to reconstruct the original source and present the reconstructed original 
+in the debugger.
+
+Let's extend `tsconfig` `compilerOptions` section 
+with the following settings: 
+
+```json
+"sourceMap": true,
+"declaration": true,
+```
+
+Now run the `yarn build` and open the lib folder:
+
+```
+index.d.ts - the declaration file
+index.js - the compiled source
+index.js.map - the sourcemap
+```
 
 ### Notes
 
+Source maps explanation:
 
-`"strict": true,` will enable typescript strict mode:
-
-https://www.typescriptlang.org/tsconfig#strict
-
-It will force you, e.g. initialize your parameters
-types and init class properties values.
-
-
+https://medium.com/@trungutt/yet-another-explanation-on-sourcemap-669797e418ce
 
 
 

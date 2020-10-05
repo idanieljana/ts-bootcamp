@@ -229,7 +229,7 @@ Add a `nodemon.json` config:
 
 ```json
 {
-  "watch": ["src", "yarn.lock"],
+  "watch": ["src"],
   "ext": ".ts",
   "ignore": [],
   "exec": "ts-node ./src/index.ts"

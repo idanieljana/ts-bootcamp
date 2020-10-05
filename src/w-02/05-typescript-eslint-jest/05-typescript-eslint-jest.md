@@ -66,9 +66,11 @@ that will automatically enable Jets reruns based on file system changes.
 Now your task is to write a first unit test for `sum.test.ts` file.
 
 
-#### Code coverage
+### Exercise 2
 
 `Estimated time: 10-15 min`
+
+#### Code coverage
 
 Update `package.json` scripts section with new command:
 
@@ -99,6 +101,9 @@ function report.
 
 ![image](assets/coverage_full.png)
 
+### Exercise 3
+
+`Estimated time: 5-10 min`
 
 #### Coverage report
 
@@ -115,3 +120,9 @@ Run `yarn test:report`.
 You should see the similar report in opened page:
 
 ![image](assets/coverage_report.png)
+
+### Exercise 4
+
+`Estimated time: 10-15 min`
+
+#### ESLint with Typescript

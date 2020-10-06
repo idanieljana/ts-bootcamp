@@ -1,0 +1,18 @@
+{
+  "name": "06-typescript-webpack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "open": "cd dist && npx http-server@0.12.0 -p 7777 -o -c-1"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "query-string": "^6.13.5",
+    "text-to-image": "^2.3.0"
+  }
+}

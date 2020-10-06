@@ -6,6 +6,10 @@ Setting up eslint and jest with Typescript
 
 ### Additional reading
 
+Airbnb style guide:
+
+https://github.com/airbnb/javascript
+
 Typescript ESLint:
 
 https://github.com/typescript-eslint/typescript-eslint
@@ -15,7 +19,6 @@ Typescript Jest:
 https://jestjs.io/docs/en/getting-started#using-typescript
 
 https://github.com/kulshekhar/ts-jest
-
 
 ### Exercise 1
 
@@ -113,7 +116,7 @@ npm module `http-server`:
 
 Let's add one more item to scripts section in the `package.json`:
 
-`"test:report": "cd coverage/lcov-report && npx http-server@0.12.0 -p 7777 -o"`
+`"test:report": "cd coverage/lcov-report && npx http-server@0.12.0 -p 7777 -o -c-1"`
 
 Run `yarn test:report`.
 
@@ -229,6 +232,72 @@ There are many configuration packages in the ecosystem - these
 packages that exist solely to provide a comprehensive base config 
 for you, with the intention that you add the config and it gives 
 you an opinionated setup.
+
+
+As an example how to enable something more advanced, let's 
+install the predefined config from airbnb: `https://www.npmjs.com/package/eslint-config-airbnb-typescript`
+
+Install the plugin and it's dependencies:
+
+`yarn add -D eslint-config-airbnb-typescript eslint-plugin-import@^2.22.0 eslint-plugin-jsx-a11y@^6.3.1 eslint-plugin-react@^7.20.3 eslint-plugin-react-hooks@^4.0.8 @typescript-eslint/eslint-plugin@^4.2.0`
+
+Add the `tsconfig.json` file (same config we had last time) to the root of your application:
+
+```json
+{
+  "compilerOptions": {
+    "outDir": "lib",
+    "strict": true,
+    "lib": ["ES2019"],
+    "sourceMap": true,
+    "declaration": true,
+    "module": "commonjs",
+    "target": "ES2019"
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+```
+
+Update your `.eslintrc.js` file to have the following structure:
+
+```js
+module.exports = {
+    root: true,
+    parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: ['./tsconfig.json'],
+    },
+    parser: '@typescript-eslint/parser',
+    plugins: [
+        '@typescript-eslint',
+    ],
+    extends: [
+        'airbnb-typescript',
+    ],
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "rules": {
+                "@typescript-eslint/explicit-module-boundary-types": ["error"],
+                "@typescript-eslint/no-explicit-any": ["error"],
+                // To omit default exports
+                "import/prefer-default-export": "off"
+            },
+            // To omit: error  'test' |'expect' is not defined    no-undef
+            "env": {
+                "jest": true
+            }
+        },
+    ]
+};
+```
+
+Now your task is to fix all linting errors and reach 100% coverage.
 
 ### Notes
 

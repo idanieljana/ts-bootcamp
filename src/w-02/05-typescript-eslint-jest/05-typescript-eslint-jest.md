@@ -123,6 +123,107 @@ You should see the similar report in opened page:
 
 ### Exercise 4
 
-`Estimated time: 10-15 min`
+`Estimated time: 5-10 min`
 
 #### ESLint with Typescript
+
+Run this command: 
+`yarn add -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin`
+to install the required dependencies
+
+Create `.eslintrc.js` config file in the root of your 
+project, and populate it with the following content:
+
+```js
+module.exports = {
+  root: true,
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    '@typescript-eslint',
+  ],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
+};
+```
+
+Now add the command in `package.json`:
+
+```json
+{
+  "scripts": {
+    "lint": "eslint . --ext .ts"
+  }
+}
+```
+
+Run new command `yarn lint`: 
+
+![image](assets/linter_warning.png)
+
+### Exercise 5
+
+`Estimated time: 5-10 min`
+
+#### ESLint rules setup and ignoring techniques 
+
+Those warnings indicate at least 2 things:
+
+- Linter is running against unneeded folder `assets/src`
+- Argument `a` is typed with `any` type, which means we could have errors in runtime
+
+Let's create `.eslintignore` file and add `assets/src` there
+
+Let's extend the rule from warnings in `.eslint.js`
+with the following content:
+```json
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "rules": {
+                "@typescript-eslint/explicit-module-boundary-types": ["error"],
+                "@typescript-eslint/no-explicit-any": ["error"],
+            }
+        },
+    ]
+```
+ 
+Run linting command again `yarn lint`: 
+
+![image](assets/linter_error.png)
+
+Now the described issues are away.
+
+Sometimes it is needed to disable rules. As an example
+of the comment to disable the violated above rule in code:
+
+`// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types`
+
+Now after running the linting command:
+
+```shell script
+/Users/vlashchanka/WebstormProjects/ts-bootcamp/src/w-02/05-typescript-eslint-jest/src/subtract.ts
+  2:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 1 problem (1 error, 0 warnings)
+```
+
+### Exercise 6
+
+`Estimated time: 5-10 min`
+
+#### ESLint setup with predefined configs from ecosystem
+
+There are many configuration packages in the ecosystem - these 
+packages that exist solely to provide a comprehensive base config 
+for you, with the intention that you add the config and it gives 
+you an opinionated setup.
+
+### Notes
+
+ESLint: another options to ignore files could be:
+
+`"ignorePatterns": ["assets/src/**/*.ts"],`
+
+https://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories

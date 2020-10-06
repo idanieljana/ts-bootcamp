@@ -173,7 +173,17 @@ Those warnings indicate at least 2 things:
 - Linter is running against unneeded folder `assets/src`
 - Argument `a` is typed with `any` type, which means we could have errors in runtime
 
-Let's create `.eslintignore` file and add `assets/src` there
+Let's create `.eslintignore` file and add `assets/src` there.
+
+Note: other places you want to ignore:
+```text
+# don't ever lint node_modules
+node_modules
+# don't lint typescript output dir
+lib
+# don't lint coverage output
+coverage
+```
 
 Let's extend the rule from warnings in `.eslint.js`
 with the following content:

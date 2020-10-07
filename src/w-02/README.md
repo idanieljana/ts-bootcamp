@@ -17,7 +17,8 @@ After this workshop you will know how setup typescript in the project and make i
 1. [04-tsconfig](04-tsconfig/04-tsconfig.md)
 2. [05-typescript-eslint-jest](05-typescript-eslint-jest/05-typescript-eslint-jest.md)
 3. [06-typescript-webpack](06-typescript-webpack/06-typescript-webpack.md)
-3. [07-typescript-parcel](07-typescript-parcel/07-typescript-parcel.md)
+4. [07-create-react-app](07-create-react-app/07-create-react-app.md)
+5. [08-typescript-parcel](08-typescript-parcel/08-typescript-parcel.md)
 
 ## Hometasks:
 

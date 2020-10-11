@@ -13,8 +13,8 @@ import {
   answerFromArrayOf,
   greetingCopiedAndModified,
   greetingWithDeletedLastElement,
-  greetingWithChangedLength,
-} from './array';
+  greetingWithChangedLength, greetingWithNewElements,
+} from './arrayBasics';
 
 describe('array', () => {
   test('answer length should be 4', () => {
@@ -83,15 +83,15 @@ describe('array', () => {
   test('initialize numbers using spread operator', () => {
     // The spread operator works on any iterable object.
     expect(numbers).toEqual(
-        ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+      ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
     );
   });
   test('should have unique letters only for greeting', () => {
     // Hint: you could use Set
-    expect(uniqueLettersFromGreeting.join("")).toEqual("helo");
+    expect(uniqueLettersFromGreeting.join('')).toEqual('helo');
   });
   test('should have unique letters only', () => {
-    expect(greetingCopiedAndModified.join("")).toEqual("Hello");
+    expect(greetingCopiedAndModified.join('')).toEqual('Hello');
   });
   test('should have deleted last element', () => {
     expect(greetingWithDeletedLastElement.length).toBe(6);
@@ -101,6 +101,10 @@ describe('array', () => {
   test('should change length of greeting array', () => {
     expect(greetingWithChangedLength.length).toBe(5);
     const last = greetingWithChangedLength[greetingWithChangedLength.length - 1];
-    expect(last).toBe("o");
+    expect(last).toBe('o');
+  });
+  test('should add 3 exclamation marks to greeting array', () => {
+    expect(greetingWithNewElements.length).toBe(9);
+    expect(greetingWithNewElements.slice(-3)).toEqual(['!', '!', '!']);
   });
 });

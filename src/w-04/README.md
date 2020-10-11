@@ -1,4 +1,4 @@
-# Workshop 2: Typescript Project Setup for Client App
+# Workshop 4: Client side application
 
 ## Topics described:
 

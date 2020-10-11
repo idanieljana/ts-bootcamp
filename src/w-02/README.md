@@ -5,7 +5,7 @@
 - Working with tsconfig
 - Setup Jest with Typescript
 - Setup eslint with Typescript
-- Typescript with bundlers
+- Introduction to the bundlers - webpack
 
 
 ## Goal:
@@ -17,15 +17,10 @@ After this workshop you will know how setup typescript in the project and make i
 1. [04-tsconfig](04-tsconfig/04-tsconfig.md)
 2. [05-typescript-eslint-jest](05-typescript-eslint-jest/05-typescript-eslint-jest.md)
 3. [06-webpack](06-webpack/06-webpack.md)
-4. [07-create-react-app](07-create-react-app/07-create-react-app.md)
-5. [08-typescript-parcel](08-typescript-parcel/08-typescript-parcel.md)
 
 ## Hometasks:
 
-
 ### Decrypting cypher
-
-Home task 1 for Workshop 2:
 
 Decrypt the following message:
 
@@ -40,8 +35,6 @@ https://en.wikipedia.org/wiki/Caesar_cipher
 
 
 ### Create an encryption/decryption utility to protect text files
-
-Home task 2
 
 Write a utility which will have the following features:
 

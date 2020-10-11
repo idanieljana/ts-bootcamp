@@ -2,7 +2,8 @@
 
 ```text
 Quick bootsrapping of client-side application with `create-react-app` utility.
-Create React App is an officially supported way to create single-page React applications. It offers a modern build setup with no configuration.
+Create React App is an officially supported way to create single-page React applications. 
+It offers a modern build setup with no configuration.
 ```
 
 ### Additional reading

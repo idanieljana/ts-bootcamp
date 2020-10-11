@@ -47,18 +47,19 @@ Write a utility which will have the following features:
 
 - could encrypt text files (Notes: let it be "utf-8" encoding; for simplicity - skip encryption of binary files like `.docx`)
 - encrypted text files could replace the originals at the same directory or be near the originals (make a flag to control this)
-- you could pass a glob pattern as an argument to select which files you want to eccrypt
+- you could pass a glob pattern as an argument to select which files you want to encrypt
 - you could pass an argument to exclude some files by glob pattern 
 - you could pass an argument to exclude files by extension 
 - you could select any other directory with argument, in this case this new directory will contain only encrypted files.
 - you could select with argument an extension of encrypted files.
 - encryption key should not be hardcoded, it should be available to pass it as an argument.
-- additional flag to make it possible create a zip archive from all encrypted files
+- additional flag to make possible create a zip archive from all encrypted files
 - it should be possible to decrypt your files (decrypt flag, same functionalities described above are supported (decrypt whole folder/zip archive))
 - files should be encrypted with aes256 or safer algorithm (you could use default node.js `crypto` module)
 
 More advanced features:
-- Make it possible to upload zip archive with flag to google drive (additional logic could be needed to pass the key)
+- Make it possible to upload zip archive with flag to google 
+drive (additional logic could be needed to pass the API keys to app)
 
 Requirements:
 - project should be written in Typescript

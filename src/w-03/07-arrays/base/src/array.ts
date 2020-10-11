@@ -26,7 +26,7 @@ export const answerDoubled = [
 ];
 
 // initialize array with 6 string values so if joined together they equal to "hello"
-export const greeting = ['hello', '', '', '', '', ''];
+export const greeting = ['h', 'e', 'l', 'l', 'o', ''];
 
 // initialize array using a and b variables (use spread operator), so
 // if reduced together with plus operator will equal to `42_hello`
@@ -43,6 +43,17 @@ export const emptySparsedWithLength = [,,];
 export const numbers = [..."0123456789"]
 
 // initialize array of unique letters from greeting variable
-export const uniqueLettersFromGreeting = [...new Set(...greeting)];
+export const uniqueLettersFromGreeting = [...new Set(greeting)];
 
-Array.from(new Set([...numbers]))
+// make a copy of greeting array, modify the first element of an array
+// to be Uppercase
+export const greetingCopiedAndModified = [...greeting]
+greetingCopiedAndModified[0] = greetingCopiedAndModified[0].toUpperCase()
+
+// make a copy of greeting array, delete the last element
+export const greetingWithDeletedLastElement = [...greeting]
+delete greetingWithDeletedLastElement[greetingWithDeletedLastElement.length - 1]
+
+// make a copy of greeting array, change the length of array to 5, so
+export const greetingWithChangedLength = [...greeting]
+greetingWithChangedLength.length = greetingWithDeletedLastElement.length - 1;

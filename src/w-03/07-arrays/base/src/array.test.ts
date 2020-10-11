@@ -9,7 +9,11 @@ import {
   sparsedArray,
   emptySparsedWithLength,
   numbers,
-  uniqueLettersFromGreeting, answerFromArrayOf,
+  uniqueLettersFromGreeting,
+  answerFromArrayOf,
+  greetingCopiedAndModified,
+  greetingWithDeletedLastElement,
+  greetingWithChangedLength,
 } from './array';
 
 describe('array', () => {
@@ -24,6 +28,9 @@ describe('array', () => {
     expect(answerAsArrayInstance).toEqual(answer);
   });
   test('answerFromArray should be equal to answer', () => {
+    // With an iterable argument, Array.from(iterable) works like the
+    // spread operator [...iterable] does. It is also a simple way to make a
+    // copy of an array:
     expect(answerFromArray).toEqual(answer);
   });
 
@@ -79,8 +86,21 @@ describe('array', () => {
         ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     );
   });
-  test('should have unique letters only', () => {
+  test('should have unique letters only for greeting', () => {
     // Hint: you could use Set
     expect(uniqueLettersFromGreeting.join("")).toEqual("helo");
+  });
+  test('should have unique letters only', () => {
+    expect(greetingCopiedAndModified.join("")).toEqual("Hello");
+  });
+  test('should have deleted last element', () => {
+    expect(greetingWithDeletedLastElement.length).toBe(6);
+    const last = greetingWithDeletedLastElement[greetingWithDeletedLastElement.length - 1];
+    expect(last).toBe(undefined);
+  });
+  test('should change length of greeting array', () => {
+    expect(greetingWithChangedLength.length).toBe(5);
+    const last = greetingWithChangedLength[greetingWithChangedLength.length - 1];
+    expect(last).toBe("o");
   });
 });

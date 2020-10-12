@@ -13,11 +13,7 @@ export const users = ['Brooklyn', 'Dario', 'Claire', 'Georgianna', 'Freda',
   'Maudie', 'Brandi', 'Elna', 'Stuart', 'Zoe'];
 
 export function sayHelloToZUsers(usersList: string[], char = 'z'): void {
-  usersList.forEach((user) => {
-    if (user[0].toLowerCase() === char) {
-      console.log(`Hello, ${user}!`);
-    }
-  });
+  // your implementation
 }
 interface User {
   firstName: string;
@@ -36,26 +32,26 @@ export const usersWithRoles: User[] = [{ firstName: 'Bradley', lastName: 'Bouley
  * Create a function using .map that will return all last names
  */
 export function getLastNames(usersListWithRoles: User[]): string[] {
-  return usersListWithRoles.map((u) => u.lastName);
+  // your implementation
 }
 
 /**
  * Create a function using .filter that will return all users by  passed role
  */
-export function getUsersByRole(usersListWithRoles: User[], role: string): User[] {
-  return usersListWithRoles.filter((u) => u.role === role);
+function getUsersByRole(usersListWithRoles: User[], role: string): User[] {
+  // your implementation
 }
 
 /**
  * Use getLastNames and getUsersByRole and return admin last names
  */
-export const adminLastNames = getLastNames(getUsersByRole(usersWithRoles, 'Admin'));
+export const adminLastNames = []; // your implementation
 
 /**
  * Create a function using .find() method to return user by role
  */
 export function findFirstUserByRole(usersList: User[], role: string): User | undefined {
-  return usersList.find((u) => u.role === role);
+  return undefined; // your implementation
 }
 
 interface Book {
@@ -85,5 +81,5 @@ export const books: Book[] = [
  * Create a function using .reduce() method to return the newest book
  */
 export function getFreshBook(booksList: Book[]): Book {
-  return booksList.reduce((x, y) => ((x.year > y.year) ? x : y));
+  return { name: '', year: 0 };
 }

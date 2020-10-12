@@ -60,12 +60,12 @@ interface Book {
 }
 export const books: Book[] = [
   {
-    name: 'Magic book',
-    year: 2002,
-  },
-  {
     name: 'Magic book 2th Edition',
     year: 2005,
+  },
+  {
+    name: 'Magic book',
+    year: 2002,
   },
   {
     name: 'Magic book 3th Edition',
@@ -83,3 +83,27 @@ export const books: Book[] = [
 export function getFreshBook(booksList: Book[]): Book {
   return { name: '', year: 0 };
 }
+
+/**
+ * Create a function with .fill() method that will return a typed array
+ * which could only consist from zeros and ones. It should be immutable, so you will have to change
+ * your types
+ */
+export function prepareBinaryVector(size: number): any {
+  return []; // your implementation
+}
+
+/**
+ * Create a function using .includes() method to check if user in the list
+ */
+export function isUserActive(usersList: string[], userName: string): boolean {
+  return false; // your implementation
+}
+
+/**
+ * Create a function using .sort() method to return sorted list of books
+ */
+export function getSortedBooks(booksList: Book[]): Book[] {
+  return booksList; // your implementation
+}
+

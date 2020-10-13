@@ -12,8 +12,7 @@ import {
   isPlainObject,
   makePairs,
   without,
-  hasEqualCoords, isAxisPoint, assignPoint,
-  multiplyObjectProps,
+  hasEqualCoords, isAxisPoint, assignPoint, multiplyObjectProps,
 } from './objectBasics';
 
 describe('objects', () => {

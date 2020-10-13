@@ -16,6 +16,7 @@ more clear understanding of working with async code.
 ## Sections:
 
 1. [07-arrays](07-arrays.md)
+1. [08-objects](07-objects.md)
 
 ## Hometasks:
 

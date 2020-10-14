@@ -12,8 +12,13 @@ import {
   isPlainObject,
   makePairs,
   without,
-  hasEqualCoords, isAxisPoint, assignPoint,
+  hasEqualCoords,
+  isAxisPoint,
+  assignPoint,
   multiplyObjectProps,
+  addNewYearDiscount,
+  clearNewYearDiscount,
+  createDiscountOffer,
 } from './objectBasics';
 
 describe('objects', () => {
@@ -141,4 +146,23 @@ describe('objects', () => {
     expect(firstUser.firstName).toBe("Bradley");
   });
 
+  test('should add new year discount offer correctly', () => {
+    const offer = createDiscountOffer(100)
+    expect(offer.price).toBe(100);
+    expect(offer.discount).toBe(10);
+    addNewYearDiscount(offer)
+    expect(offer.price).toBe(100);
+    expect(offer.discount).toBe(20);
+  });
+  test('should process discount offer correctly', () => {
+    const offer = createDiscountOffer(100)
+    expect(offer.price).toBe(100);
+    expect(offer.discount).toBe(10);
+    addNewYearDiscount(offer)
+    expect(offer.price).toBe(100);
+    expect(offer.discount).toBe(20);
+    clearNewYearDiscount(offer);
+    expect(offer.price).toBe(100);
+    expect(offer.discount).toBe(10);
+  });
 });

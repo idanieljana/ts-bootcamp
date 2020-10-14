@@ -114,7 +114,7 @@ interface Points {
 }
 export function assignPoint(points: Readonly<Points>): Point3D {
     const { p1, p2, p3 } = points;
-    return Object.assign(p1, p2, p3)
+    return Object.assign({}, p1, p2, p3)
 }
 
 /**
@@ -214,3 +214,35 @@ export function getTransformedUsers(usersList: User[]): UserTransformed[] {
 }
 
 
+interface Offer {
+    price: number;
+    discount?: number;
+}
+
+/**
+ * Write a method to add a 20% discount to the offer field.
+ * Note: it is a mutating operation, so the return type is void
+ */
+export function addNewYearDiscount(offer: Offer): void {
+    offer.discount = offer.price * 0.2;
+}
+
+/**
+ * Write a method to clear discount field.
+ * Use delete operation in this task!
+ * Note: it is a mutating operation, so the return type is void
+ */
+export function clearNewYearDiscount(offer: Offer): void {
+    delete offer.discount;
+}
+
+/**
+ * Write a method to create a regular discount offer.
+ * A discount field should be a 10% from the price.
+ * Consider using Object.create()
+ */
+export function createDiscountOffer(price: number): Offer {
+    const offer: Offer = Object.create({ discount: price * 0.1 });
+    offer.price = price;
+    return offer;
+}

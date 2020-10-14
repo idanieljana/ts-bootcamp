@@ -167,4 +167,38 @@ export function getTransformedUsers(usersList: User[]): UserTransformed[] {
     return {} as any
 }
 
+interface Offer {
+    price: number;
+    discount?: number;
+}
+
+/**
+ * Write a method to add a 20% discount to the offer field.
+ * Note: it is a mutating operation, so the return type is void
+ */
+export function addNewYearDiscount(offer: Offer): void {
+    //
+}
+
+/**
+ * Write a method to clear discount field.
+ * Use delete operation in this task!
+ * Note: it is a mutating operation, so the return type is void
+ */
+export function clearNewYearDiscount(offer: Offer): void {
+    //
+}
+
+/**
+ * Write a method to create a regular discount offer.
+ * A discount field should be a 10% from the price.
+ * Consider using Object.create()
+ */
+export function createDiscountOffer(price: number): Offer {
+    return {} as Offer
+}
+
+
+
+
 

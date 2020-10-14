@@ -190,7 +190,7 @@ export const uniqueUsersForLoopKeys = getUniqueUsersKeysForOfLoop(users);
  * additional property `__original` contains copy to original object.
  * Example:
  * [{ x: "a", y: "b"}] -> [{ a: "x", b: "y", __original:{ x: "a", y: "b"} }]
- * You should use Object.entries() and for-of loop in your solution
+ * You should use Object.entries() in your solution
  */
 interface OriginalUser {
     __original: User

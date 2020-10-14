@@ -2,11 +2,8 @@
  * Create an object representing a Point with x, y properties and assign zeros as values.
  * Create a Point interface and type point var.
  */
-interface Point {
-    x: number;
-    y: number;
-}
-export const point: any = {};
+interface Point {}
+export const point: Point = {};
 
 
 /**
@@ -15,7 +12,7 @@ export const point: any = {};
  * Create a Point3D interface and type point3D var. Use TS extends feature
  */
 interface Point3D {}
-export const point3D: any = {};
+export const point3D: Point3D = {};
 
 
 /**
@@ -98,12 +95,7 @@ export const point3DProperties = getPointUppercaseProperties(point3D)
  */
 
 type PointCoord<K extends keyof Point3D> = Readonly<Pick<Point3D, K>>;
-type Points = any
-// interface Points {
-//     p1: PointCoord<"x">,
-//     p2: PointCoord<"y">,
-//     p3: PointCoord<"z">
-// }
+type Points = any;
 export function assignPoint(points: Readonly<Points>): Point3D {
     return {} as Point3D
 }
@@ -163,15 +155,13 @@ export const uniqueUsersForLoopKeys = getUniqueUsersKeysForOfLoop(users);
  * additional property `__original` contains copy to original object.
  * Example:
  * [{ x: "a", y: "b"}] -> [{ a: "x", b: "y", __original:{ x: "a", y: "b"} }]
- * You should use Object.entries() and for-of loop in your solution
+ * You should use Object.entries() your solution
  */
 interface OriginalUser {
-    __original: User
+    __original: any
 }
 
-type UserTransformed = {
-    [k: string]: keyof User| User;
-} & OriginalUser;
+type UserTransformed = {} & OriginalUser;
 
 export function getTransformedUsers(usersList: User[]): UserTransformed[] {
     return {} as any

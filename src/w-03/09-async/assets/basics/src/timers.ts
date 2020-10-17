@@ -1,20 +1,27 @@
 /**
- * Write method to handle a function after a timeout
+ * Write a method to call function after a delay,
+ * Method should return "abort callback".
+ * In case abort is called, function should not be called.
+ * Delay should be passed in seconds.
  */
-export function timeout(handler: () => {}, delay: number) {
-    return setTimeout(handler, delay);
+export function delay(handler: () => {}, delaySec: number): () => void {
+  const timeoutId = setTimeout(handler, delaySec * 1000);
+  return () => {
+    clearTimeout(timeoutId);
+  };
 }
 
 /**
- * Write method to handle a function with interval.
- * It should return back a cancel function. In case it is called,
- * interval should be stopped.
+ * Write a method to call function with interval.
+ * Method should return "abort callback".
+ * In case abort is called, function should not be called.
+ * Delay should be passed in seconds.
  */
-export function interval(handler: () => {}, interval: number) {
-    const intervalId = setInterval(handler, interval);
-    return () => {
-        clearInterval(intervalId);
-    }
+export function period(handler: () => {}, intervalSec: number): () => void {
+  const intervalId = setInterval(handler, intervalSec * 1000);
+  return () => {
+    clearInterval(intervalId);
+  };
 }
 
 /**
@@ -27,23 +34,22 @@ export function interval(handler: () => {}, interval: number) {
 export type ExecutionHandler = () => void;
 export type ExecutionLogger = (log: [ExecutionAction, ExecutionStatus]) => void;
 export enum ExecutionAction {
-    Play = "Play",
-    // Pause = "Pause",
+  Play = 'Play'
+  // Pause = "Pause",
 }
 export enum ExecutionStatus {
-    Running = "Running",
-    Scheduled = "Scheduled",
+  Running = 'Running',
+  Scheduled = 'Scheduled'
 }
 type DelaySec = number;
-export type Schedule = readonly [ExecutionAction, ExecutionHandler, ExecutionLogger, DelaySec?]
+export type Schedule = readonly [ExecutionAction, ExecutionHandler, ExecutionLogger, DelaySec?];
 
-
-export function exec([action, handle, logger, delaySec]: Schedule) {
-    if (delaySec === undefined) {
-        logger([action, ExecutionStatus.Running])
-        handle()
-    } else {
-        logger([action, ExecutionStatus.Scheduled])
-        setTimeout(handle, delaySec / 1000)
-    }
+export function exec([action, handle, logger, delaySec]: Schedule): void {
+  if (delaySec === undefined) {
+    logger([action, ExecutionStatus.Running]);
+    handle();
+  } else {
+    logger([action, ExecutionStatus.Scheduled]);
+    setTimeout(handle, delaySec / 1000);
+  }
 }

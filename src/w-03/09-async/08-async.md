@@ -31,6 +31,10 @@ Typescript Type guards:
 
 https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards
 
+Promises:
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
 ### Exercise 1
 
 `Estimated time: 5-10 min`
@@ -131,6 +135,25 @@ Task: write script (using callback API) to read package.json file and extract mo
 `Estimated time: 15-25 min`
 
 #### Promises
+
+Now that we’ve seen examples of callback asynchronous code we can introduce Promises, 
+a core language feature designed to simplify asynchronous programming.
+
+A Promise is an object that represents the result of an asynchronous computation. 
+That result may or may not be ready yet, and the Promise API is intentionally vague 
+about this: there is no way to synchronously get the value of a Promise; 
+you can only ask the Promise to call a callback function when the value is ready.
+
+
+Promises could be seen as a different way of working with callbacks.
+One real problem with callback-based asynchronous programming is that it is common 
+to end up with callbacks inside callbacks inside callbacks, with lines of code 
+so highly indented that it is difficult to read.
+
+Promises allow to re-express callbacks as a more linear Promise chain that tends to be 
+easier to read and easier to reason about.
+
+Another problem with callbacks is that they can make handling errors difficult.
 
 
 ### Exercise X

@@ -1,7 +1,8 @@
 {
-  "name": "07-arrays",
+  "name": "09-async",
   "version": "1.0.0",
   "main": "index.js",
+  "description": "A module with exercises for async code topic",
   "license": "MIT",
   "scripts": {
     "test": "jest",

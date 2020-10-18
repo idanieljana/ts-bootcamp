@@ -26,6 +26,7 @@ export function getInstalledAmbientTypesList(configName: string, cb: Callback<Pa
                                         return {
                                             name: f.name,
                                             version: f.version,
+                                            description: f.description,
                                         }
                                     }).sort((a, b) => {
                                         return a.name.localeCompare(b.name)
@@ -114,6 +115,7 @@ function readTypesDirs(dirs: string[], cb: Callback<TypesPath[]>) {
 interface PackageJson {
     name: string;
     version: string;
+    description: string;
 }
 
 function readPackageJsons(paths: TypesPath[], cb: Callback<PackageJson[]>) {
@@ -136,5 +138,30 @@ function readPackageJsons(paths: TypesPath[], cb: Callback<PackageJson[]>) {
                 cb(null, resultDirs)
             }
         });
+    })
+}
+
+function isPackageJsonConfig(obj: any): obj is PackageJson {
+    return typeof obj === "object"
+        && "description" in obj
+        && typeof obj.description === "string";
+}
+
+export function parsePackageJsonDescription(packageJsonPath: string, cb: Callback<string>): void {
+    fs.readFile(packageJsonPath, { encoding: "utf-8" },(err, file) => {
+        if (err) {
+            cb(err)
+        } else {
+            try {
+                const parsed = JSON.parse(file);
+                if (isPackageJsonConfig(parsed)) {
+                    cb(null, parsed.description)
+                } else {
+                    cb(new Error("Incorrect config provided or no description in the file"))
+                }
+            } catch (err) {
+                cb(err)
+            }
+        }
     })
 }

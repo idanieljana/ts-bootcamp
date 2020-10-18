@@ -23,18 +23,117 @@ Callbacks in Node.js:
 
 https://github.com/maxogden/art-of-node#callbacks
 
+Jest snapshot testing:
+
+https://jestjs.io/docs/en/snapshot-testing
+
+Typescript Type guards:
+
+https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards
+
 ### Exercise 1
 
-`Estimated time: 30-45 min`
+`Estimated time: 5-10 min`
 
-Open a folder `ts-bootcamp/src/w-03/09-async/assets/basics` and run `yarn` to install the dependencies.
+#### Timeouts and Intervals introduction
+
+One of the simplest kinds of asynchrony is when you want 
+to run some code after a certain amount of time has elapsed.
+
+Open 
+`ts-bootcamp/src/w-03/09-async/assets/timeout-interval-demo`
+
+Run the standard we used in previous workshops to run the 
+server: `npx http-server@0.12.0 -p 7777 -o -c-1`
+
+Play with the UI available 
+
+![image](assets/timeouts-intervals-demo.png)
+
+Question: 
+
+What is not okay with timing mechanics? How could it be improved ?
+
+### Exercise 2
+
+`Estimated time: 20-30 min`
+
+#### Timeouts and Intervals aborting
+
+Your task would be to write 2 methods and cover 
+them with unit tests.
+
+One method will call a function with the delay.
+Second method will call a function infinite times with 
+period. Both methods will need aborting functionality.
+
+More detailed instructions on the function signatures 
+would be inside `.ts` files.
+
+Test scenarios names would be prepared, but you will need
+to write tests yourself.
+
+
+Open folder `ts-bootcamp/src/w-03/09-async/assets/basics` and run `yarn` to install the dependencies.
 
 Run `yarn test --watch`.
 
 Open file `src/timers.ts` and start following the instructions written in comments.
 
 
-### Exercise 2
+### Exercise 3
+
+`Estimated time: 5-10 min`
+
+#### Callback API demo
+
+![image](assets/callback-hell.png)
+
+Open file:
+
+`ts-bootcamp/src/w-03/09-async/assets/basics/src/callbacks.ts`
+
+Investigate what is not okay with the code. How could it be improved?
+
+Open file:
+
+`ts-bootcamp/src/w-03/09-async/assets/basics/src/callbacks.test.ts`
+
+3 things to point here:
+
+- Node.js `promisify` utility
+- Jest snapshot functionality.
+- More typesage JSON parsing could be organized with the help of Type Guards:
+
+```typescript
+interface Config {
+    dirs: string[];
+}
+function isConfig(obj: any): obj is Config {
+    return typeof obj === "object"  
+        && "dirs" in obj
+        && Array.isArray(obj.dirs)
+        && obj.dirs.every((s: any) => typeof s === "string")
+}
+```
+
+### Exercise 4
+
+`Estimated time: 10-15 min`
+
+#### Callbacks API
+
+Task: write script (using callback API) to read package.json file and extract module description.
+
+
+### Exercise 5
+
+`Estimated time: 15-25 min`
+
+#### Promises
+
+
+### Exercise X
 
 Open a folder `ts-bootcamp/src/w-03/09-async/assets/dance-bears`
 
@@ -42,5 +141,19 @@ Create a mini console application that will output colored ascii bears in consol
 
 `https://www.npmjs.com/package/ascii-art-reverse` - module to reverse ascii art
 `https://www.npmjs.com/package/colors` - module to color console output
+
+
+Notes:
+
+- Always control  timeouts and intervals in your application, always think about cleanup,
+uncontrolled timers 
+
+Reptile Ninja image:
+
+![image](https://vignette.wikia.nocookie.net/mkwikia/images/8/89/MK1.gif/revision/latest?cb=20090602231939)
+
+Callback hell original idea image:
+
+![image](https://miro.medium.com/max/1400/1*zxx4iQAG4HilOIQqDKpxJw.jpeg)
 
 

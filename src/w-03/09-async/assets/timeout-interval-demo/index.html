@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h1>Timeouts and Intervals Demo</h1>
+    <div class="timeout" style="background-color: blue;"></div>
+    <div class="interval" style="background-color: blue;"></div>
+    <br/>
+    <button class="startTimeout" onclick="startTimeout()">START TIMEOUT</button>
+    <button class="stopTimeout" onclick="stopTimeout()">STOP TIMEOUT</button>
+    <button class="startInterval" onclick="startInterval()">
+        START INTERVAL
+    </button>
+    <button class="stopInterval" onclick="stopInterval()">STOP INTERVAL</button>
+    <div class="resultInterval"></div>
+    <div class="resultTimeout"></div>
+    <script>
+        let resInterval = document.querySelector(".resultInterval");
+        let resTimeout = document.querySelector(".resultTimeout");
+
+        function changeColor(el) {
+            if (el.style.backgroundColor === "blue") {
+                el.style.backgroundColor = "orange";
+            } else {
+                el.style.backgroundColor = "blue";
+            }
+        }
+
+        let timeoutId;
+        const timeoutMs = 500;
+
+        function startTimeout() {
+            timeoutId = setTimeout(
+                () => changeColor(document.querySelector(".timeout")),
+                timeoutMs
+            );
+            resTimeout.innerHTML = "Timeout has been started";
+        }
+
+        function stopTimeout() {
+            clearTimeout(timeoutId);
+            resTimeout.innerHTML = "Timeout has been cleared";
+        }
+
+        let intervalId;
+
+        function startInterval() {
+            intervalId = setInterval(
+                () => changeColor(document.querySelector(".interval")),
+                timeoutMs
+            );
+            resInterval.innerHTML = "Interval has been started";
+        }
+
+        function stopInterval() {
+            clearInterval(intervalId);
+            resInterval.innerHTML = "Interval has been cleared";
+        }
+    </script>
+    <style>
+        .timeout {
+            margin-right: 170px;
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+        }
+
+        .interval {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+        }
+
+        .stopTimeout {
+            margin-right: 100px;
+        }
+    </style>
+</body>
+</html>

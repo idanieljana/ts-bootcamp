@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 /**
  * Write a method to call function after a delay,
  * Method should return "abort callback".

@@ -75,7 +75,7 @@ More detailed instructions on the function signatures
 would be inside `.ts` files.
 
 Test scenarios names would be prepared, but you will need
-to write tests yourself.
+to write tests implementation yourself.
 
 
 Open folder `ts-bootcamp/src/w-03/09-async/assets/basics` and run `yarn` to install the dependencies.
@@ -99,14 +99,11 @@ Open file:
 
 Investigate what is not okay with the code. How could it be improved?
 
-Open file:
-
-`ts-bootcamp/src/w-03/09-async/assets/basics/src/callbacks.test.ts`
 
 3 things to point here:
 
 - Node.js `promisify` utility
-- Jest snapshot functionality.
+- Jest snapshot functionality (`ts-bootcamp/src/w-03/09-async/assets/basics/src/callbacks.test.ts`)
 - More typesage JSON parsing could be organized with the help of Type Guards:
 
 ```typescript
@@ -128,6 +125,10 @@ function isConfig(obj: any): obj is Config {
 #### Callbacks API
 
 Task: write script (using callback API) to read package.json file and extract module description.
+
+Open file:
+
+`ts-bootcamp/src/w-03/09-async/assets/basics/src/callbacks.ts`
 
 
 ### Exercise 5

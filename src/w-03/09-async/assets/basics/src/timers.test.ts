@@ -4,7 +4,7 @@ import {
 } from './timers';
 
 function tickSeconds(seconds: number) {
-  return undefined;
+  return seconds;
 }
 
 describe.skip('timeouts/intervals', () => {
@@ -14,8 +14,8 @@ describe.skip('timeouts/intervals', () => {
 
   describe('delay()', () => {
     test('should not run function immediately', () => {
-      delay(() => { return () => {}}, -1)
-      tickSeconds(-1)
+      delay(() => () => {}, -1);
+      tickSeconds(-1);
       expect(true).toBe(false);
     });
     test('should not run function when delay is partial', () => {
@@ -30,8 +30,8 @@ describe.skip('timeouts/intervals', () => {
   });
   describe('period()', () => {
     test('should run passed function with 2s interval', () => {
-      period(() => { return () => {}}, -1)
-      tickSeconds(-1)
+      period(() => () => {}, -1);
+      tickSeconds(-1);
       expect(true).toBe(false);
     });
 

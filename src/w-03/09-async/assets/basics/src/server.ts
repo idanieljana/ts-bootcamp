@@ -103,6 +103,7 @@ app.get('/api/directors', async (req: Request, res: Response) => {
   res.json(directors.map((d) => ({
     id: d.id,
     name: d.name,
+    movies: `${baseUri}/api/directors/${d.id}/movies`,
   })));
 });
 
@@ -111,7 +112,13 @@ app.get('/api/directors', async (req: Request, res: Response) => {
  */
 app.get('/api/directors/:id/movies', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id, 10) || 0;
-  res.json(directors.find((d) => d.id === id)?.movies || []);
+  const movies = directors.find((d) => d.id === id)?.movies || [];
+  res.json(movies.map(m => {
+    return {
+      ...m,
+      reviews: `${baseUri}/api/movies/${m.id}/reviews`,
+    }
+  }));
 });
 
 /**

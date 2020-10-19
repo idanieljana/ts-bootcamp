@@ -1,4 +1,4 @@
-import {getDirectors, getMovies} from './promises';
+import { getDirectors, getMovies } from './promises';
 
 describe('promises', () => {
   test('should return list of directors', async () => {

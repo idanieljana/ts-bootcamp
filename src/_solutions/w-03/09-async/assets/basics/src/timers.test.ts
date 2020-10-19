@@ -1,8 +1,6 @@
 import {
   delay,
   period,
-  ExecutionAction, Schedule, ExecutionStatus,
-  exec,
 } from './timers';
 
 function tickSeconds(seconds: number) {
@@ -50,7 +48,7 @@ describe('timeouts/intervals', () => {
       expect(handlerMock).toHaveBeenCalledTimes(5);
     });
 
-    test('should abort running passedinterval', () => {
+    test('should abort running passed interval', () => {
       const handlerMock = jest.fn();
       const abortInterval = period(handlerMock, 2);
       tickSeconds(2);
@@ -61,71 +59,4 @@ describe('timeouts/intervals', () => {
       expect(handlerMock).not.toHaveBeenCalled();
     });
   });
-
-  // TODO: move to another describe section
-  test('should executed play action with 200ms delay', () => {
-    const handlerMock = jest.fn();
-    const loggerMock = jest.fn();
-    const params: Schedule = [ExecutionAction.Play, handlerMock, loggerMock];
-    exec(params);
-    expect(handlerMock).toHaveBeenCalled();
-    expect(loggerMock).toHaveBeenCalledWith([ExecutionAction.Play, ExecutionStatus.Running]);
-  });
 });
-
-
-describe("fast/slow", () => {
-  test('slow', async () => {
-    const result = await addTwoNumbersSlow();
-    console.log(result)
-    expect(result).toBeGreaterThan(0)
-  });
-  test('faster', async () => {
-    const result = await addTwoNumbersFaster();
-    console.log(result)
-    expect(result).toBeGreaterThan(0)
-  });
-})
-
-async function getOperandSlow() {
-  return new Promise<number>(resolve => {
-    setTimeout(() => {
-      resolve(Math.floor(Math.random() * Math.floor(10)));
-    }, 2 * 1000);
-  });
-}
-
-async function addTwoNumbersSlow() {
-  console.clear();
-  console.time('Time elapsed');
-
-  const operand1 = await getOperandSlow();
-  const operand2 = await getOperandSlow();
-
-  const sum = operand1 + operand2;
-
-  console.log('First operand: ' + operand1);
-  console.log('Second operand: ' + operand2);
-  console.log('Sum: ' + sum);
-
-  console.timeEnd('Time elapsed');
-  return sum;
-}
-
-async function addTwoNumbersFaster() {
-  console.clear();
-  console.time('Time elapsed');
-
-  const operandPromise1 = getOperandSlow();
-  const operandPromise2 = getOperandSlow();
-  const operand1 = await operandPromise1;
-  const operand2 = await operandPromise2;
-  const sum = operand1 + operand2;
-  console.log('First operand: ' + operand1);
-  console.log('Second operand: ' + operand2);
-  console.log('Sum: ' + sum);
-
-  console.timeEnd('Time elapsed');
-
-  return sum;
-}

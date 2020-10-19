@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import {Director, DirectorsResponse, MoviesResponse} from './types';
+import {DirectorsResponse, MoviesResponse} from './types';
 
 const baseUrl = 'http://localhost:3000';
 

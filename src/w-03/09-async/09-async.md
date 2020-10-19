@@ -135,7 +135,7 @@ Open file:
 
 `Estimated time: 15-25 min`
 
-#### Promises
+#### Promises API - fetch call to get the list of movie directors
 
 Now that we’ve seen examples of callback asynchronous code we can introduce Promises, 
 a core language feature designed to simplify asynchronous programming.
@@ -156,15 +156,37 @@ easier to read and easier to reason about.
 
 Another problem with callbacks is that they can make handling errors difficult.
 
+Task: 
 
-### Exercise X
+Run `yarn movies`, it should start the server.
 
-Open a folder `ts-bootcamp/src/w-03/09-async/assets/dance-bears`
+Open `ts-bootcamp/src/w-03/09-async/assets/basics/src/promises.ts` and write a method using promises 
+to get the list of directors.
 
-Create a mini console application that will output colored ascii bears in console with passed interval
 
-`https://www.npmjs.com/package/ascii-art-reverse` - module to reverse ascii art
-`https://www.npmjs.com/package/colors` - module to color console output
+### Exercise 5
+
+`Estimated time: 10-15 min`
+
+
+#### Promises API - fetch call to get the list of directors movies links
+
+Task: 
+
+- Write a method using promises to get the list of director movies links.
+- Write a method using promises to fetch the url and parse it to json, refactor method getDirectors() from exercise 4
+
+
+### Exercise 6
+
+`Estimated time: 10-15 min`
+
+
+#### Promises API - fetch call to get the list of directors movies links
+
+Task: 
+
+Write a method using promises to get the list of director movies links.
 
 
 Notes:

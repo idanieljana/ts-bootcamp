@@ -1,21 +1,11 @@
 import * as express from 'express';
 import * as faker from 'faker';
 import { Request, Response } from 'express';
+import { Director } from './types';
 
 const app = express();
 const port = process.env.PORT || 3000;
 const baseUri = `http://localhost:${port}`;
-
-interface Director {
-  id: number;
-  name: string;
-  movies: Movie[];
-}
-
-interface Movie {
-  id: number;
-  title: string;
-}
 
 const directors: Director[] = [
   {
@@ -113,33 +103,32 @@ app.get('/api/directors', async (req: Request, res: Response) => {
 app.get('/api/directors/:id/movies', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id, 10) || 0;
   const movies = directors.find((d) => d.id === id)?.movies || [];
-  res.json(movies.map(m => {
-    return {
-      ...m,
-      reviews: `${baseUri}/api/movies/${m.id}/reviews`,
-    }
-  }));
+  res.json(movies.map((m) => ({
+    ...m,
+    reviews: `${baseUri}/api/movies/${m.id}/reviews`,
+  })));
 });
 
 /**
  * Returns 3 random reviews
  */
 app.get('/api/movies/:id/reviews', async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id, 10) || 0;
   const reviews = [
     {
       id: Math.floor(Math.random() * 1000),
       reviewer: faker.internet.email(),
-      rating: Math.floor(Math.random() * 10),
+      rating: (id * 3) % 10,
     },
     {
       id: Math.floor(Math.random() * 1000),
       reviewer: faker.internet.email(),
-      rating: Math.floor(Math.random() * 10),
+      rating: (id * 4) % 10,
     },
     {
       id: Math.floor(Math.random() * 1000),
       reviewer: faker.internet.email(),
-      rating: Math.floor(Math.random() * 10),
+      rating: (id * 9) % 10,
     },
   ];
   res.json(reviews.map((r) => ({

@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`promises should return list of directors 1`] = `
+Array [
+  Object {
+    "id": 1,
+    "movies": "http://localhost:3000/api/directors/1/movies",
+    "name": "James Cameron",
+  },
+  Object {
+    "id": 2,
+    "movies": "http://localhost:3000/api/directors/2/movies",
+    "name": "Quentin Tarantino",
+  },
+  Object {
+    "id": 3,
+    "movies": "http://localhost:3000/api/directors/3/movies",
+    "name": "Wes Anderson",
+  },
+  Object {
+    "id": 4,
+    "movies": "http://localhost:3000/api/directors/4/movies",
+    "name": "Stanley Kubrick",
+  },
+]
+`;
+
+exports[`promises should return list of directors movies 1`] = `
+Array [
+  Array [
+    Object {
+      "id": 1,
+      "reviews": "http://localhost:3000/api/movies/1/reviews",
+      "title": "Titanic",
+    },
+    Object {
+      "id": 2,
+      "reviews": "http://localhost:3000/api/movies/2/reviews",
+      "title": "The Terminator",
+    },
+    Object {
+      "id": 3,
+      "reviews": "http://localhost:3000/api/movies/3/reviews",
+      "title": "Avatar",
+    },
+  ],
+  Array [
+    Object {
+      "id": 4,
+      "reviews": "http://localhost:3000/api/movies/4/reviews",
+      "title": "Django Unchained",
+    },
+    Object {
+      "id": 5,
+      "reviews": "http://localhost:3000/api/movies/5/reviews",
+      "title": "Inglourious Basterds",
+    },
+    Object {
+      "id": 6,
+      "reviews": "http://localhost:3000/api/movies/6/reviews",
+      "title": "Grindhouse",
+    },
+  ],
+  Array [
+    Object {
+      "id": 7,
+      "reviews": "http://localhost:3000/api/movies/7/reviews",
+      "title": "The Grand Budapest Hotel",
+    },
+    Object {
+      "id": 8,
+      "reviews": "http://localhost:3000/api/movies/8/reviews",
+      "title": "Moonrise Kingdom",
+    },
+    Object {
+      "id": 9,
+      "reviews": "http://localhost:3000/api/movies/9/reviews",
+      "title": "Fantastic Mr. Fox",
+    },
+  ],
+  Array [
+    Object {
+      "id": 10,
+      "reviews": "http://localhost:3000/api/movies/10/reviews",
+      "title": "2001: A Space Odyssey",
+    },
+    Object {
+      "id": 11,
+      "reviews": "http://localhost:3000/api/movies/11/reviews",
+      "title": "The Shining",
+    },
+    Object {
+      "id": 12,
+      "reviews": "http://localhost:3000/api/movies/12/reviews",
+      "title": "A Clockwork Orange",
+    },
+  ],
+]
+`;

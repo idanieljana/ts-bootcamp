@@ -1,6 +1,9 @@
 import * as fs from "fs";
 import * as path from "path";
 
+/**
+ * Demo for callback API
+ */
 export function getInstalledAmbientTypesList(configName: string, cb: Callback<PackageJson[]>): void {
     readConfig(configName, (readError, file) => {
         if (readError) {
@@ -40,6 +43,27 @@ export function getInstalledAmbientTypesList(configName: string, cb: Callback<Pa
             })
         }
     })
+}
+
+/**
+ * Implement simple Type Guard for package.json config parsing
+ */
+function isPackageJsonConfig(obj: any): obj is PackageJson {
+    return false; //Not implemented
+}
+
+/**
+ * Implement method to parse package.json description
+ */
+export function parsePackageJsonDescription(packageJsonPath: string, cb: Callback<string>): void {
+    isPackageJsonConfig({});
+    cb(new Error("Not implemented"))
+}
+
+interface PackageJson {
+    name: string;
+    version: string;
+    description: string;
 }
 
 type Callback<T> = (err: Error | null, result?: T) => void;
@@ -112,12 +136,6 @@ function readTypesDirs(dirs: string[], cb: Callback<TypesPath[]>) {
     })
 }
 
-interface PackageJson {
-    name: string;
-    version: string;
-    description: string;
-}
-
 function readPackageJsons(paths: TypesPath[], cb: Callback<PackageJson[]>) {
     let counter = 0;
     const resultDirs: PackageJson[] = []
@@ -141,27 +159,3 @@ function readPackageJsons(paths: TypesPath[], cb: Callback<PackageJson[]>) {
     })
 }
 
-function isPackageJsonConfig(obj: any): obj is PackageJson {
-    return typeof obj === "object"
-        && "description" in obj
-        && typeof obj.description === "string";
-}
-
-export function parsePackageJsonDescription(packageJsonPath: string, cb: Callback<string>): void {
-    fs.readFile(packageJsonPath, { encoding: "utf-8" },(err, file) => {
-        if (err) {
-            cb(err)
-        } else {
-            try {
-                const parsed = JSON.parse(file);
-                if (isPackageJsonConfig(parsed)) {
-                    cb(null, parsed.description)
-                } else {
-                    cb(new Error("Incorrect config provided or no description in the file"))
-                }
-            } catch (err) {
-                cb(err)
-            }
-        }
-    })
-}

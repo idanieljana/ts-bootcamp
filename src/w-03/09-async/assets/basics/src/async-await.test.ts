@@ -1,5 +1,5 @@
 describe("async/await", () => {
-  describe("await keyword place difference", () => {
+  describe.skip("await keyword place difference demo", () => {
     test('should wait 2 seconds and return sum', async () => {
       const result = await addTwoNumbersSlow();
       expect(result).toBeGreaterThan(0)

@@ -8,7 +8,7 @@ import { promisify } from "util";
 import * as path from "path";
 
 describe("AmbientTypesParser", () => {
-    test("should parse config and return installed ambient types", async () => {
+    test.skip("should parse config and return installed ambient types", async () => {
         /**
          * Note: npm module `mock-fs` should be used for unit testing with fs
          * https://github.com/tschaub/mock-fs
@@ -21,7 +21,7 @@ describe("AmbientTypesParser", () => {
 
 
 describe("package.json parser", () => {
-    test("should parse description of passed package.json path", async () => {
+    test.skip("should parse description of passed package.json path", async () => {
         const packageJsonPath = path.join(__dirname, "..", "package.json");
         const result = await promisify(parsePackageJsonDescription)(packageJsonPath);
         expect(result).toBe("A module with exercises for async code topic");

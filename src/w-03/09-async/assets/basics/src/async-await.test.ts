@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 
-import {getDirectorsAsync, getMoviesAsync} from "./async-await";
+import { getDirectorsAsync, getMoviesAsync, getMoviesWithScore } from './async-await';
 
 describe('async/await', () => {
   describe('await keyword place difference demo', () => {
@@ -24,6 +24,12 @@ describe('async/await', () => {
       const directors = await getDirectorsAsync();
       const movies = await getMoviesAsync(directors);
       expect(movies).toMatchSnapshot();
+    });
+    test('should return list of movies with scores', async () => {
+      const directors = await getDirectorsAsync();
+      const movies = await getMoviesAsync(directors);
+      const moviesWithScores = await getMoviesWithScore(movies);
+      expect(moviesWithScores).not.toBe(null);
     });
   });
 });

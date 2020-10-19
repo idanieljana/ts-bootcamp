@@ -189,6 +189,40 @@ Task:
 Write a method using promises to get the list of director movies links.
 
 
+### Exercise 7
+
+`Estimated time: 10-15 min`
+
+
+#### Async/Await API - rewrite "directors API" to async/await
+
+Task: 
+
+Rewrite Directors API with the help of async and await 
+
+`ts-bootcamp/src/w-03/09-async/assets/basics/src/async-await.ts`
+
+
+### Exercise 8
+
+`Estimated time: 10-15 min`
+
+#### Async/Await API - write new method to collect average score  of each movie
+
+Task write a method to return the movies with the average score.
+
+Hint: `http://localhost:3000/api/movies/3/reviews`
+
+Expected:
+
+```json
+[{
+      "id": 100500,
+      "score": 9,
+      "title": "Avatar"
+}]
+```
+
 Notes:
 
 - Always control  timeouts and intervals in your application, always think about cleanup,

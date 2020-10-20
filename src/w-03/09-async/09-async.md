@@ -164,7 +164,7 @@ Open `ts-bootcamp/src/w-03/09-async/assets/basics/src/promises.ts` and write a m
 to get the list of directors.
 
 
-### Exercise 5
+### Exercise 6
 
 `Estimated time: 10-15 min`
 
@@ -174,10 +174,10 @@ to get the list of directors.
 Task: 
 
 - Write a method using promises to get the list of director movies links.
-- Write a method using promises to fetch the url and parse it to json, refactor method getDirectors() from exercise 4
+- Write a method using promises to fetch the url and parse it to json, refactor method getDirectors() from previous exercise
 
 
-### Exercise 6
+### Exercise 7
 
 `Estimated time: 10-15 min`
 
@@ -189,7 +189,7 @@ Task:
 Write a method using promises to get the list of director movies links.
 
 
-### Exercise 7
+### Exercise 8
 
 `Estimated time: 10-15 min`
 
@@ -203,7 +203,7 @@ Rewrite Directors API with the help of async and await
 `ts-bootcamp/src/w-03/09-async/assets/basics/src/async-await.ts`
 
 
-### Exercise 8
+### Exercise 9
 
 `Estimated time: 10-15 min`
 

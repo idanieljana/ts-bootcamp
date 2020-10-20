@@ -188,8 +188,20 @@ Task:
 
 Write a method using promises to get the list of director movies links.
 
-
 ### Exercise 8
+
+`Estimated time: 10-15 min`
+
+
+#### Promises API - fastest promise
+
+Task: 
+
+Write a method using promises to get the fastest response 
+from the recommendations API with the director.
+
+
+### Exercise 9
 
 `Estimated time: 10-15 min`
 
@@ -203,7 +215,7 @@ Rewrite Directors API with the help of async and await
 `ts-bootcamp/src/w-03/09-async/assets/basics/src/async-await.ts`
 
 
-### Exercise 9
+### Exercise 10
 
 `Estimated time: 10-15 min`
 

@@ -39,6 +39,5 @@ export function getMovies(directors: DirectorsResponse[]): Promise<MoviesRespons
  * enddpoint: '/api/directors/recommendations/:timeout'
  */
 export function getDirectorsRecommendations(urls: string[]): Promise<DirectorsResponse> {
-    const promises = urls.map(u => fetch(u).then(r => r.json()));
-    return Promise.race<DirectorsResponse>(promises).then((value) => value);
+    return Promise.resolve({} as DirectorsResponse);
 }

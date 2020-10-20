@@ -235,6 +235,17 @@ Expected:
 }]
 ```
 
+### Exercise 11 - Additional
+
+`Estimated time: 10-15 min`
+
+#### Promises API - Promise.allSettled
+
+Open link and investigate how Promise.allSettled() works
+
+https://codesandbox.io/s/promiseallsettled-forked-d4meh?file=/src/index.js
+
+
 Notes:
 
 - Always control  timeouts and intervals in your application, always think about cleanup,

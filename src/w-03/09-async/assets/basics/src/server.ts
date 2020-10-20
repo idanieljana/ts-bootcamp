@@ -83,7 +83,12 @@ const directors: Director[] = [
 ];
 
 app.get('/', async (req: Request, res: Response) => {
-  res.send('Directors movies app. Available API: /api/directors, /api/directors/:id/movies, /api/movies/:id/reviews');
+  res.send('Directors movies app. Available API: </br>' +
+      '/api/directors, </br>' +
+      '/api/directors/:id/movies, </br>' +
+      '/api/movies/:id/reviews </br>' +
+      '/api/directors/recommendations/:timeout </br>'
+  );
 });
 
 /**
@@ -135,6 +140,22 @@ app.get('/api/movies/:id/reviews', async (req: Request, res: Response) => {
     ...r,
     reviewer: r.reviewer.toLowerCase(),
   })));
+});
+
+/**
+ * Returns random director recommendation by the timeout
+ */
+app.get('/api/directors/recommendations/:timeout', async (req: Request, res: Response) => {
+  const MAX_TIMEOUT_MS = 5000;
+  const timeout = parseInt(req.params.timeout, 10);
+  const id = timeout % 3;
+  const director = directors[id];
+  setTimeout(() => {
+    res.json({
+      id: director.id,
+      name: director.name,
+    });
+  }, Math.min(timeout, MAX_TIMEOUT_MS) )
 });
 
 app.listen(port, () => {

@@ -5,6 +5,7 @@
   "description": "A module with exercises for async code topic",
   "license": "MIT",
   "scripts": {
+    "start": "yarn movies",
     "test": "jest",
     "movies": "ts-node src/server.ts",
     "test:coverage": "jest --coverage",

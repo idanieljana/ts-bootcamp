@@ -146,16 +146,17 @@ app.get('/api/movies/:id/reviews', async (req: Request, res: Response) => {
  * Returns random director recommendation by the timeout
  */
 app.get('/api/directors/recommendations/:timeout', async (req: Request, res: Response) => {
-  const MAX_TIMEOUT_MS = 5000;
+  const MAX_TIMEOUT_MS = 10000;
   const timeout = parseInt(req.params.timeout, 10);
-  const id = timeout % 3;
+  const id = Math.max((timeout % 3), 0);
   const director = directors[id];
   setTimeout(() => {
     res.json({
       id: director.id,
       name: director.name,
+      movies: `${baseUri}/api/directors/${director.id}/movies`,
     });
-  }, Math.min(timeout, MAX_TIMEOUT_MS) )
+  }, Math.max(Math.min(timeout, MAX_TIMEOUT_MS), 0) )
 });
 
 app.listen(port, () => {

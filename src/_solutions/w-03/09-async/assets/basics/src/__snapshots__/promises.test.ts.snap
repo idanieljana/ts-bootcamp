@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`async/await should return the list of directors (version) should return list of directors 1`] = `
+exports[`promises should return list of directors 1`] = `
 Array [
   Object {
     "id": 1,
@@ -25,7 +25,7 @@ Array [
 ]
 `;
 
-exports[`async/await should return the list of directors (version) should return list of directors movies 1`] = `
+exports[`promises should return list of directors movies 1`] = `
 Array [
   Array [
     Object {

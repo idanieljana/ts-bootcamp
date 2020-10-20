@@ -6,14 +6,16 @@ const baseUrl = 'http://localhost:3000';
 /**
  * Rewrite with async/await method to get directors from the API
  */
-export async function getDirectorsAsync(): Promise<DirectorsResponse[]> {
-  try {
-    return await getJsonAsync<DirectorsResponse[]>(`${baseUrl}/api/directors`);
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.log(err);
-    return [];
-  }
+export function getDirectorsAsync(): Promise<DirectorsResponse[]> {
+  return fetch(`${baseUrl}/api/directors`)
+    .then((r) => r.json())
+    .catch((err) => {
+      if (err) {
+        // eslint-disable-next-line no-console
+        console.log(err);
+      }
+      return [];
+    });
 }
 
 /**
@@ -23,34 +25,32 @@ export function getMovieLinks(directors: DirectorsResponse[]): string[] {
   return directors.map((d) => d.movies).flat();
 }
 
-/**
- * Rewrite  utility method to fetch and parse to JSON and refactor the method getDirectors()
- */
-export async function getJsonAsync<T>(url: string): Promise<T> {
-  const response = await fetch(url);
-  const json = response.json();
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(json);
-    }, 0);
-  });
+export function getJsonAsync<T>(url: string): Promise<T> {
+  return fetch(url).then((r) => r.json());
 }
 
 /**
- * Write a method to get director movies from the API
+ * Rewrite with async/await method to get director movies from the API
  */
-export async function getMoviesAsync(directors: DirectorsResponse[]): Promise<MoviesResponse[]> {
-  try {
-    // eslint-disable-next-line no-console
-    console.time('get movies');
-    const promises = getMovieLinks(directors).map((movieLink) => getJsonAsync<MoviesResponse>(movieLink));
-    const results = await Promise.all(promises);
-    // eslint-disable-next-line no-console
-    console.timeEnd('get movies');
-    return results;
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.log(err);
+export function getMoviesAsync(directors: DirectorsResponse[]): Promise<MoviesResponse[]> {
+  const promises = getMovieLinks(directors)
+    .map((movieLink) => getJsonAsync<MoviesResponse>(movieLink));
+  return Promise.all(promises).then((movies) => movies).catch((err) => {
+    if (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    }
     return [];
-  }
+  });
+}
+
+interface MovieWithScore extends Pick<MoviesResponse, 'id' | 'title'> {
+  score: number;
+}
+
+/**
+ * Write a method to return movies with average score
+ */
+export function getMoviesWithScore(moviesResponse: MoviesResponse[]): Promise<MovieWithScore[]> {
+  return Promise.resolve(moviesResponse as unknown as MovieWithScore[]);
 }

@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 
-import { getDirectorsAsync, getMoviesAsync } from './async-await';
+import { getDirectorsAsync, getMoviesAsync, getMoviesWithScore } from './async-await';
 
 describe('async/await', () => {
-  describe.skip('await keyword place difference demo', () => {
+  describe('await keyword place difference demo', () => {
     test('should wait 2 seconds and return sum', async () => {
       const result = await addTwoNumbersSlow();
       expect(result).toBeGreaterThan(0);
@@ -15,15 +15,21 @@ describe('async/await', () => {
     });
   });
 
-  describe('should return the list of directors (async version)', () => {
+  describe('should return the list of directors (version)', () => {
     test('should return list of directors', async () => {
       const directors = await getDirectorsAsync();
       expect(directors).toMatchSnapshot();
     });
-    test('should return list of directors movies (async version)', async () => {
+    test('should return list of directors movies', async () => {
       const directors = await getDirectorsAsync();
       const movies = await getMoviesAsync(directors);
       expect(movies).toMatchSnapshot();
+    });
+    test('should return list of movies with scores', async () => {
+      const directors = await getDirectorsAsync();
+      const movies = await getMoviesAsync(directors);
+      const moviesWithScores = await getMoviesWithScore(movies);
+      expect(moviesWithScores).not.toBe(null);
     });
   });
 });

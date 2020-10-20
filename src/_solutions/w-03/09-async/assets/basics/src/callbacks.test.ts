@@ -7,21 +7,20 @@ import * as path from 'path';
 import { getInstalledAmbientTypesList, parsePackageJsonDescription } from './callbacks';
 
 describe('AmbientTypesParser', () => {
-  test('should parse config and return installed ambient types', async () => {
+  test.skip('should parse config and return installed ambient types', async () => {
     /**
          * Note: npm module `mock-fs` should be used for unit testing with fs
          * https://github.com/tschaub/mock-fs
          */
-    const path = './types_config.json';
-    const result = await promisify(getInstalledAmbientTypesList)(path);
+    const config = './types_config.json';
+    const result = await promisify(getInstalledAmbientTypesList)(config);
     expect(result).toMatchSnapshot();
   });
 });
 
 describe('package.json parser', () => {
-  test('should parse description of passed package.json path', async () => {
-    const packageJsonPath = path.join(__dirname, '..', 'package.json');
-    const result = await promisify(parsePackageJsonDescription)(packageJsonPath);
-    expect(result).toBe('A module with exercises for async code topic');
+  test.skip('should parse description of passed package.json path', async () => {
+    // Hint: use __dirname
+    expect(parsePackageJsonDescription).toBe(path.join('', ''));
   });
 });

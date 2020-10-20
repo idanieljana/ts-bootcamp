@@ -206,6 +206,34 @@ from the recommendations API with the director.
 `Estimated time: 10-15 min`
 
 
+ES2017 introduces two new keywords—async and await—that represent 
+a paradigm shift in asynchronous JavaScript programming. 
+These new keywords dramatically simplify the use of Promises 
+and allow us to write Promise-based, asynchronous code 
+that looks like synchronous code that blocks while waiting 
+for network responses or other asynchronous events. 
+Although it is still important to understand how Promises work, 
+much of their complexity (and sometimes even their very presence!) 
+vanishes when you use them with async and await.
+
+Imagine you have async function:
+
+`async function f(x) { /* body */ }`
+
+If you think of it as a Promise, it could be then transformed to:
+
+```js
+function f(x) {
+    return new Promise(function(resolve, reject) {
+        try {
+            resolve((function(x) {/* body */ })(x));
+        } catch(e) {
+            reject(e);
+        }
+    });
+}
+```
+
 #### Async/Await API - rewrite "directors API" to async/await
 
 Task: 

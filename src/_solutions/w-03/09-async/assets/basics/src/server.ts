@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as cors from 'cors';
 import * as faker from 'faker';
 import { Request, Response } from 'express';
 import { Director } from './types';
@@ -81,7 +82,7 @@ const directors: Director[] = [
     ],
   },
 ];
-
+app.use(cors())
 app.get('/', async (req: Request, res: Response) => {
   res.send('Directors movies app. Available API: </br>' +
       '/api/directors, </br>' +

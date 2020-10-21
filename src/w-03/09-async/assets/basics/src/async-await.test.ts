@@ -15,17 +15,17 @@ describe('async/await', () => {
     });
   });
 
-  describe('should return the list of directors (version)', () => {
+  describe('should return the list of directors (async version)', () => {
     test('should return list of directors', async () => {
       const directors = await getDirectorsAsync();
       expect(directors).toMatchSnapshot();
     });
-    test('should return list of directors movies', async () => {
+    test('should return list of directors movies (async version)', async () => {
       const directors = await getDirectorsAsync();
       const movies = await getMoviesAsync(directors);
       expect(movies).toMatchSnapshot();
     });
-    test('should return list of movies with scores', async () => {
+    test('should return list of movies with scores (async version)', async () => {
       const directors = await getDirectorsAsync();
       const movies = await getMoviesAsync(directors);
       const moviesWithScores = await getMoviesWithScore(movies);

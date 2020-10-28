@@ -41,15 +41,29 @@ Your task would be to create a counter component based on the following example`
 
 Task:
 
+- Add additional `props` initCounter, it should control the
+initial value of the counter e.g. `<Counter initCount={2}>`
+- The initial value should be 0, it should be set using `defaultProps`
+- Write unit test to cover this case (you could refer to App.test.tsx)
+
+
+### Exercise 4
+
+`Estimated time: 10-15 min`
+
+### Extend counter component
+
+Task:
+
 - Add additional `props` step, it should control the
-increment value, e.g. `<Counter defaultCount={0} step={100}>`
+increment value, e.g. `<Counter initCounter={0} step={100}>`
 after 2 clicks will have value `200`.
 - Write unit test to cover this case
 
 Note:
 
 Types for testing library are not full, you could upgrade
-types `yarn add @types/@testing-library__react`
+types with: `yarn add @types/@testing-library__react`
 
 
 ### Notes

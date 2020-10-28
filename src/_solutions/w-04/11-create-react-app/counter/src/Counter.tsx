@@ -3,18 +3,17 @@ import React from 'react';
 import './Counter.css';
 
 interface CounterProps {
-    defaultCount: number
+    initCounter: number
 }
 interface CounterState {
     count: number
 }
 
 export class Counter extends React.Component<CounterProps, CounterState> {
-
-    constructor(props: CounterProps) {
-        super(props);
-        this.state = { count: props.defaultCount };
+    static defaultProps: CounterProps = {
+        initCounter: 0,
     }
+    state = { count: this.props.initCounter }
 
     incrementCount = () => {
         this.setState(

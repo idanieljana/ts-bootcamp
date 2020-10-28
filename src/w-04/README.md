@@ -2,8 +2,11 @@
 
 ## Topics described:
 
-- Introduction to create-react-app
 - Introduction to React
+- Bootstrapping React project: create-react-app
+- Bootstrapping React project: parceljs
+- Bootstrapping React project with Webpack: parceljs
+
 
 ## Goal:
 
@@ -12,7 +15,10 @@ will get familiar with basic react concepts
 
 ## Sections:
 
-1. [10-create-react-app](07-create-react-app/07-create-react-app.md)
+1. [10-react-intro](10-react-intro/10-react-intro.md)
+2. [11-create-react-app](11-create-react-app/11-create-react-app.md)
+3. [12-react-parcel](12-react-parcel/12-react-parcel.md)
+4. [13-react-webpack](13-react-webpack/13-react-webpack.md)
 
 ## Hometasks:
 

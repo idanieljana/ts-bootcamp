@@ -1,0 +1,84 @@
+$gradientStart: #42275a;
+$gradientEnd: #734b6d;
+
+.app {
+    background: #000000;
+    color: white;
+    width: 100%;
+    height: 100%;
+    font-size: 8em;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: Verdana, Arial, serif;
+}
+
+@keyframes appChangeColor {
+    0%{background-position:50% 0%}
+    50%{background-position:51% 100%}
+    100%{background-position:50% 0%}
+}
+
+.name,
+.year {
+    z-index: 1;
+    background-size: 600% 600%;
+    letter-spacing: -0.04em;
+    animation: appChangeColor 1s ease infinite;
+    background: linear-gradient(270.97deg, #FFE580 -21.36%, #FF7571 -2.45%, #EA5DAD 26.84%, #C2A0FD 64.15%, #3BF0E4 108.29%, #B2F4B6 159.03%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.year {
+    font-size: 0.5em;
+}
+
+.levels {
+    margin: 0.2em;
+    z-index: 1;
+    display: flex;
+}
+
+.level {
+    margin: 0.2em;
+    font-size: 0.3em;
+    cursor: pointer;
+    background: linear-gradient(270deg, #FFE57F 9.35%, #FF7170 96.48%);
+    animation: blink 1s linear infinite;
+    -webkit-box-decoration-break: clone;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes blink {
+    0% {
+        background: linear-gradient(270deg, #FFE57F 9.35%, #FF7170 96.48%);
+        -webkit-background-clip: text;
+    }
+    100% {
+        background: linear-gradient(270deg, #FF7170 9.35%, #FFE57F 96.48%);
+        -webkit-background-clip: text;
+
+    }
+}
+
+.hrTop,
+.hrBottom {
+    background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
+    height: 0.1em;
+    width: 100%;
+    border: none;
+    margin: 0;
+    background-size: 200% 200%;
+}
+
+.hrTop {
+    position: fixed;
+    top: 0;
+}
+.hrBottom {
+    position: fixed;
+    bottom: 0;
+}

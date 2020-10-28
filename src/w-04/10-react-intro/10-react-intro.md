@@ -43,6 +43,30 @@ render(jsxElement, domElement);
 
 `Estimated time: 5 min`
 
+Couple of words about JSX:
+
+JSX:
+
+```jsx
+const element = (
+  <h1 className="greeting">
+    Hello, world!
+  </h1>
+);
+```
+
+JSX compiled to JS:
+
+```js
+const element = React.createElement(
+  'h1',
+  {className: 'greeting'},
+  'Hello, world!'
+);
+```
+
+For Typescript, then -> TSX. TSX 
+
 Task:
  
 Move hello world message to any valid jsx element supported by default:

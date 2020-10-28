@@ -21,6 +21,6 @@ https://en.reactjs.org/docs/hello-world.html
 
 #### React introduction
 
-We will work in codesandbox. You will need to fork TS and React sandbox, e.g.:
+We will work in `codesandbox`. You will need to fork TS and React sandbox, e.g.:
 
-https://codesandbox.io/s/competent-surf-zyfpw
+[TS + React Sanвbox](https://codesandbox.io/s/competent-surf-zyfpw)

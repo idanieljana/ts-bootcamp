@@ -101,6 +101,10 @@ Task:
 Extend Counter with new method `getTimers()`. It should return a list with size equal to counter of Timer components
 and this list should be rendered only when counter value is an odd number.
 
+Your final solution should look something similar to:
+
+![image](assets/counterWithContainer.png)
+
 
 ### Notes
 

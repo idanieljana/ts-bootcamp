@@ -65,6 +65,42 @@ Note:
 Types for testing library are not full, you could upgrade
 types with: `yarn add @types/@testing-library__react`
 
+### Exercise 5
+
+`Estimated time: 10-15 min`
+
+### HOC
+
+Task:
+
+Make a container for the counter and move all state logic there
+
+
+### Exercise 6
+
+`Estimated time: 10-15 min`
+
+### Timer component
+
+Task:
+
+Create a timer class component. `Timer`.
+
+It should be configurable with props `initCount` and it should be by default equal to 1
+(use "default props")
+
+
+### Exercise 7
+
+`Estimated time: 10-15 min`
+
+### Timer component in Counter
+
+Task:
+
+Extend Counter with new method `getTimers()`. It should return a list with size equal to counter of Timer components
+and this list should be rendered only when counter value is an odd number.
+
 
 ### Notes
 

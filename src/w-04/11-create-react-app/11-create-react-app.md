@@ -71,3 +71,29 @@ types with: `yarn add @types/@testing-library__react`
 Ejecting functionality:
 
 `https://create-react-app.dev/docs/available-scripts#npm-run-eject`
+
+
+## React component profiler chrome extension:
+
+https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi/related?hl=en
+
+
+## Converting a Function to a Class
+You can convert a function component to a class in five steps:
+
+- Create an ES6 class, with the same name, that extends React.Component.
+- Add a single empty method to it called render().
+- Move the body of the function into the render() method.
+- Replace props with this.props in the render() body.
+- Delete the remaining empty function declaration
+
+
+## React lifecycle methods diagram:
+https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+## Events cleanup
+componentWillUnmount() is invoked immediately before 
+a component is unmounted and destroyed. 
+Perform any necessary cleanup in this method, such as 
+invalidating timers, canceling network requests, or cleaning up 
+any subscriptions that were created in componentDidMount().

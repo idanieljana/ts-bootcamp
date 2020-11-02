@@ -185,3 +185,7 @@ Notes:
 
 Example picture:
 ![image](https://cdn.flickeringmyth.com/wp-content/uploads/2020/03/chuck-norris-600x389.jpg)
+ 
+Final solution for React Intro:
+
+https://codesandbox.io/s/vitali-lashchanka-greeting-final-fo9zu?file=/src/components/Greeting/Greeting.tsx

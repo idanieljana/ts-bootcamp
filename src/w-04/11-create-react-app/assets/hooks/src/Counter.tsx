@@ -12,16 +12,12 @@ interface CounterProps {
     step?: number
 }
 
-function Name(props: { name: string }) {
-    return <li>{props.name}</li>
-}
-
 export class Counter extends React.Component<CounterProps, CounterState> {
     static defaultProps: CounterProps = {
         initCount: 2,
         step: 1
     }
-    state = { count: 0, name: "Counter", step: 1 }
+    state = { count: 0, name: "Clicks", step: 1 }
 
     incrementCount = () => {
         this.setState((state, props) => (
@@ -30,20 +26,15 @@ export class Counter extends React.Component<CounterProps, CounterState> {
     };
     render() {
         const { count, name } = this.state;
-        const { initCount } = this.props;
-        const list = ["John", "Alice", "Bob"];
-        const names = list.map((name, index) => {
-            return <Timer key={index} start={count} step={2} />
+        const counters = Array(count).fill(null).map((name, index) => {
+            return <Timer key={`${index}-${count}`} start={count} step={index + 1} />
         })
         return (
             <>
                 <h1 className={"counter"} onClick={ this.incrementCount }>
-                    Initial ({initCount}) Clicks: { count } - {name}
+                    {name}: { count }
                 </h1>
-                <div>Names</div>
-                <ul>
-                    {names}
-                </ul>
+                {counters}
             </>
         );
     }

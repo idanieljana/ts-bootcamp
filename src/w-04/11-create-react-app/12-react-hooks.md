@@ -19,6 +19,10 @@ https://reactjs.org/docs/hooks-intro.html
 
 ### Extend counter component
 
+We will work in the project folder with base project:
+
+`ts-bootcamp/src/w-04/11-create-react-app/assets/hooks`
+
 Task:
 
 - Add additional `props` step, it should control the

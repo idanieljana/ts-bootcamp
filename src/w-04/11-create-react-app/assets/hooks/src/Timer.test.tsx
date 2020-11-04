@@ -23,4 +23,10 @@ describe("Timer", () => {
     const linkElement = screen.getByText(/Timer: 12/i);
     expect(linkElement).toBeInTheDocument();
   });
+  test('should render timer after a period and with step', () => {
+    render(<Timer start={10} step={3} />);
+    jest.advanceTimersByTime(3000);
+    const linkElement = screen.getByText(/Timer: 19/i);
+    expect(linkElement).toBeInTheDocument();
+  });
 });

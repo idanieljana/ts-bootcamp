@@ -126,7 +126,6 @@ With step and start:
 ```
 
 
-
 ### Exercise 5
 
 `Estimated time: 10-15 min`

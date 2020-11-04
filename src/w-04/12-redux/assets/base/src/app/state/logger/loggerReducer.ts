@@ -11,7 +11,7 @@ export interface LoggerState {
     logs: Log[];
 }
 
-const initialState: LoggerState = {
+export const initialState: LoggerState = {
     logs: []
 }
 

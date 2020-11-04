@@ -1,5 +1,6 @@
 import React from 'react';
 import './Counter.css';
+import {Timer} from "./Timer";
 
 interface CounterState {
     count: number;
@@ -25,11 +26,15 @@ export class Counter extends React.Component<CounterProps, CounterState> {
     };
     render() {
         const { count, name } = this.state;
+        const counters = Array(count).fill(null).map((name, index) => {
+            return <Timer key={`${index}-${count}`} start={count} step={index + 1} />
+        })
         return (
             <>
                 <h1 className={"counter"} onClick={ this.incrementCount }>
                     {name}: { count }
                 </h1>
+                {counters}
             </>
         );
     }

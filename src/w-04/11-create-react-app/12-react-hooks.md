@@ -139,16 +139,6 @@ and this list should be rendered only when counter value is an odd number.
 
 Your final solution should look something similar to:
 
-### Exercise 5 *
-
-`Estimated time: 10-15 min`
-
-### HOC
-
-Task:
-
-Make a container for the counter and move all state logic there
-
 ![image](assets/counterWithContainer.png)
 
 ### Notes

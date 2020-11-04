@@ -1,0 +1,12 @@
+.counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Verdana, serif;
+    color: gold;
+    text-align: center;
+    font-size: 12em;
+    text-shadow: 0 0 3px #000;
+    font-weight: bold;
+    cursor: pointer;
+}

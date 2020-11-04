@@ -8,6 +8,7 @@ interface CounterState {
 
 interface CounterProps {
     initCount?: number
+    step?: number
 }
 
 function Name(props: { name: string }) {
@@ -16,13 +17,14 @@ function Name(props: { name: string }) {
 
 export class Counter extends React.Component<CounterProps, CounterState> {
     static defaultProps: CounterProps = {
-        initCount: 2
+        initCount: 2,
+        step: 1
     }
-    state = { count: 0, name: "Counter" }
+    state = { count: 0, name: "Counter", step: 1 }
 
     incrementCount = () => {
-        this.setState((state) => (
-            { count: state.count + 1 }
+        this.setState((state, props) => (
+            { count: state.count + props.step! }
         ));
     };
     render() {

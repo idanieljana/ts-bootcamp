@@ -35,12 +35,19 @@ types with: `yarn add @types/@testing-library__react`
 
 `Estimated time: 10-15 min`
 
-### HOC
+### Timer component
 
 Task:
 
-Make a container for the counter and move all state logic there
+Create a timer component: `Timer`.
 
+After it mounts, it should update after 1 second
+
+```html
+<div>Timer: 1</div> 
+<!--One second passed: -->
+<div>Timer: 2</div>
+```
 
 ### Exercise 3
 
@@ -50,13 +57,77 @@ Make a container for the counter and move all state logic there
 
 Task:
 
-Create a timer class component. `Timer`.
+Extend timer component: `Timer`.
 
-It should be configurable with props `initCount` and it should be by default equal to 1
-(use "default props")
+It should be now configurable with optional props `start` and it should be by default still equal to 1
 
+By default: 
+
+```jsx
+<Timer/>
+```
+```html
+<div>Timer: 1</div> 
+<!--One second passed: -->
+<div>Timer: 2</div>
+<!--One second passed: -->
+<div>Timer: 2</div>
+```
+
+With start: 
+
+```jsx
+<Timer start={10}/>
+```
+```html
+<div>Timer: 10</div> 
+<!--One second passed: -->
+<div>Timer: 11</div>
+<!--One second passed: -->
+<div>Timer: 12</div>
+```
 
 ### Exercise 4
+
+`Estimated time: 10-15 min`
+
+### Timer component
+
+Task:
+
+Extend timer component: `Timer`.
+
+It should be now configurable with optional props `step` and it should be by default still equal to 1
+
+By default: 
+
+```jsx
+<Timer/>
+```
+```html
+<div>Timer: 1</div> 
+<!--One second passed: -->
+<div>Timer: 2</div>
+<!--One second passed: -->
+<div>Timer: 2</div>
+```
+
+With step and start: 
+
+```jsx
+<Timer start={100} step={3}/>
+```
+```html
+<div>Timer: 100</div> 
+<!--One second passed: -->
+<div>Timer: 103</div>
+<!--One second passed: -->
+<div>Timer: 106</div>
+```
+
+
+
+### Exercise 5
 
 `Estimated time: 10-15 min`
 
@@ -68,6 +139,16 @@ Extend Counter with new method `getTimers()`. It should return a list with size 
 and this list should be rendered only when counter value is an odd number.
 
 Your final solution should look something similar to:
+
+### Exercise 5 *
+
+`Estimated time: 10-15 min`
+
+### HOC
+
+Task:
+
+Make a container for the counter and move all state logic there
 
 ![image](assets/counterWithContainer.png)
 

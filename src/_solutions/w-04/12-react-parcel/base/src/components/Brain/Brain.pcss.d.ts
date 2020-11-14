@@ -1,9 +1,9 @@
 type IdentifiersMap = Partial<{
-  "logo": string|undefined
+  "brain": string|undefined
 }>
 
 declare const identifiersMap: IdentifiersMap;
 
 export default identifiersMap;
 
-export const logo: string|undefined
+export const brain: string|undefined

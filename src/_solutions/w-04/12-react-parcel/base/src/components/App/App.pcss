@@ -1,11 +1,13 @@
-$gradientStart: #42275a;
-$gradientEnd: #734b6d;
+.appContainer {
+    height: 100vh;
+    overflow: hidden;
+}
 
 .app {
     background: #000000;
     color: white;
     width: 100%;
-    height: 100%;
+    height: 96%;
     font-size: 8em;
     text-align: center;
     display: flex;
@@ -46,6 +48,8 @@ $gradientEnd: #734b6d;
     margin: 0.2em;
     font-size: 0.3em;
     cursor: pointer;
+    border: 6px solid #FFE57F;
+    border-radius: 25%;
     background: linear-gradient(270deg, #FFE57F 9.35%, #FF7170 96.48%);
     animation: blink 1s linear infinite;
     -webkit-box-decoration-break: clone;
@@ -64,21 +68,11 @@ $gradientEnd: #734b6d;
     }
 }
 
-.hrTop,
-.hrBottom {
+.hr {
     background: linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%);
-    height: 0.1em;
+    height: 2%;
     width: 100%;
     border: none;
     margin: 0;
     background-size: 200% 200%;
-}
-
-.hrTop {
-    position: fixed;
-    top: 0;
-}
-.hrBottom {
-    position: fixed;
-    bottom: 0;
 }

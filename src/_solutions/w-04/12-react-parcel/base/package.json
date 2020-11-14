@@ -11,7 +11,9 @@
     "start": "yarn tsc && yarn parcel",
     "lint": "./node_modules/.bin/eslint . --ext .ts,.tsx",
     "test": "./node_modules/.bin/jest --config=./jest.config.js",
-    "test:coverage": "./node_modules/.bin/jest --config=./jest.config.js --coverage"
+    "test:coverage": "./node_modules/.bin/jest --config=./jest.config.js --coverage",
+    "storybook": "start-storybook -p 6006 --no-dll",
+    "build-storybook": "build-storybook --no-dll"
   },
   "dependencies": {
     "@types/howler": "^2.2.1",
@@ -20,6 +22,11 @@
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@storybook/addon-actions": "^6.0.28",
+    "@storybook/addon-essentials": "^6.0.28",
+    "@storybook/addon-links": "^6.0.28",
+    "@storybook/react": "^6.0.28",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
     "@types/jest": "^26.0.14",
@@ -27,6 +34,7 @@
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.4.0",
+    "babel-loader": "^8.2.1",
     "css-modules": "^0.3.0",
     "enzyme": "3.2.0",
     "eslint": "^7.10.0",
@@ -44,6 +52,7 @@
     "postcss-plugin-d-ts": "^0.6.0",
     "postcss-preset-env": "^6.7.0",
     "postcss-simple-vars": "^6.0.1",
+    "react-is": "^17.0.1",
     "ts-jest": "^26.4.1",
     "typescript": "^4.0.5"
   },

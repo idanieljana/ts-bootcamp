@@ -1,10 +1,11 @@
 import React from 'react';
 import { Howl } from 'howler';
 import styles from './App.pcss';
-import Logo from '../Logo/Logo';
+import { Brain } from '../Brain/Brain';
+import './assets/css/reset.min.css';
 import StartGameMusic from './assets/startGame.ogg';
 
-interface AppProps {
+export interface AppProps {
   name: string;
 }
 
@@ -28,23 +29,27 @@ function createStartGameHandler() {
 
 const playStartGameMusic = createStartGameHandler();
 
-const App: React.FC<AppProps> = ({ name }) => (
-  <div className={styles.app}>
-    <hr className={styles.hrTop} />
-    <h1 className={styles.name}>
-      @{name}
-    </h1>
-    <h2 className={styles.year}>
-      ©{(new Date()).getFullYear()}
-    </h2>
-    <div className={styles.levels}>
-      <span className={styles.level} onClick={() => playStartGameMusic()}>Easy</span>
-      <span className={styles.level} onClick={() => playStartGameMusic()}>Medium</span>
-      <span className={styles.level} onClick={() => playStartGameMusic()}>Hard</span>
+export const App: React.FC<AppProps> = ({ name }) => {
+  const playHandler = () => playStartGameMusic();
+  return (
+    <div className={styles.appContainer}>
+      <div className={styles.hr} />
+      <div className={styles.app}>
+        <h1 className={styles.name}>
+          @{name}
+        </h1>
+        <h2 className={styles.year}>
+          ©{(new Date()).getFullYear()}
+        </h2>
+        <div className={styles.levels} data-role="levels">
+          <button type="button" className={styles.level} onClick={playHandler}>Easy</button>
+          <button type="button"  className={styles.level} onClick={playHandler}>Medium</button>
+          <button type="button"  className={styles.level} onClick={playHandler}>Hard</button>
+        </div>
+        <Brain />
+      </div>
+      <div className={styles.hr} />
     </div>
-    <Logo />
-    <hr className={styles.hrBottom} />
-  </div>
-);
-
+  );
+};
 export default App;

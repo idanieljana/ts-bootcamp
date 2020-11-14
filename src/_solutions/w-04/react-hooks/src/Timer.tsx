@@ -1,25 +1,34 @@
-import React from 'react'
+import React from 'react';
+
+/**
+ * Best option version
+ */
 
 interface TimerProps {
     start?: number;
     step?: number;
 }
-export const Timer: React.FC<TimerProps> = (props) => {
-    const [timer, setTimer] = React.useState(props.start || 1);
+
+export function Timer (props: TimerProps) {
+    const [timer, setTimer] = React.useState(props.start!)
     React.useEffect(() => {
-        const intervalId = window.setInterval(() => {
-            // DEMO of effect cleanup: console.log("intervalId " + intervalId);
-            setTimer(timer => {
-                const newValue = timer + (props.step !== undefined ? props.step : 1);
-                // DEMO of effect cleanup: console.log("Counter" + newValue + " " + intervalId);
-                return newValue;
-            });
-        }, 1000)
+        console.log("Calling React.useEffect")
+        const id = setInterval(() => {
+            setTimer(current => {
+                const next = 1 + current
+                console.log(`Updating value ${current} to:` + next)
+                return next
+            })
+        }, 1000);
+        console.log("Creating ID:" + id)
         return () => {
-            window.clearInterval(intervalId)
+            console.log("Clearing ID:" + id)
+            clearTimeout(id);
         }
-    }, [props.step])
-    return <div>Timer: {timer}</div>
+    }, []);
+    return (
+        <div>Timer: {timer}</div>
+    )
 }
 Timer.defaultProps = {
     start: 1,

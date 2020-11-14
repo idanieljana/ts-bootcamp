@@ -151,3 +151,12 @@ Your final solution should look something similar to:
 Hooks knowledge base:
 
 https://reactjs.org/docs/hooks-faq.html
+
+
+#Fix for the "not wrapped in act(...)" warning with Jest fake timers
+
+https://egghead.io/lessons/jest-fix-the-not-wrapped-in-act-warning-with-jest-fake-timers
+
+RTL Wrapper: https://testing-library.com/docs/react-testing-library/api/#act
+
+React act() documentation: https://reactjs.org/docs/test-utils.html#act

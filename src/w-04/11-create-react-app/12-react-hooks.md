@@ -160,3 +160,7 @@ https://egghead.io/lessons/jest-fix-the-not-wrapped-in-act-warning-with-jest-fak
 RTL Wrapper: https://testing-library.com/docs/react-testing-library/api/#act
 
 React act() documentation: https://reactjs.org/docs/test-utils.html#act
+
+Timer example:
+
+https://upmostly.com/tutorials/build-a-react-timer-component-using-hooks

@@ -3,7 +3,7 @@ import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { App, AppProps } from './App';
+import { App } from './App';
 
 export default {
   title: 'MemoryCards/App',
@@ -11,12 +11,10 @@ export default {
 } as Meta;
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-const Template: Story<AppProps> = (args) => (
+const Template: Story = () => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <App {...args} />
+  <App />
 );
 
 export const AppDefault = Template.bind({});
-AppDefault.args = {
-  name: 'Memorix',
-};
+AppDefault.args = {};

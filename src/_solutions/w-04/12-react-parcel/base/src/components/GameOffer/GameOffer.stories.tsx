@@ -3,25 +3,23 @@ import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { Brain } from './Brain';
+import { GameOffer } from './GameOffer';
 
 export default {
-  title: 'MemoryCards/Brain',
-  component: Brain,
+  title: 'MemoryCards/GameOffer',
+  component: GameOffer,
 } as Meta;
 
-const Template: Story<{ fontEm: number }> = (args) => {
+// eslint-disable-next-line react/jsx-props-no-spreading
+const Template: Story<{}> = () => {
   const wrapperStyle = {
-    background: 'black', width: '100%', height: '100vh', fontSize: `${args.fontEm}em`,
+    background: '#000333', width: '100%', height: '100vh',
   };
   return (
     <div style={wrapperStyle}>
-      <Brain />
+      <GameOffer />
     </div>
   );
 };
 
-export const LogoDefault = Template.bind({});
-LogoDefault.args = {
-  fontEm: 12,
-};
+export const GameOfferDefault = Template.bind({});

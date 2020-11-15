@@ -3,7 +3,40 @@
 exports[`App should match snapshot 1`] = `
 <DocumentFragment>
   <div>
-    @Memorix App © 2020
+    <div />
+    <div>
+      <div
+        data-role="game-offer"
+      >
+        <h1>
+          @Memorix
+        </h1>
+        <h2>
+          ©2020
+        </h2>
+        <div />
+        <div
+          data-role="levels"
+        >
+          <button
+            type="button"
+          >
+            Easy
+          </button>
+          <button
+            type="button"
+          >
+            Medium
+          </button>
+          <button
+            type="button"
+          >
+            Hard
+          </button>
+        </div>
+      </div>
+    </div>
+    <div />
   </div>
 </DocumentFragment>
 `;

@@ -9,7 +9,7 @@ describe('App', () => {
   it('should match snapshot', () => {
     const { asFragment, getByText } = render(<App />);
     expect(getByText('@Memorix')).toBeDefined();
-    expect(getByText('© 2020')).toBeDefined();
+    expect(getByText('©2020')).toBeDefined();
     expect(asFragment()).toMatchSnapshot();
   });
 });

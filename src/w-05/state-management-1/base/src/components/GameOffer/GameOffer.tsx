@@ -1,8 +1,5 @@
-import React, { useContext } from 'react';
-import { observer } from 'mobx-react-lite';
-import { GameStoreContext } from '../../stores/GameStore';
+import React from 'react';
 import { Brain } from '../Brain/Brain';
-import { LevelsView } from '../Levels/Levels';
 import styles from './GameOffer.pcss';
 
 export interface GameOfferProps {
@@ -29,9 +26,3 @@ export const GameOffer: React.FC<GameOfferProps> = (props) => {
     </div>
   );
 };
-
-export const GameOfferView = observer(() => {
-  const gameStore = useContext(GameStoreContext);
-  const { name, isGameOffered } = gameStore;
-  return <GameOffer Levels={<LevelsView />} isGameOffered={isGameOffered} name={name} />;
-});

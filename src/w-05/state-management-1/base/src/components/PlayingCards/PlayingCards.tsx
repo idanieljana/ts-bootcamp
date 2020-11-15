@@ -1,8 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { observer } from 'mobx-react-lite';
 import styles from './PlayingCards.pcss';
-import { GameStoreContext } from '../../stores/GameStore';
 
 export interface PlayingCardsProps {
   isPlaying: boolean;
@@ -18,9 +16,3 @@ export const PlayingCards: React.FC<PlayingCardsProps> = ({ isPlaying }) => {
     </div>
   );
 };
-
-export const PlayingCardsView = observer(() => {
-  const gameStore = useContext(GameStoreContext);
-  const { isPlaying } = gameStore;
-  return <PlayingCards isPlaying={isPlaying} />;
-});

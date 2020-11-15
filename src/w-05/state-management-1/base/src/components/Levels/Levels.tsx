@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Howl } from 'howler';
-import { observer } from 'mobx-react-lite';
 import styles from './Levels.pcss';
 import StartGameMusic from '../../assets/startGame.ogg';
-import { GameStoreContext } from '../../stores/GameStore';
 import { Level } from '../../types/game';
 
 function createStartGameHandler() {
@@ -33,7 +31,8 @@ export interface LevelsProps {
 
 export const Levels: React.FC<LevelsProps> = ({ levels, startGame }) => {
   const playHandler = (level: Level) => () => {
-    playStartGameMusic();
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    false && playStartGameMusic();
     startGame(level);
   };
   return (
@@ -44,8 +43,3 @@ export const Levels: React.FC<LevelsProps> = ({ levels, startGame }) => {
     </div>
   );
 };
-
-export const LevelsView = observer(() => {
-  const { levels, startGame } = useContext(GameStoreContext);
-  return <Levels levels={levels} startGame={startGame} />;
-});

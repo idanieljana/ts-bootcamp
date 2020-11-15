@@ -1,0 +1,32 @@
+.gameOffer {
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-size: 8em;
+}
+
+
+@keyframes changeColor {
+    0%{background-position:50% 0%}
+    50%{background-position:51% 100%}
+    100%{background-position:50% 0%}
+}
+
+.name,
+.year {
+    z-index: 1;
+    font-family: Verdana, Arial, serif;
+    background-size: 600% 600%;
+    letter-spacing: -0.04em;
+    animation: changeColor 1s ease infinite;
+    background: linear-gradient(270.97deg, #FFE580 -21.36%, #FF7571 -2.45%, #EA5DAD 26.84%, #C2A0FD 64.15%, #3BF0E4 108.29%, #B2F4B6 159.03%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.year {
+    font-size: 0.5em;
+}

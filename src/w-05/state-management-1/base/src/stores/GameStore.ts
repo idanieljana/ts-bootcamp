@@ -21,19 +21,19 @@ export class GameStore {
     makeObservable(this);
   }
 
-  @computed get isGameStarted(): boolean {
+  @computed get isGameOffered(): boolean {
     return this.gameStage === GameStage.Offered;
   }
+
   @computed get isPlaying(): boolean {
     return this.gameStage === GameStage.Playing;
   }
 
   @action startGame = (level: Level): void => {
-    console.log('startGame');
     this.selectedLevel = level;
     this.gameStage = GameStage.Playing;
   };
 }
 
-const store = new GameStore();
-export const GameStoreContext = createContext(store);
+export const gameStore = new GameStore();
+export const GameStoreContext = createContext(gameStore);

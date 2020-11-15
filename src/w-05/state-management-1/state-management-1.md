@@ -58,7 +58,8 @@ Task:
 
 Task:
 
-- Write test for store to check the game stage change
+- Write test for store to check the default values
+- Write test for store to check the game stage and level change when game is started
 - Write test for store to check the computed properties work as expected on game stage change
 
 ### Notes

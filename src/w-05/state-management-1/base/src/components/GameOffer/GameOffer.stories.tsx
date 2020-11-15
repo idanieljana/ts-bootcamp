@@ -3,7 +3,9 @@ import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { GameOffer } from './GameOffer';
+import { GameOffer, GameOfferProps } from './GameOffer';
+import { Levels } from '../Levels/Levels';
+import { Level } from '../../types/game';
 
 export default {
   title: 'MemoryCards/GameOffer',
@@ -11,15 +13,20 @@ export default {
 } as Meta;
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-const Template: Story<{}> = () => {
+const Template: Story<GameOfferProps> = (args) => {
   const wrapperStyle = {
     background: '#000333', width: '100%', height: '100vh',
   };
   return (
     <div style={wrapperStyle}>
-      <GameOffer />
+      {/* eslint-disable-next-line react/jsx-props-no-spreading,max-len */}
+      <GameOffer {...args} Levels={<Levels startGame={() => {}} levels={[Level.Easy, Level.Medium, Level.Hard]} />} />
     </div>
   );
 };
 
 export const GameOfferDefault = Template.bind({});
+GameOfferDefault.args = {
+  name: 'Name',
+  isGameOffered: true,
+};

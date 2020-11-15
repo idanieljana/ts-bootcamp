@@ -26,8 +26,12 @@ function createStartGameHandler() {
 
 const playStartGameMusic = createStartGameHandler();
 
-export const Levels: React.FC = observer(() => {
-  const { levels, startGame } = useContext(GameStoreContext);
+export interface LevelsProps {
+  levels: ReadonlyArray<Level>;
+  startGame: (level: Level) => void;
+}
+
+export const Levels: React.FC<LevelsProps> = ({ levels, startGame }) => {
   const playHandler = (level: Level) => () => {
     playStartGameMusic();
     startGame(level);
@@ -39,4 +43,9 @@ export const Levels: React.FC = observer(() => {
       ))}
     </div>
   );
+};
+
+export const LevelsView = observer(() => {
+  const { levels, startGame } = useContext(GameStoreContext);
+  return <Levels levels={levels} startGame={startGame} />;
 });

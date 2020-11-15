@@ -10,9 +10,9 @@ export default {
   component: Brain,
 } as Meta;
 
-const Template: Story<{ fontEm: number }> = (args) => {
+const Template: Story = () => {
   const wrapperStyle = {
-    background: 'black', width: '100%', height: '100vh', fontSize: `${args.fontEm}em`,
+    background: 'black', width: '100%', height: '100vh',
   };
   return (
     <div style={wrapperStyle}>
@@ -22,6 +22,3 @@ const Template: Story<{ fontEm: number }> = (args) => {
 };
 
 export const LogoDefault = Template.bind({});
-LogoDefault.args = {
-  fontEm: 12,
-};

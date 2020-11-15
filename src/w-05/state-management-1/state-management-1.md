@@ -15,7 +15,7 @@ https://mobx.js.org/README.html
 
 `Estimated time: 10-15 min`
 
-### Creating a store, adding an observable value and connecting the component - Levels
+### Creating store with observables and connecting components
 
 We will work in the project folder with base project:
 
@@ -23,9 +23,14 @@ We will work in the project folder with base project:
 
 Task:
 
-- Create Mobx Store
-- Add observable values for game levels
-- Connect the levels component and add it to layout
+Create game store observables:
+- Create `selectedLevel` which value could be null or type of `Level`
+- Create `gameStage` which type is `GameStage` and the initial value is game offer
+
+Create additional field levels and make a list of all possible values in `Level` enum
+- Create level field (not a) `Levels` component with store and add it to `App` layout component
+
+"Connect" the `Levels` component with store and add it to `App` layout component, use the levels field there
 
 ### Exercise 2
 
@@ -35,7 +40,10 @@ Task:
 
 Task:
 
-- Add an action to change the selected game stage by clicking the game level
+Add a mobx action `startGame` to the store
+- it should change the game stage to a `Playing` in store
+- it should be triggered when you click on the item in the `Levels` component 
+- it should also save the selected level in store 
 
 
 ### Exercise 3
@@ -43,7 +51,6 @@ Task:
 `Estimated time: 10-15 min`
  
 ### Creating a computed property to control the game layers - GameStarted, PlayingCards
-### Testing Mobx state
 
 Task:
 

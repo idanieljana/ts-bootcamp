@@ -1,0 +1,30 @@
+.levels {
+    margin: 0.2em;
+    z-index: 1;
+    display: flex;
+}
+
+.level {
+    margin: 0.2em;
+    font-size: 0.3em;
+    cursor: pointer;
+    border: 6px solid #FFE57F;
+    border-radius: 25%;
+    font-family: Verdana, Arial, serif;
+    background: linear-gradient(270deg, #FFE57F 9.35%, #FF7170 96.48%);
+    animation: blink 1s linear infinite;
+    -webkit-box-decoration-break: clone;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes blink {
+    0% {
+        background: linear-gradient(270deg, #FFE57F 9.35%, #FF7170 96.48%);
+        -webkit-background-clip: text;
+    }
+    100% {
+        background: linear-gradient(270deg, #FF7170 9.35%, #FFE57F 96.48%);
+        -webkit-background-clip: text;
+
+    }
+}

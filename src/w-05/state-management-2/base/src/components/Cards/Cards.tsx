@@ -1,44 +1,51 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
 import { Howl } from 'howler';
-import { levels } from './Levels';
+import cn from 'classnames';
+import { levels } from './utils';
 import { Card } from './Card';
-import { ProgressBar } from './ProgressBar';
-import styles from './Game.pcss';
+import { ProgressBar } from '../ProgressBar/ProgressBar';
+import { Level } from '../../types/game';
+import styles from './Cards.pcss';
 
 const lodashShuffle = require('lodash.shuffle');
 const cardFlipMusic = require('./assets/card-flip.wav');
+
+const levelClassnamesMap = {
+  [Level.Easy]: styles.easy,
+  [Level.Medium]: styles.hard,
+  [Level.Hard]: styles.crazy,
+} as const;
 
 interface BoardOptions {
   level: Level, matchNumber: number, symbols: string[];
 }
 
 function getBoardOptions(difficulty: Level): BoardOptions {
+  const [easy, medium, hard] = levels;
   switch (difficulty) {
-    case 'hard':
+    case Level.Medium:
       return {
-        level: 'hard',
+        level: difficulty,
         matchNumber: 2,
-        symbols: levels[1].cards,
+        symbols: medium.cards,
       };
-    case 'crazy':
+    case Level.Hard:
       return {
-        level: 'crazy',
+        level: difficulty,
         matchNumber: 3,
-        symbols: levels[2].cards,
+        symbols: hard.cards,
       };
-    case 'easy':
+    case Level.Easy:
     default: {
       return {
-        level: 'easy',
+        level: difficulty,
         matchNumber: 2,
-        symbols: levels[0].cards,
+        symbols: easy.cards,
       };
     }
   }
 }
-
-type Level = 'easy' | 'hard' | 'crazy';
 
 interface CardValue {
   type: string,
@@ -46,7 +53,9 @@ interface CardValue {
   key: number,
 }
 
-interface CardsProps {}
+interface CardsProps {
+  level: Level;
+}
 interface CardsState {
   secondsElapsed: number;
   level: Level, // 'easy'
@@ -64,7 +73,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
   // eslint-disable-next-line react/state-in-constructor
   state = {
     secondsElapsed: 0,
-    level: 'easy' as Level,
+    level: Level.Easy,
     matchNumber: -1,
     cards: [],
     matches: [],
@@ -72,7 +81,16 @@ export class Cards extends React.Component<CardsProps, CardsState> {
   };
 
   componentDidMount(): void {
-    this.formatBoard('easy');
+    // eslint-disable-next-line react/destructuring-assignment
+    this.formatBoard(this.props.level);
+  }
+
+  componentDidUpdate(prevProps: Readonly<CardsProps>): void {
+    // eslint-disable-next-line react/destructuring-assignment
+    if (this.props.level !== prevProps.level) {
+      // eslint-disable-next-line react/destructuring-assignment
+      this.formatBoard(this.props.level);
+    }
   }
 
   tick = (): void => {
@@ -112,7 +130,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
       matches: [],
       queue: [],
     });
-    this.formatBoard('easy');
+    this.formatBoard(Level.Easy);
   };
 
   clickEvent = (id: number, type: string): void => {
@@ -195,7 +213,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
       secondsElapsed: 0,
     });
     this.timeInterval = window.setInterval(() => this.tick(), 1000);
-    this.shuffleInterval = window.setInterval(() => this.shuffle(), 15000);
+    this.shuffleInterval = window.setInterval(() => this.shuffle(), 15000 * 10000);
   };
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -203,11 +221,11 @@ export class Cards extends React.Component<CardsProps, CardsState> {
     const { cards, level } = this.state;
     return (
       <div className={styles.container}>
-        <ProgressBar className={styles['shuffle-15']} />
+        <ProgressBar />
         <div className={styles.cardsContainer}>
           <FlipMove
             typeName="ul"
-            className={`${styles[level]} ${styles.list}`}
+            className={`${levelClassnamesMap[level]} ${styles.list}`}
           >
             {
               cards.map((card: CardValue) => (
@@ -218,8 +236,8 @@ export class Cards extends React.Component<CardsProps, CardsState> {
                   className={`${styles.card} ${card.position ? styles[card.position] : ''}`}
                 >
                   <div>
-                    <figure className={styles.front} />
-                    <figure className={styles.back}> {card.type} </figure>
+                    <span className={cn(styles.figure, styles.front)} />
+                    <span className={cn(styles.figure, styles.back)}> {card.type} </span>
                   </div>
                 </Card>
               ))

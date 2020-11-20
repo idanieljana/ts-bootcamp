@@ -33,7 +33,7 @@ export const Levels: React.FC = observer(() => {
     startGame(level);
   };
   return (
-    <div className={styles.levels} data-role="levels">
+    <div className={styles.levels} data-role="utils">
       {levels.map((level) => (
         <button key={level} type="button" className={styles.level} onClick={playHandler(level)}>{level}</button>
       ))}

@@ -1,35 +1,13 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
-import { Howl, Howler } from 'howler';
-import styles from './Game.pcss';
+import { Howl } from 'howler';
 import { levels } from './Levels';
-import Start from './Start';
 import { Card } from './Card';
 import { ProgressBar } from './ProgressBar';
-import Bullseye from "./Bullseye";
+import styles from './Game.pcss';
 
 const lodashShuffle = require('lodash.shuffle');
-const cardFlipMusic = require('./card-flip.wav');
-
-interface CardsProps {
-
-}
-
-type Level = 'easy' | 'hard' | 'crazy';
-
-interface CardValue {
-  type: string,
-  position: 'flipped' | null,
-  key: number,
-}
-interface CardsState {
-  secondsElapsed: number;
-  level: Level, // 'easy'
-  matchNumber: number;
-  cards: CardValue[];
-  matches: any[],
-  queue: any[],
-}
+const cardFlipMusic = require('./assets/card-flip.wav');
 
 interface BoardOptions {
   level: Level, matchNumber: number, symbols: string[];
@@ -58,6 +36,24 @@ function getBoardOptions(difficulty: Level): BoardOptions {
       };
     }
   }
+}
+
+type Level = 'easy' | 'hard' | 'crazy';
+
+interface CardValue {
+  type: string,
+  position: 'flipped' | null,
+  key: number,
+}
+
+interface CardsProps {}
+interface CardsState {
+  secondsElapsed: number;
+  level: Level, // 'easy'
+  matchNumber: number;
+  cards: CardValue[];
+  matches: any[],
+  queue: any[],
 }
 
 export class Cards extends React.Component<CardsProps, CardsState> {

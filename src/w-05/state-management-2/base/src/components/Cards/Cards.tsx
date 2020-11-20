@@ -66,9 +66,9 @@ interface CardsState {
 }
 
 export class Cards extends React.Component<CardsProps, CardsState> {
-  private timeInterval: number | undefined;
+  private timeIntervalId: number | undefined;
 
-  private shuffleInterval: number | undefined;
+  private shuffleIntervalId: number | undefined;
 
   private restartGameTimeoutId: number | undefined;
 
@@ -100,8 +100,8 @@ export class Cards extends React.Component<CardsProps, CardsState> {
   componentWillUnmount(): void {
     window.clearTimeout(this.flipTimeoutId);
     window.clearTimeout(this.restartGameTimeoutId);
-    window.clearInterval(this.shuffleInterval);
-    window.clearTimeout(this.timeInterval);
+    window.clearInterval(this.shuffleIntervalId);
+    window.clearInterval(this.timeIntervalId);
   }
 
   tick = (): void => {
@@ -134,14 +134,8 @@ export class Cards extends React.Component<CardsProps, CardsState> {
   };
 
   restartGame = (): void => {
-    clearInterval(this.timeInterval);
-    clearInterval(this.shuffleInterval);
-    this.setState({
-      cards: [],
-      matches: [],
-      queue: [],
-    });
-    this.formatBoard(Level.Easy);
+    // eslint-disable-next-line react/destructuring-assignment
+    this.formatBoard(this.props.level);
   };
 
   clickEvent = (id: number, type: string): void => {
@@ -189,7 +183,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
           }));
         } else if (queueLength === matchNumber - 1) { // Check if winning selection
           if (matches.length === cards.length - matchNumber) {
-            clearInterval(this.timeInterval);
+            clearInterval(this.timeIntervalId);
             this.restartGameTimeoutId = window.setTimeout(() => {
               this.restartGame();
             }, 2000);
@@ -222,9 +216,13 @@ export class Cards extends React.Component<CardsProps, CardsState> {
       matchNumber,
       cards,
       secondsElapsed: 0,
+      matches: [],
+      queue: [],
     });
-    this.timeInterval = window.setInterval(() => this.tick(), 1000);
-    this.shuffleInterval = window.setInterval(() => this.shuffle(), 15000);
+    clearInterval(this.timeIntervalId);
+    clearInterval(this.shuffleIntervalId);
+    this.timeIntervalId = window.setInterval(() => this.tick(), 1000);
+    this.shuffleIntervalId = window.setInterval(() => this.shuffle(), 15000);
   };
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

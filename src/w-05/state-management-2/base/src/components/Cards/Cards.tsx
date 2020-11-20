@@ -202,28 +202,30 @@ export class Cards extends React.Component<CardsProps, CardsState> {
   render() {
     const { cards, level } = this.state;
     return (
-      <div style={{ width: '100%' }}>
+      <div className={styles.container}>
         <ProgressBar className={styles['shuffle-15']} />
-        <FlipMove
-          typeName="ul"
-          className={`${styles[level]} ${styles.list}`}
-        >
-          {
-            cards.map((card: CardValue) => (
-              <Card
-                key={card.key}
-                type={card.type}
-                onClick={() => this.clickEvent(card.key, card.type)}
-                className={card.position ? styles[card.position] : ''}
-              >
-                <div>
-                  <figure className={styles.front} />
-                  <figure className={styles.back}> {card.type} </figure>
-                </div>
-              </Card>
-            ))
-        }
-        </FlipMove>
+        <div className={styles.cardsContainer}>
+          <FlipMove
+            typeName="ul"
+            className={`${styles[level]} ${styles.list}`}
+          >
+            {
+              cards.map((card: CardValue) => (
+                <Card
+                  key={card.key}
+                  type={card.type}
+                  onClick={() => this.clickEvent(card.key, card.type)}
+                  className={`${styles.card} ${card.position ? styles[card.position] : ''}`}
+                >
+                  <div>
+                    <figure className={styles.front} />
+                    <figure className={styles.back}> {card.type} </figure>
+                  </div>
+                </Card>
+              ))
+            }
+          </FlipMove>
+        </div>
       </div>
     );
   }

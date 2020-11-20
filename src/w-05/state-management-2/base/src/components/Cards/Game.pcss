@@ -1,3 +1,13 @@
+.container {
+  width: 100%;
+}
+.cardsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
 #root {
   height: 100vh;
   overflow: hidden;
@@ -119,11 +129,8 @@ body * {
 .list {
   color: #0a3039;
   display: grid;
-  grid-gap: 10px;
   font-size: 30px;
-  justify-content: center;
-  align-content: center;
-  height: 80vh;
+  width: 100%;
   padding: 20px;
   max-width: 728px;
   margin: 0 auto;
@@ -136,7 +143,6 @@ body * {
   .list.easy {
     grid-template-rows: repeat(2, 220px);
     font-size: 46px;
-    grid-gap: 20px;
   }
 }
 .list.hard {
@@ -255,4 +261,8 @@ figure {
 
 .scaledCard {
   transform: scale(0.5);
+}
+
+.card {
+  margin: 10px;
 }

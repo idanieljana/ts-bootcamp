@@ -70,6 +70,10 @@ export class Cards extends React.Component<CardsProps, CardsState> {
 
   private shuffleInterval: number | undefined;
 
+  private restartGameTimeoutId: number | undefined;
+
+  private flipTimeoutId: number | undefined;
+
   // eslint-disable-next-line react/state-in-constructor
   state = {
     secondsElapsed: 0,
@@ -91,6 +95,13 @@ export class Cards extends React.Component<CardsProps, CardsState> {
       // eslint-disable-next-line react/destructuring-assignment
       this.formatBoard(this.props.level);
     }
+  }
+
+  componentWillUnmount(): void {
+    window.clearTimeout(this.flipTimeoutId);
+    window.clearTimeout(this.restartGameTimeoutId);
+    window.clearInterval(this.shuffleInterval);
+    window.clearTimeout(this.timeInterval);
   }
 
   tick = (): void => {
@@ -179,7 +190,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
         } else if (queueLength === matchNumber - 1) { // Check if winning selection
           if (matches.length === cards.length - matchNumber) {
             clearInterval(this.timeInterval);
-            setTimeout(() => {
+            this.restartGameTimeoutId = window.setTimeout(() => {
               this.restartGame();
             }, 2000);
           } else {
@@ -192,7 +203,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
       } else {
         const cardsToFlip = [...queue, obj].map((card) => Object.keys(card)[0]);
         this.setState({ queue: [] });
-        window.setTimeout(() => {
+        this.flipTimeoutId = window.setTimeout(() => {
           this.flipLater(cardsToFlip);
         }, 1000);
       }
@@ -213,7 +224,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
       secondsElapsed: 0,
     });
     this.timeInterval = window.setInterval(() => this.tick(), 1000);
-    this.shuffleInterval = window.setInterval(() => this.shuffle(), 15000 * 10000);
+    this.shuffleInterval = window.setInterval(() => this.shuffle(), 15000);
   };
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -225,7 +236,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
         <div className={styles.cardsContainer}>
           <FlipMove
             typeName="ul"
-            className={`${levelClassnamesMap[level]} ${styles.list}`}
+            className={cn(levelClassnamesMap[level], styles.list)}
           >
             {
               cards.map((card: CardValue) => (

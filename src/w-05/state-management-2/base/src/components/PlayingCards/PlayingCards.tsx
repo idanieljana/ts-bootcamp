@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { observer } from 'mobx-react-lite';
 import styles from './PlayingCards.pcss';
 import { GameStoreContext } from '../../stores/GameStore';
+import {Cards} from "../Cards/Cards";
 
 export interface PlayingCardsProps {
   isPlaying: boolean;
@@ -14,7 +15,7 @@ export const PlayingCards: React.FC<PlayingCardsProps> = ({ isPlaying }) => {
   }
   return (
     <div className={styles.playingCards} data-role="playing-cards">
-      Playing cards
+      <Cards></Cards>
     </div>
   );
 };

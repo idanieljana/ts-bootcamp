@@ -58,7 +58,7 @@ function getBoardOptions(difficulty: Level): BoardOptions {
 
 interface CardValue {
   type: string,
-  position: 'flipped' | null,
+  isFlipped: boolean,
   key: number,
 }
 
@@ -128,7 +128,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
         const changedCard = { ...card };
         ids.forEach((id) => {
           if (card.key.toString() === id) {
-            changedCard.position = null;
+            changedCard.isFlipped = false;
           }
         });
         return changedCard;
@@ -203,17 +203,20 @@ export class Cards extends React.Component<CardsProps, CardsState> {
   };
 
   flipClickedCard = (id: number): void => {
-    this.setState((state: CardsState) => ({
-      cards: state.cards.map((card) => {
+    this.setState((state: CardsState) => {
+      const cards: CardValue[] = state.cards.map((card) => {
         if ((card.key === id)) {
           return {
             ...card,
-            position: 'flipped',
+            isFlipped: true,
           };
         }
         return card;
-      }),
-    }));
+      });
+      return {
+        cards,
+      };
+    });
   };
 
   formatBoard = (difficulty: Level): void => {
@@ -235,7 +238,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
   prepareCardsForNewGame = (symbols: string[]): CardValue[] => symbols.map(
     (symbol: string, idx: number) => ({
       type: symbol,
-      position: null,
+      isFlipped: false,
       key: idx,
     }),
   );
@@ -255,7 +258,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
               <Card
                 key={card.key}
                 type={card.type}
-                position={card.position}
+                isFlipped={card.isFlipped}
                 onClick={() => this.clickEvent(card.key, card.type)}
               />
             ))}

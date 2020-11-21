@@ -152,7 +152,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
 
   clickEvent = (id: number, type: string): void => {
     playFlipSound();
-    const obj: ClickedCard = { [id]: type };
+    const clickedCard: ClickedCard = { [id]: type };
     const {
       queue,
       matchNumber,
@@ -165,18 +165,14 @@ export class Cards extends React.Component<CardsProps, CardsState> {
     this.flipClickedCard(id);
 
     if (queueLength === 0) {
-      this.setState((state: CardsState) => ({
-        queue: [...state.queue, obj],
-      }));
+      this.addClickedCardToQueue(clickedCard);
     }
 
     if (queueLength > 0) {
       // Compare current symbol with last symbol in queue
       if (Object.values(queue[queueLength - 1])[0] === type) {
         if (queueLength < matchNumber - 1) {
-          this.setState((state: CardsState) => ({
-            queue: [...state.queue, obj],
-          }));
+          this.addClickedCardToQueue(clickedCard);
         } else if (queueLength === matchNumber - 1) { // Check if winning selection
           if (matches.length === cards.length - matchNumber) {
             clearInterval(this.timeIntervalId);
@@ -185,19 +181,25 @@ export class Cards extends React.Component<CardsProps, CardsState> {
             }, 2000);
           } else {
             this.setState((state) => ({
-              matches: [...state.matches, ...state.queue, obj],
+              matches: [...state.matches, ...state.queue, clickedCard],
               queue: [],
             }));
           }
         }
       } else {
-        const cardsToFlip = [...queue, obj].map((card) => Object.keys(card)[0]);
+        const cardsToFlip = [...queue, clickedCard].map((card) => Object.keys(card)[0]);
         this.setState({ queue: [] });
         this.flipTimeoutId = window.setTimeout(() => {
           this.flipLater(cardsToFlip);
         }, 1000);
       }
     }
+  };
+
+  addClickedCardToQueue = (obj: ClickedCard): void => {
+    this.setState((state: CardsState) => ({
+      queue: [...state.queue, obj],
+    }));
   };
 
   flipClickedCard = (id: number): void => {
@@ -216,15 +218,10 @@ export class Cards extends React.Component<CardsProps, CardsState> {
 
   formatBoard = (difficulty: Level): void => {
     const { symbols, level, matchNumber } = getBoardOptions(difficulty);
-    const cards = symbols.map((symbol: string, idx: number) => ({
-      type: symbol,
-      position: null,
-      key: idx,
-    }));
     this.setState({
       level,
       matchNumber,
-      cards,
+      cards: this.prepareCardsForNewGame(symbols),
       secondsElapsed: 0,
       matches: [],
       queue: [],
@@ -234,6 +231,14 @@ export class Cards extends React.Component<CardsProps, CardsState> {
     this.timeIntervalId = window.setInterval(() => this.tick(), 1000);
     this.shuffleIntervalId = window.setInterval(() => this.shuffle(), 15000);
   };
+
+  prepareCardsForNewGame = (symbols: string[]): CardValue[] => symbols.map(
+    (symbol: string, idx: number) => ({
+      type: symbol,
+      position: null,
+      key: idx,
+    }),
+  );
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   render() {

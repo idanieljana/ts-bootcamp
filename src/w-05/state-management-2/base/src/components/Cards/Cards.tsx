@@ -2,8 +2,6 @@ import React from 'react';
 import FlipMove from 'react-flip-move';
 import { Howl } from 'howler';
 import cn from 'classnames';
-import { levels } from './utils';
-import { Card } from './Card';
 import { ProgressBar } from '../ProgressBar/ProgressBar';
 import { Level } from '../../types/game';
 import styles from './Cards.pcss';
@@ -22,8 +20,8 @@ const playFlipSound = (): void => {
 
 const levelClassnamesMap = {
   [Level.Easy]: styles.easy,
-  [Level.Medium]: styles.hard,
-  [Level.Hard]: styles.crazy,
+  [Level.Medium]: styles.medium,
+  [Level.Hard]: styles.hard,
 } as const;
 
 interface BoardOptions {
@@ -31,26 +29,25 @@ interface BoardOptions {
 }
 
 function getBoardOptions(difficulty: Level): BoardOptions {
-  const [easy, medium, hard] = levels;
   switch (difficulty) {
-    case Level.Medium:
-      return {
-        level: difficulty,
-        matchNumber: 2,
-        symbols: medium.cards,
-      };
     case Level.Hard:
       return {
         level: difficulty,
         matchNumber: 3,
-        symbols: hard.cards,
+        symbols: ['⍨', '✈', '☆', '♘', '⍨', '♫', '♠', '✈', '❄', '✈', '♘', '☆', '❄', '☯', '☯', '♫', '♠', '⍨', '☯', '☆', '❄', '♘', '♫', '♠'],
+      };
+    case Level.Medium:
+      return {
+        level: difficulty,
+        matchNumber: 2,
+        symbols: ['❄', '⍨', '♘', '✈', '☯', '♠', '☆', '❄', '♫', '♫', '☯', '☆', '✈', '⍨', '♠', '♘'],
       };
     case Level.Easy:
     default: {
       return {
         level: difficulty,
         matchNumber: 2,
-        symbols: easy.cards,
+        symbols: ['✈', '♘', '✈', '♫', '♫', '☆', '♘', '☆'],
       };
     }
   }
@@ -70,11 +67,11 @@ type ClickedCard = Record<number, string>;
 
 interface CardsState {
   secondsElapsed: number;
-  level: Level, // 'easy'
+  level: Level;
   matchNumber: number;
   cards: CardValue[];
-  matches: ClickedCard[],
-  queue: ClickedCard[],
+  matches: ClickedCard[];
+  queue: ClickedCard[];
 }
 
 export class Cards extends React.Component<CardsProps, CardsState> {
@@ -235,13 +232,13 @@ export class Cards extends React.Component<CardsProps, CardsState> {
     this.shuffleIntervalId = window.setInterval(() => this.shuffle(), 15000);
   };
 
-  prepareCardsForNewGame = (symbols: string[]): CardValue[] => symbols.map(
+  prepareCardsForNewGame = (symbols: string[]): CardValue[] => lodashShuffle(symbols.map(
     (symbol: string, idx: number) => ({
       type: symbol,
       isFlipped: false,
       key: idx,
     }),
-  );
+  ));
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   render() {
@@ -255,12 +252,14 @@ export class Cards extends React.Component<CardsProps, CardsState> {
             className={cn(levelClassnamesMap[level], styles.list)}
           >
             {cards.map((card: CardValue) => (
-              <Card
-                key={card.key}
-                type={card.type}
-                isFlipped={card.isFlipped}
-                onClick={() => this.clickEvent(card.key, card.type)}
-              />
+              // eslint-disable-next-line max-len
+              // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
+              <li key={card.key} onClick={() => this.clickEvent(card.key, card.type)} className={cn(styles.card, card.isFlipped ? styles.flipped : '')}>
+                <div>
+                  <span className={cn(styles.figure, styles.front)} />
+                  <span className={cn(styles.figure, styles.back)}> {card.type} </span>
+                </div>
+              </li>
             ))}
           </FlipMove>
         </div>

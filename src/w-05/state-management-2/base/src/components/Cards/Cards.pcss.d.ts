@@ -4,8 +4,8 @@ type IdentifiersMap = Partial<{
   "level": string|undefined
   "list": string|undefined
   "easy": string|undefined
+  "medium": string|undefined
   "hard": string|undefined
-  "crazy": string|undefined
   "card": string|undefined
   "flipped": string|undefined
   "figure": string|undefined
@@ -22,8 +22,8 @@ export const cardsContainer: string|undefined
 export const level: string|undefined
 export const list: string|undefined
 export const easy: string|undefined
+export const medium: string|undefined
 export const hard: string|undefined
-export const crazy: string|undefined
 export const card: string|undefined
 export const flipped: string|undefined
 export const figure: string|undefined

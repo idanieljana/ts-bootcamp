@@ -69,7 +69,7 @@ interface CardValue {
   key: number,
 }
 
-interface CardsProps {
+export interface CardsProps {
   level: Level;
 }
 
@@ -271,10 +271,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
     const { cards, level } = this.state;
     return (
       <div className={styles.container}>
-        <ProgressBar />
-        <div className={styles.cardsContainer}>
-          {this.renderCards(cards, level)}
-        </div>
+        {this.renderCards(cards, level)}
       </div>
     );
   }

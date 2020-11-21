@@ -5,6 +5,7 @@ import styles from './PlayingCards.pcss';
 import { GameStoreContext } from '../../stores/GameStore';
 import { Cards } from '../Cards/Cards';
 import { Level } from '../../types/game';
+import { ProgressBar } from '../ProgressBar/ProgressBar';
 
 export interface PlayingCardsProps {
   isPlaying: boolean;
@@ -17,6 +18,7 @@ export const PlayingCards: React.FC<PlayingCardsProps> = ({ level, isPlaying }) 
   }
   return (
     <div className={styles.playingCards} data-role="playing-cards">
+      <ProgressBar />
       <Cards level={level} />
     </div>
   );

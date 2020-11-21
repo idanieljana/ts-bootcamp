@@ -1,6 +1,5 @@
 type IdentifiersMap = Partial<{
   "container": string|undefined
-  "cardsContainer": string|undefined
   "level": string|undefined
   "list": string|undefined
   "easy": string|undefined
@@ -18,7 +17,6 @@ declare const identifiersMap: IdentifiersMap;
 export default identifiersMap;
 
 export const container: string|undefined
-export const cardsContainer: string|undefined
 export const level: string|undefined
 export const list: string|undefined
 export const easy: string|undefined

@@ -11,6 +11,15 @@ import styles from './Cards.pcss';
 const lodashShuffle = require('lodash.shuffle');
 const cardFlipMusic = require('./assets/card-flip.wav');
 
+const playFlipSound = (): void => {
+  const sound = new Howl({
+    src: [
+      cardFlipMusic,
+    ],
+  });
+  sound.play();
+};
+
 const levelClassnamesMap = {
   [Level.Easy]: styles.easy,
   [Level.Medium]: styles.hard,
@@ -56,13 +65,16 @@ interface CardValue {
 interface CardsProps {
   level: Level;
 }
+
+type ClickedCard = Record<number, string>;
+
 interface CardsState {
   secondsElapsed: number;
   level: Level, // 'easy'
   matchNumber: number;
   cards: CardValue[];
-  matches: any[],
-  queue: any[],
+  matches: ClickedCard[],
+  queue: ClickedCard[],
 }
 
 export class Cards extends React.Component<CardsProps, CardsState> {
@@ -139,14 +151,8 @@ export class Cards extends React.Component<CardsProps, CardsState> {
   };
 
   clickEvent = (id: number, type: string): void => {
-    const sound = new Howl({
-      src: [
-        cardFlipMusic,
-      ],
-    });
-    sound.play();
-    const obj: Record<number, string> = {};
-    obj[id] = type;
+    playFlipSound();
+    const obj: ClickedCard = { [id]: type };
     const {
       queue,
       matchNumber,
@@ -156,17 +162,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
         length: queueLength,
       },
     } = this.state;
-    this.setState((state: CardsState) => ({
-      cards: state.cards.map((card) => {
-        if ((card.key === id)) {
-          return {
-            ...card,
-            position: 'flipped',
-          };
-        }
-        return card;
-      }),
-    }));
+    this.flipClickedCard(id);
 
     if (queueLength === 0) {
       this.setState((state: CardsState) => ({
@@ -202,6 +198,20 @@ export class Cards extends React.Component<CardsProps, CardsState> {
         }, 1000);
       }
     }
+  };
+
+  flipClickedCard = (id: number): void => {
+    this.setState((state: CardsState) => ({
+      cards: state.cards.map((card) => {
+        if ((card.key === id)) {
+          return {
+            ...card,
+            position: 'flipped',
+          };
+        }
+        return card;
+      }),
+    }));
   };
 
   formatBoard = (difficulty: Level): void => {

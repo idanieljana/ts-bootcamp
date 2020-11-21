@@ -11,6 +11,7 @@ import { PlayButton } from '../PlayButton/PlayButton';
 import StartGameMusic from '../../assets/startGame.ogg';
 import CardFlipMusic from './assets/card-flip.wav';
 import WinResultMusic from './assets/win-result.wav';
+import { BrainFlying } from '../Brain/BrainFlying';
 
 const lodashShuffle = require('lodash.shuffle');
 
@@ -337,6 +338,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
           </>
         )}
         {status === Status.Winning && <Message text="You win!" />}
+        {status === Status.Stopped && <BrainFlying />}
         {status === Status.Stopped && <Message text="Play again?" />}
         {status === Status.Stopped && <PlayButton text="New game" onClick={() => this.restartGame()} />}
       </div>

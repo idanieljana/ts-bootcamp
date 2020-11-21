@@ -53,6 +53,16 @@ function getBoardOptions(difficulty: Level): BoardOptions {
   }
 }
 
+function prepareCardsForNewGame(symbols: string[]): CardValue[] {
+  return lodashShuffle(symbols.map(
+    (symbol: string, idx: number) => ({
+      type: symbol,
+      isFlipped: false,
+      key: idx,
+    }),
+  ));
+}
+
 interface CardValue {
   type: string,
   isFlipped: boolean,
@@ -113,13 +123,13 @@ export class Cards extends React.Component<CardsProps, CardsState> {
     window.clearInterval(this.timeIntervalId);
   }
 
-  tick = (): void => {
+  private tick = (): void => {
     this.setState((state: CardsState) => ({
       secondsElapsed: state.secondsElapsed + 1,
     }));
   };
 
-  flipLater = (ids: string[]): void => {
+  private flipLater = (ids: string[]): void => {
     this.setState((prevState) => {
       const cards = [...prevState.cards].map((card) => {
         const changedCard = { ...card };
@@ -136,18 +146,18 @@ export class Cards extends React.Component<CardsProps, CardsState> {
     });
   };
 
-  shuffle = (): void => {
+  private shuffle = (): void => {
     this.setState((state: CardsState) => ({
       cards: lodashShuffle(state.cards),
     }));
   };
 
-  restartGame = (): void => {
+  private restartGame = (): void => {
     // eslint-disable-next-line react/destructuring-assignment
     this.formatBoard(this.props.level);
   };
 
-  clickEvent = (id: number, type: string): void => {
+  private clickEvent = (id: number, type: string): void => {
     playFlipSound();
     const clickedCard: ClickedCard = { [id]: type };
     const {
@@ -193,13 +203,13 @@ export class Cards extends React.Component<CardsProps, CardsState> {
     }
   };
 
-  addClickedCardToQueue = (obj: ClickedCard): void => {
+  private addClickedCardToQueue = (obj: ClickedCard): void => {
     this.setState((state: CardsState) => ({
       queue: [...state.queue, obj],
     }));
   };
 
-  flipClickedCard = (id: number): void => {
+  private flipClickedCard = (id: number): void => {
     this.setState((state: CardsState) => {
       const cards: CardValue[] = state.cards.map((card) => {
         if ((card.key === id)) {
@@ -216,12 +226,12 @@ export class Cards extends React.Component<CardsProps, CardsState> {
     });
   };
 
-  formatBoard = (difficulty: Level): void => {
+  private formatBoard = (difficulty: Level): void => {
     const { symbols, level, matchNumber } = getBoardOptions(difficulty);
     this.setState({
       level,
       matchNumber,
-      cards: this.prepareCardsForNewGame(symbols),
+      cards: prepareCardsForNewGame(symbols),
       secondsElapsed: 0,
       matches: [],
       queue: [],
@@ -232,13 +242,29 @@ export class Cards extends React.Component<CardsProps, CardsState> {
     this.shuffleIntervalId = window.setInterval(() => this.shuffle(), 15000);
   };
 
-  prepareCardsForNewGame = (symbols: string[]): CardValue[] => lodashShuffle(symbols.map(
-    (symbol: string, idx: number) => ({
-      type: symbol,
-      isFlipped: false,
-      key: idx,
-    }),
-  ));
+  private renderCards(cards: CardValue[], level: Level) {
+    return (
+      <FlipMove
+        typeName="ul"
+        className={cn(levelClassnamesMap[level], styles.list)}
+      >
+        {cards.map((card: CardValue) => (
+          // eslint-disable-next-line max-len
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
+          <li
+            key={card.key}
+            onClick={() => this.clickEvent(card.key, card.type)}
+            className={cn(styles.card, card.isFlipped ? styles.flipped : '')}
+          >
+            <div>
+              <span className={cn(styles.figure, styles.front)} />
+              <span className={cn(styles.figure, styles.back)}> {card.type} </span>
+            </div>
+          </li>
+        ))}
+      </FlipMove>
+    );
+  }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   render() {
@@ -247,21 +273,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
       <div className={styles.container}>
         <ProgressBar />
         <div className={styles.cardsContainer}>
-          <FlipMove
-            typeName="ul"
-            className={cn(levelClassnamesMap[level], styles.list)}
-          >
-            {cards.map((card: CardValue) => (
-              // eslint-disable-next-line max-len
-              // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
-              <li key={card.key} onClick={() => this.clickEvent(card.key, card.type)} className={cn(styles.card, card.isFlipped ? styles.flipped : '')}>
-                <div>
-                  <span className={cn(styles.figure, styles.front)} />
-                  <span className={cn(styles.figure, styles.back)}> {card.type} </span>
-                </div>
-              </li>
-            ))}
-          </FlipMove>
+          {this.renderCards(cards, level)}
         </div>
       </div>
     );

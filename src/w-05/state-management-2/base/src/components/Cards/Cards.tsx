@@ -251,21 +251,14 @@ export class Cards extends React.Component<CardsProps, CardsState> {
             typeName="ul"
             className={cn(levelClassnamesMap[level], styles.list)}
           >
-            {
-              cards.map((card: CardValue) => (
-                <Card
-                  key={card.key}
-                  type={card.type}
-                  onClick={() => this.clickEvent(card.key, card.type)}
-                  className={`${styles.card} ${card.position ? styles[card.position] : ''}`}
-                >
-                  <div>
-                    <span className={cn(styles.figure, styles.front)} />
-                    <span className={cn(styles.figure, styles.back)}> {card.type} </span>
-                  </div>
-                </Card>
-              ))
-            }
+            {cards.map((card: CardValue) => (
+              <Card
+                key={card.key}
+                type={card.type}
+                position={card.position}
+                onClick={() => this.clickEvent(card.key, card.type)}
+              />
+            ))}
           </FlipMove>
         </div>
       </div>

@@ -5,15 +5,38 @@ import cn from 'classnames';
 import { Level } from '../../types/game';
 import styles from './Cards.pcss';
 import { Timer } from '../Timer/Timer';
+import { Message } from '../Message/Message';
+import { ProgressBar } from '../ProgressBar/ProgressBar';
+import { PlayButton } from '../PlayButton/PlayButton';
+import StartGameMusic from '../../assets/startGame.ogg';
+import CardFlipMusic from './assets/card-flip.wav';
+import WinResultMusic from './assets/win-result.wav';
 
 const lodashShuffle = require('lodash.shuffle');
-const cardFlipMusic = require('./assets/card-flip.wav');
-const winResultMusic = require('./assets/win-result.wav');
+
+function createStartGameHandler() {
+  let playingSound: Howl | undefined;
+  function playMusic() {
+    if (playingSound) {
+      playingSound.stop();
+    }
+    const sound = new Howl({
+      src: [
+        StartGameMusic,
+      ],
+      volume: 0.2,
+    });
+    sound.play();
+    playingSound = sound;
+  }
+  return playMusic;
+}
+const playStartGameMusic = createStartGameHandler();
 
 const playFlipSound = (): void => {
   const sound = new Howl({
     src: [
-      cardFlipMusic,
+      CardFlipMusic,
     ],
   });
   sound.play();
@@ -22,7 +45,7 @@ const playFlipSound = (): void => {
 const playWinSound = (): void => {
   const sound = new Howl({
     src: [
-      winResultMusic,
+      WinResultMusic,
     ],
   });
   sound.play();
@@ -85,6 +108,13 @@ export interface CardsProps {
 
 type ClickedCard = Record<number, string>;
 
+enum Status {
+  Starting = 'Starting',
+  Playing = 'Playing',
+  Winning = 'Winning',
+  Stopped = 'Stopped',
+}
+
 interface CardsState {
   secondsElapsed: number;
   level: Level;
@@ -92,6 +122,7 @@ interface CardsState {
   cards: CardValue[];
   matches: ClickedCard[];
   queue: ClickedCard[];
+  status: Status
 }
 
 export class Cards extends React.Component<CardsProps, CardsState> {
@@ -99,7 +130,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
 
   private shuffleIntervalId: number | undefined;
 
-  private restartGameTimeoutId: number | undefined;
+  private stopedGameTimeoutId: number | undefined;
 
   private flipTimeoutId: number | undefined;
 
@@ -111,6 +142,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
     cards: [],
     matches: [],
     queue: [],
+    status: Status.Starting,
   };
 
   componentDidMount(): void {
@@ -128,7 +160,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
 
   componentWillUnmount(): void {
     window.clearTimeout(this.flipTimeoutId);
-    window.clearTimeout(this.restartGameTimeoutId);
+    window.clearTimeout(this.stopedGameTimeoutId);
     window.clearInterval(this.shuffleIntervalId);
     window.clearInterval(this.timeIntervalId);
   }
@@ -167,6 +199,21 @@ export class Cards extends React.Component<CardsProps, CardsState> {
     this.formatBoard(this.props.level);
   };
 
+  private win = (): void => {
+    clearInterval(this.timeIntervalId);
+    window.setTimeout(() => {
+      playWinSound();
+      this.setState({
+        status: Status.Winning,
+      });
+    }, 1000);
+    this.stopedGameTimeoutId = window.setTimeout(() => {
+      this.setState({
+        status: Status.Stopped,
+      });
+    }, 3000);
+  };
+
   private clickEvent = (id: number, type: string): void => {
     playFlipSound();
     const clickedCard: ClickedCard = { [id]: type };
@@ -192,11 +239,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
           this.addClickedCardToQueue(clickedCard);
         } else if (queueLength === matchNumber - 1) { // Check if winning selection
           if (matches.length === cards.length - matchNumber) {
-            playWinSound();
-            clearInterval(this.timeIntervalId);
-            this.restartGameTimeoutId = window.setTimeout(() => {
-              this.restartGame();
-            }, 2000);
+            this.win();
           } else {
             this.setState((state) => ({
               matches: [...state.matches, ...state.queue, clickedCard],
@@ -246,11 +289,13 @@ export class Cards extends React.Component<CardsProps, CardsState> {
       secondsElapsed: 0,
       matches: [],
       queue: [],
+      status: Status.Playing,
     });
     clearInterval(this.timeIntervalId);
     clearInterval(this.shuffleIntervalId);
     this.timeIntervalId = window.setInterval(() => this.tick(), 1000);
     this.shuffleIntervalId = window.setInterval(() => this.shuffle(), 15000);
+    playStartGameMusic();
   };
 
   private renderCards(cards: CardValue[], level: Level) {
@@ -279,11 +324,21 @@ export class Cards extends React.Component<CardsProps, CardsState> {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   render() {
-    const { cards, level, secondsElapsed } = this.state;
+    const {
+      cards, level, secondsElapsed, status,
+    } = this.state;
     return (
       <div className={styles.container}>
-        <Timer time={secondsElapsed} />
-        {this.renderCards(cards, level)}
+        {status === Status.Playing && (
+          <>
+            <ProgressBar />
+            <Timer time={secondsElapsed} />
+            {this.renderCards(cards, level)}
+          </>
+        )}
+        {status === Status.Winning && <Message text="You win!" />}
+        {status === Status.Stopped && <Message text="Play again?" />}
+        {status === Status.Stopped && <PlayButton text="New game" onClick={() => this.restartGame()} />}
       </div>
     );
   }

@@ -18,7 +18,6 @@ export const PlayingCards: React.FC<PlayingCardsProps> = ({ level, isPlaying }) 
   }
   return (
     <div className={styles.playingCards} data-role="playing-cards">
-      <ProgressBar />
       <Cards level={level} />
     </div>
   );

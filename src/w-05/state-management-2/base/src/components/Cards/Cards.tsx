@@ -2,17 +2,26 @@ import React from 'react';
 import FlipMove from 'react-flip-move';
 import { Howl } from 'howler';
 import cn from 'classnames';
-import { ProgressBar } from '../ProgressBar/ProgressBar';
 import { Level } from '../../types/game';
 import styles from './Cards.pcss';
 
 const lodashShuffle = require('lodash.shuffle');
 const cardFlipMusic = require('./assets/card-flip.wav');
+const winResultMusic = require('./assets/win-result.wav');
 
 const playFlipSound = (): void => {
   const sound = new Howl({
     src: [
       cardFlipMusic,
+    ],
+  });
+  sound.play();
+};
+
+const playWinSound = (): void => {
+  const sound = new Howl({
+    src: [
+      winResultMusic,
     ],
   });
   sound.play();
@@ -182,6 +191,7 @@ export class Cards extends React.Component<CardsProps, CardsState> {
           this.addClickedCardToQueue(clickedCard);
         } else if (queueLength === matchNumber - 1) { // Check if winning selection
           if (matches.length === cards.length - matchNumber) {
+            playWinSound();
             clearInterval(this.timeIntervalId);
             this.restartGameTimeoutId = window.setTimeout(() => {
               this.restartGame();

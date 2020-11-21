@@ -14,7 +14,7 @@ export default {
 // eslint-disable-next-line react/jsx-props-no-spreading
 const Template: Story<CardsProps> = ({ level }) => {
   const wrapperStyle = {
-    background: 'black', width: '100%', height: '100vh',
+    background: 'black', width: '100%', height: '100vh', fontSize: '4em',
   };
   return (
     <div style={wrapperStyle}>

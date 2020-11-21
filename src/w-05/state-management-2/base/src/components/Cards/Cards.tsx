@@ -4,6 +4,7 @@ import { Howl } from 'howler';
 import cn from 'classnames';
 import { Level } from '../../types/game';
 import styles from './Cards.pcss';
+import { Timer } from '../Timer/Timer';
 
 const lodashShuffle = require('lodash.shuffle');
 const cardFlipMusic = require('./assets/card-flip.wav');
@@ -278,9 +279,10 @@ export class Cards extends React.Component<CardsProps, CardsState> {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   render() {
-    const { cards, level } = this.state;
+    const { cards, level, secondsElapsed } = this.state;
     return (
       <div className={styles.container}>
+        <Timer time={secondsElapsed} />
         {this.renderCards(cards, level)}
       </div>
     );

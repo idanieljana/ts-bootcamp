@@ -15,6 +15,8 @@ module.exports = {
     "\\.pcss$": path.resolve(__dirname, "./test/CSSModulesProcessor.js"),
     "\\.css$": path.resolve(__dirname, "./test/CSSModulesProcessor.js"),
     "\\.ogg": path.resolve(__dirname, "./test/fileProcessor.js"),
+    "\\.wav": path.resolve(__dirname, "./test/fileProcessor.js"),
+    "\\.png": path.resolve(__dirname, "./test/fileProcessor.js"),
   },
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   "moduleFileExtensions": [

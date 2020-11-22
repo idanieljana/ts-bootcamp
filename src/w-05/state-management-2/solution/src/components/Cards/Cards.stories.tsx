@@ -1,10 +1,10 @@
 import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 // eslint-disable-next-line import/no-extraneous-dependencies
-import {Meta, Story} from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react/types-6-0';
 
-import {Cards, CardsProps, Status} from './Cards';
-import {Level} from '../../types/game';
+import { Cards, CardsProps, Status } from './Cards';
+import { Level } from '../../types/game';
 
 export default {
   title: 'MemoryCards/Cards',

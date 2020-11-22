@@ -19,20 +19,16 @@ export default {
   },
 } as Meta;
 
-interface TemplateArgs extends PlayingCardsProps {
-  selectedLevel: PlayingCardsProps['level'];
-}
-
 // eslint-disable-next-line react/jsx-props-no-spreading
-const Template: Story<TemplateArgs> = ({ isPlaying, selectedLevel, level }) => {
+const Template: Story<PlayingCardsProps> = (args) => {
   const wrapperStyle = {
     background: '#000333', width: '100%', height: '100vh',
   };
-  const passedLevel = selectedLevel || level;
   return (
-    <div style={wrapperStyle}>
-      <PlayingCards isPlaying={isPlaying} level={passedLevel} />
-    </div>
+      <div style={wrapperStyle}>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        <PlayingCards {...args} />
+      </div>
   );
 };
 

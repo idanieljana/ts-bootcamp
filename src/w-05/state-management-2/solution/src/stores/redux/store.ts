@@ -1,5 +1,5 @@
 import {
-  configureStore, ThunkAction, Action,
+  configureStore,
 } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { loggerReducer } from './logger/loggerReducer';
@@ -18,5 +18,3 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-// eslint-disable-next-line max-len
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;

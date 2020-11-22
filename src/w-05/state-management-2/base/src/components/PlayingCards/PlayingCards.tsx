@@ -3,9 +3,8 @@ import React, { useContext } from 'react';
 import { observer } from 'mobx-react-lite';
 import styles from './PlayingCards.pcss';
 import { GameStoreContext } from '../../stores/GameStore';
-import { Cards } from '../Cards/Cards';
+import { CardsView } from '../Cards/CardsView';
 import { Level } from '../../types/game';
-import { ProgressBar } from '../ProgressBar/ProgressBar';
 
 export interface PlayingCardsProps {
   isPlaying: boolean;
@@ -18,7 +17,7 @@ export const PlayingCards: React.FC<PlayingCardsProps> = ({ level, isPlaying }) 
   }
   return (
     <div className={styles.playingCards} data-role="playing-cards">
-      <Cards level={level} />
+      <CardsView level={level} />
     </div>
   );
 };

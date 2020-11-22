@@ -10,6 +10,7 @@ type IdentifiersMap = Partial<{
   "figure": string|undefined
   "front": string|undefined
   "back": string|undefined
+  "newGameButtonContainer": string|undefined
 }>
 
 declare const identifiersMap: IdentifiersMap;
@@ -27,3 +28,4 @@ export const flipped: string|undefined
 export const figure: string|undefined
 export const front: string|undefined
 export const back: string|undefined
+export const newGameButtonContainer: string|undefined

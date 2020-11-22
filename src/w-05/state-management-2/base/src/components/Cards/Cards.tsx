@@ -67,7 +67,7 @@ export const Cards: React.FC<CardsProps> = (props) => {
             </li>
           ))}
         </FlipMove>
-        {flipsCount && <Message text={`Flips: ${flipsCount}`} />}
+        {!!flipsCount && <Message text={`Flips: ${flipsCount}`} />}
       </>
       )}
       {status === Status.Winning && <Message text="You win!" />}

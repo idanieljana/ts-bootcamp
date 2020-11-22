@@ -99,6 +99,8 @@ interface CardsContainerState {
 export interface CardsContainerProps {
   level: Level;
   flipsCount?: number;
+  onCardClick?: (id: number, type: string) => void
+  onRestart?: () => void
 }
 
 export class CardsContainer extends React.Component<CardsContainerProps, CardsContainerState> {
@@ -171,6 +173,8 @@ export class CardsContainer extends React.Component<CardsContainerProps, CardsCo
   };
 
   private restartGame = (): void => {
+    const { onRestart } = this.props;
+    onRestart?.();
     // eslint-disable-next-line react/destructuring-assignment
     this.formatBoard(this.props.level);
   };
@@ -191,6 +195,8 @@ export class CardsContainer extends React.Component<CardsContainerProps, CardsCo
   };
 
   private clickEvent = (id: number, type: string): void => {
+    const { onCardClick } = this.props;
+    onCardClick?.(id, type);
     playFlipSound();
     const clickedCard: ClickedCard = { [id]: type };
     const {

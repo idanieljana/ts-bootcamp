@@ -3,27 +3,27 @@ import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Meta, Story } from '@storybook/react/types-6-0';
 
-import { CardsView, CardsViewProps } from './CardsView';
+import { CardsContainer, CardsContainerProps } from './CardsContainer';
 import { Level } from '../../types/game';
 
 export default {
-  title: 'MemoryCards/CardsView',
-  component: CardsView,
+  title: 'MemoryCards/CardsContainer',
+  component: CardsContainer,
 } as Meta;
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-const CardsViewTemplate: Story<CardsViewProps> = ({ level, flipsCount }) => {
+const CardsContainerTemplate: Story<CardsContainerProps> = ({ level, flipsCount }) => {
   const wrapperStyle = {
     background: 'black', width: '100%', height: '100vh', fontSize: '4em',
   };
   return (
     <div style={wrapperStyle}>
-      <CardsView level={level} flipsCount={flipsCount} />
+      <CardsContainer level={level} flipsCount={flipsCount} />
     </div>
   );
 };
 
-export const CardsViewDefault = CardsViewTemplate.bind({});
-CardsViewDefault.args = {
+export const CardsContainerDefault = CardsContainerTemplate.bind({});
+CardsContainerDefault.args = {
   level: Level.Easy,
 };

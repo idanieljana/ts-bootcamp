@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { observer } from 'mobx-react-lite';
 import styles from './PlayingCards.pcss';
 import { GameStoreContext } from '../../stores/GameStore';
-import { CardsView } from '../Cards/CardsView';
+import { CardsContainer } from '../Cards/CardsContainer';
 import { Level } from '../../types/game';
 
 export interface PlayingCardsProps {
@@ -17,7 +17,7 @@ export const PlayingCards: React.FC<PlayingCardsProps> = ({ level, isPlaying }) 
   }
   return (
     <div className={styles.playingCards} data-role="playing-cards">
-      <CardsView level={level} />
+      <CardsContainer level={level} />
     </div>
   );
 };

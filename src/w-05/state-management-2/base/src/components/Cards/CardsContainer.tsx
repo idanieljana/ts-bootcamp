@@ -86,7 +86,7 @@ function prepareCardsForNewGame(symbols: string[]): CardValue[] {
 
 type ClickedCard = Record<number, string>;
 
-interface CardsViewState {
+interface CardsContainerState {
   secondsElapsed: number;
   level: Level;
   matchNumber: number;
@@ -96,12 +96,12 @@ interface CardsViewState {
   status: Status
 }
 
-export interface CardsViewProps {
+export interface CardsContainerProps {
   level: Level;
   flipsCount?: number;
 }
 
-export class CardsView extends React.Component<CardsViewProps, CardsViewState> {
+export class CardsContainer extends React.Component<CardsContainerProps, CardsContainerState> {
   private timeIntervalId: number | undefined;
 
   private shuffleIntervalId: number | undefined;
@@ -126,7 +126,7 @@ export class CardsView extends React.Component<CardsViewProps, CardsViewState> {
     this.formatBoard(this.props.level);
   }
 
-  componentDidUpdate(prevProps: Readonly<CardsViewProps>): void {
+  componentDidUpdate(prevProps: Readonly<CardsContainerProps>): void {
     // eslint-disable-next-line react/destructuring-assignment
     if (this.props.level !== prevProps.level) {
       // eslint-disable-next-line react/destructuring-assignment
@@ -142,7 +142,7 @@ export class CardsView extends React.Component<CardsViewProps, CardsViewState> {
   }
 
   private tick = (): void => {
-    this.setState((state: CardsViewState) => ({
+    this.setState((state: CardsContainerState) => ({
       secondsElapsed: state.secondsElapsed + 1,
     }));
   };
@@ -165,7 +165,7 @@ export class CardsView extends React.Component<CardsViewProps, CardsViewState> {
   };
 
   private shuffle = (): void => {
-    this.setState((state: CardsViewState) => ({
+    this.setState((state: CardsContainerState) => ({
       cards: lodashShuffle(state.cards),
     }));
   };
@@ -234,13 +234,13 @@ export class CardsView extends React.Component<CardsViewProps, CardsViewState> {
   };
 
   private addClickedCardToQueue = (obj: ClickedCard): void => {
-    this.setState((state: CardsViewState) => ({
+    this.setState((state: CardsContainerState) => ({
       queue: [...state.queue, obj],
     }));
   };
 
   private flipClickedCard = (id: number): void => {
-    this.setState((state: CardsViewState) => {
+    this.setState((state: CardsContainerState) => {
       const cards: CardValue[] = state.cards.map((card) => {
         if ((card.key === id)) {
           return {

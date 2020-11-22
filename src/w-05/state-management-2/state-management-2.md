@@ -52,7 +52,7 @@ https://github.com/reduxjs/reselect
 
 `Estimated time: 10-15 min`
 
-### Creating store and wrapping application with provider:
+### Creating store and connecting it to the application
 
 We will work in the project folder with base project:
 
@@ -60,8 +60,62 @@ We will work in the project folder with base project:
 
 Task:
 
-- Create a store object and add wrapp application with the provider
+- Connect application with the redux store provider
 
+Wrap the App component:
+
+```tsx
+import { Provider } from 'react-redux';
+// ...
+import { store } from '../../stores/redux/store';
+
+// ...
+<Provider store={store}>
+</Provider>
+```
+
+Create a store object  `ts-bootcamp/src/w-05/state-management-2/solution/src/stores/redux/store.ts`:
+
+```tsx
+import {
+  configureStore,
+} from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
+
+export const store = configureStore({
+  devTools: {
+    name: `MemoryCards: ${Date.now()}`,
+  },
+  reducer: {},
+});
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+```
+
+To verify everything works:
+
+![image](assets/redux_devtools_empty_store.png)
+
+
+Install `redux-devtools` extension:
+
+https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
+
+And find the `MemoryCards...` instance in the list.
+
+Notes: 
+
+```tsx
+devTools: {
+  name: `MemoryCards: ${Date.now()}`,
+},
+```
+
+This lifehack is needed for better identifying of app store in redux-devtools.
 
 ### Exercise 2
 

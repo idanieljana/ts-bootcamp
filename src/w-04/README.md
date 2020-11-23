@@ -23,7 +23,5 @@ will get familiar with basic react concepts
 ## Hometasks:
 
 ### Hometask
-TODO:
 
-### Additional hometask
-TODO:
+Implement a tabs component using React and hooks

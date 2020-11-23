@@ -1,10 +1,9 @@
 export enum LoggerActions {
-  Add = 'logger/add',
-  Clear = 'logger/clear',
+  SetCreated = 'logger/setCreated',
 }
 
 export enum LogType {
-  Card = 'Card',
+  Common = 'Common',
 }
 
 export interface Log {

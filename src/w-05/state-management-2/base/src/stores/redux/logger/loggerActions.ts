@@ -1,17 +1,20 @@
 import { createAction } from '@reduxjs/toolkit';
+import { LoggerActions } from './loggerTypes';
 import { getId } from './loggerUtils';
-import { LoggerActions, LogType } from './loggerTypes';
 
-function handleAddLog(log: string, type: LogType) {
+interface SetCreatedPayload {
+  payload: {
+    createdAt: string;
+    id: string;
+  }
+}
+function handleSetCreated(): SetCreatedPayload {
   return {
     payload: {
-      log,
-      type,
       id: getId(),
       createdAt: new Date().toISOString(),
     },
   };
 }
 
-export const addLog = createAction(LoggerActions.Add, handleAddLog);
-export const clearLogs = createAction(LoggerActions.Clear);
+export const setCreated = createAction(LoggerActions.SetCreated, handleSetCreated);

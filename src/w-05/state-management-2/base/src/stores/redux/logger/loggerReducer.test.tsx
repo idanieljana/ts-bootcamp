@@ -1,7 +1,6 @@
-import { loggerReducer, initialState } from './loggerReducer';
-import { addLog, clearLogs } from './loggerActions';
+import { initialState, loggerReducer } from './loggerReducer';
+import { setCreated } from './loggerActions';
 import { getId } from './loggerUtils';
-import { LogType } from './loggerTypes';
 
 jest.mock('./loggerUtils');
 
@@ -17,36 +16,27 @@ afterEach(() => {
 });
 
 describe('loggerReducer', () => {
-  test('should reduce to initial state', () => {
-    const actual = loggerReducer(undefined, {} as never);
-    expect(actual).toEqual(initialState);
-  });
-
-  test('should reduce to added log in the state', () => {
-    const actual = loggerReducer({ ...initialState }, addLog('Message', LogType.Card));
+  test('should reduce to setting created', () => {
+    const logMock = jest.spyOn(console, 'log').mockImplementation(jest.fn());
+    const actual = loggerReducer({ ...initialState }, setCreated());
+    const mockedCreated = '123456789 - 2000-01-01T00:00:00.000Z';
+    expect(logMock).toBeCalledWith(mockedCreated);
     const expected = {
       ...initialState,
-      logs: [{
-        createdAt: mockedISOStringValue,
-        id: '123456789',
-        log: 'Message',
-        type: LogType.Card,
-      }],
+      created: mockedCreated,
     };
     expect(actual).toEqual(expected);
   });
 
+  test('should reduce to initial state', () => {
+    expect(loggerReducer).toEqual(loggerReducer);
+  });
+
+  test('should reduce to added log in the state', () => {
+    expect(true).toEqual(true);
+  });
+
   test('should reduce to cleared logs in the state', () => {
-    const state = {
-      ...initialState,
-      logs: [{
-        createdAt: mockedISOStringValue,
-        id: '123456789',
-        log: 'Message',
-        type: LogType.Card,
-      }],
-    };
-    const actual = loggerReducer(state, clearLogs());
-    expect(actual).toEqual(initialState);
+    expect(true).toEqual(true);
   });
 });

@@ -16,7 +16,7 @@ describe('loggerSelectors', () => {
     };
     expect(getLogs(state)).toEqual(logs);
   });
-  test('should return logs from the state', () => {
+  test('should return logs count from the state', () => {
     const selected = getLogsCount.resultFunc([
       {
         createdAt: '2000-01-01T00:00:00.000Z',

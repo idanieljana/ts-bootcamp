@@ -21,7 +21,7 @@ logo.height = 200;
 logo.src = casinoLogo;
 
 enum Colors {
-  CanvasBackground= '#000333',
+  CanvasBackground= 'rgba(0, 3, 51, 1)',
   CanvasBorder = '#DCB001',
   CanvasCursor = 'rgba(220, 176, 1, 0.8)',
 }
@@ -37,6 +37,7 @@ function isWithinArea(areaParams: [Params2D, Params2D, Params2D]): boolean {
 
 interface SettingsState {
   backgroundColor: string;
+  backgroundColorAlpha: number;
   borderColor: string;
   borderWidth: number;
   buttonFontSize: number;
@@ -59,6 +60,7 @@ export const Advertising: React.FC = () => {
   const [settings, setSettings] = React.useState<SettingsState>({
     borderColor: Colors.CanvasBorder,
     backgroundColor: Colors.CanvasBackground,
+    backgroundColorAlpha: 1,
     buttonFontSize: 42,
     mouseX: -1,
     mouseY: -1,
@@ -245,6 +247,27 @@ export const Advertising: React.FC = () => {
     }, 500);
     return () => window.clearInterval(id);
   }, []);
+  /**
+   * Get blinking alpha
+   */
+  React.useEffect(() => {
+    const alphas = [0.9, 0.95, 1];
+    function next(value: number) {
+      const index = alphas.findIndex((v) => v === value) + 1;
+      return alphas[Math.abs(alphas.length - 1 - index)];
+    }
+    const id = window.setInterval(() => {
+      setSettings((state) => {
+        const a = next(state.backgroundColorAlpha);
+        return {
+          ...state,
+          backgroundColorAlpha: a,
+          backgroundColor: `rgba(0, 3, 51, ${a})`,
+        };
+      });
+    }, 150);
+    return () => window.clearInterval(id);
+  }, [settings.backgroundColorAlpha]);
 
   return (
     <canvas ref={canvasEl} id="canvas" />

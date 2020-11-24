@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "outDir": "lib",
+    "strict": true,
+    "lib": ["ES2019","dom"],
+    "sourceMap": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": true,
+    "target": "ES5"
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./public/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

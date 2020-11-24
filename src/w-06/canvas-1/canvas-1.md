@@ -14,6 +14,7 @@ In this section we will get familiar with JS Canvas.
 Our plan is to implement a simple `<Advertizing>` component to promote
 casino in the shorts ads which is quite commonly used in video players in Web.
 
+![image](assets/canvasResult.png)
 
 ### Additional reading
 

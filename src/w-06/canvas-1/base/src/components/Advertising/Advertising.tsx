@@ -115,7 +115,7 @@ export const Advertising: React.FC = () => {
     }
   }
   function drawRegisterButtonText(ctx: CanvasRenderingContext2D) {
-    const text = 'Register'.toUpperCase();
+    const text = 'Register now'.toUpperCase();
     // Hack to calculate the approximate height
     // https://stackoverflow.com/questions/1134586/how-can-you-find-the-height-of-text-on-an-html-canvas
     const textHeight = ctx.measureText('M').width;
@@ -144,8 +144,8 @@ export const Advertising: React.FC = () => {
     ctx.fillRect(x, y, width, height);
   }
   function drawButton(ctx: CanvasRenderingContext2D): [Params2D, Params2D] {
-    const width = 400;
-    const height = 80;
+    const width = 490;
+    const height = 90;
     const logosAreaHeight = window.innerHeight * 0.75;
     const buttonAreaHeight = window.innerHeight * 0.25;
     // eslint-disable-next-line max-len
@@ -248,17 +248,17 @@ export const Advertising: React.FC = () => {
     return () => window.clearInterval(id);
   }, []);
   /**
-   * Get blinking alpha
+   * Get blinking bacgrond
    */
   React.useEffect(() => {
     const alphas = [0.9, 0.95, 1];
-    function next(value: number) {
+    function nextAlpha(value: number) {
       const index = alphas.findIndex((v) => v === value) + 1;
       return alphas[Math.abs(alphas.length - 1 - index)];
     }
     const id = window.setInterval(() => {
       setSettings((state) => {
-        const a = next(state.backgroundColorAlpha);
+        const a = nextAlpha(state.backgroundColorAlpha);
         return {
           ...state,
           backgroundColorAlpha: a,

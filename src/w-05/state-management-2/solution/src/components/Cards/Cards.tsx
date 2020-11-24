@@ -36,16 +36,22 @@ export interface CardsProps {
   status: Status
   onCardClick: (key: number, type: string) => void
   onRestart: () => void
+  stats?: string
 }
 
 export const Cards: React.FC<CardsProps> = (props) => {
   const {
-    level, flipsCount, secondsElapsed, cards, status, onCardClick, onRestart,
+    level, flipsCount, secondsElapsed, cards, status, onCardClick, onRestart, stats,
   } = props;
   return (
     <div className={styles.container}>
       {status === Status.Playing && (
       <>
+        {stats && (
+          <div className={styles.statsContainer}>
+            <Message text={stats} />
+          </div>
+        )}
         <ProgressBar />
         {secondsElapsed !== undefined && <Timer time={secondsElapsed} />}
         <FlipMove

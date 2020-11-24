@@ -50,6 +50,14 @@ CardsPlaying.args = {
   secondsElapsed: 0,
 };
 
+export const CardsWithStats = CardsTemplate.bind({});
+CardsWithStats.args = {
+  ...createDefaultProps(),
+  flipsCount: 4,
+  secondsElapsed: 80,
+  stats: 'Best result for 2 round(s): 03:45 - 12',
+};
+
 export const CardsFlippedPlaying = CardsTemplate.bind({});
 CardsFlippedPlaying.args = {
   ...createDefaultProps(FlippedCards.Yes),

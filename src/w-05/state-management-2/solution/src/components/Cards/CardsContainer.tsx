@@ -101,6 +101,7 @@ export interface CardsContainerProps {
   flipsCount?: number;
   onCardClick?: (id: number, type: string) => void
   onRestart?: () => void
+  stats?: string
 }
 
 export class CardsContainer extends React.Component<CardsContainerProps, CardsContainerState> {
@@ -285,11 +286,12 @@ export class CardsContainer extends React.Component<CardsContainerProps, CardsCo
     const {
       cards, level, secondsElapsed, status,
     } = this.state;
-    const { flipsCount } = this.props;
+    const { flipsCount, stats } = this.props;
     return (
       <Cards
         level={level}
         cards={cards}
+        stats={stats}
         status={status}
         flipsCount={flipsCount}
         secondsElapsed={secondsElapsed}

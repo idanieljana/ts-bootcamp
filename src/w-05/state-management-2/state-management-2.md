@@ -124,9 +124,9 @@ This lifehack is needed for better identifying of app store in redux-devtools.
 
 Task:
 
-- Extend the initial state with a new field logs
-- Create action to add item to the log
-- Create reducer to handle the created action
+- Extend the initial state with a new field `logs`
+- Create `addLog` action to add item to the log
+- Create reducer `logger` to handle the created action
 
 Note:
 

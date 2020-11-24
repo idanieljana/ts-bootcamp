@@ -15,6 +15,7 @@ import { LogType } from '../../stores/redux/logger/loggerTypes';
 export interface PlayingCardsProps {
   isPlaying: boolean;
   flipsCount: number;
+  stats?: string;
   level: Level | null;
   onCardClick: (id: number, type: string) => void;
   onRestart: () => void;
@@ -22,7 +23,7 @@ export interface PlayingCardsProps {
 
 export const PlayingCards: React.FC<PlayingCardsProps> = (props) => {
   const {
-    level, isPlaying, flipsCount, onCardClick, onRestart,
+    level, isPlaying, flipsCount, onCardClick, onRestart, stats,
   } = props;
   if (!isPlaying || level === null) {
     return null;
@@ -31,6 +32,7 @@ export const PlayingCards: React.FC<PlayingCardsProps> = (props) => {
     <div className={styles.playingCards} data-role="playing-cards">
       <CardsContainer
         level={level}
+        stats={stats}
         flipsCount={flipsCount}
         onCardClick={onCardClick}
         onRestart={onRestart}
@@ -61,11 +63,13 @@ export const PlayingCardsView = observer(() => {
   const clear = () => {
     dispatch(clearLogs());
   };
+  const stats = 'Best result for 2 round(s): 03:45 - 12';
   return (
     <PlayingCards
       onCardClick={addCardLog}
       onRestart={clear}
       level={selectedLevel}
+      stats={stats}
       isPlaying={isPlaying}
       flipsCount={logsCount}
     />

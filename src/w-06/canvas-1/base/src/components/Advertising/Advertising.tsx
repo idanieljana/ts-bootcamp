@@ -1,7 +1,6 @@
 import React from 'react';
 import randomColor from 'randomcolor';
 import { Howl } from 'howler';
-import styles from './Advertising.pcss';
 import casinoLogo from './assets/starCasino.png';
 import AdsMusic from './assets/hypnotoad_with_sound.mp3';
 
@@ -29,7 +28,8 @@ enum Colors {
 
 type Params2D = [number, number];
 
-function isWithinArea([[mouseX, mouseY], [areaX, areaY], [width, height]]: [Params2D, Params2D, Params2D]) {
+function isWithinArea(areaParams: [Params2D, Params2D, Params2D]): boolean {
+  const [[mouseX, mouseY], [areaX, areaY], [width, height]] = areaParams;
   const isValidX = mouseX >= areaX && mouseX <= (areaX + width);
   const isValidY = mouseY >= areaY && mouseY <= (areaY + height);
   return isValidX && isValidY;
@@ -39,6 +39,7 @@ interface SettingsState {
   backgroundColor: string;
   borderColor: string;
   borderWidth: number;
+  buttonFontSize: number;
   mouseX: number;
   mouseY: number;
   logosRandomCoeffs: Params2D[];
@@ -46,6 +47,7 @@ interface SettingsState {
 
 function generateRandomLogosPositions(): Params2D[] {
   return [
+    [Math.random(), Math.random()],
     [Math.random(), Math.random()],
     [Math.random(), Math.random()],
   ];
@@ -57,8 +59,9 @@ export const Advertising: React.FC = () => {
   const [settings, setSettings] = React.useState<SettingsState>({
     borderColor: Colors.CanvasBorder,
     backgroundColor: Colors.CanvasBackground,
-    mouseX: -10,
-    mouseY: -10,
+    buttonFontSize: 42,
+    mouseX: -1,
+    mouseY: -1,
     borderWidth: 50,
     logosRandomCoeffs: generateRandomLogosPositions(),
   });
@@ -90,7 +93,7 @@ export const Advertising: React.FC = () => {
     ctx.lineTo(width, height);
     ctx.lineTo(width, 0);
     ctx.lineTo(0, 0);
-    ctx.lineWidth = 50;
+    ctx.lineWidth = settings.borderWidth;
     ctx.strokeStyle = settings.borderColor;
     ctx.stroke();
     ctx.closePath();
@@ -104,17 +107,18 @@ export const Advertising: React.FC = () => {
     for (const [randomX, randomY] of coeffs) {
       const border = settings.borderWidth;
       const x = border + Math.floor(randomX * (window.innerWidth - width - 2 * border));
-      const y = border + Math.floor(randomY * (window.innerHeight * 0.8 - height - 2 * border));
+      const logosAreaHeight = window.innerHeight * 0.75;
+      const y = border + Math.floor(randomY * (logosAreaHeight - height - 2 * border));
       drawLogo(ctx, [width, height], [x, y]);
     }
   }
-  function drawRegisterButtonText(ctx: CanvasRenderingContext2D, fontSizePx = 42) {
+  function drawRegisterButtonText(ctx: CanvasRenderingContext2D) {
     const text = 'Register'.toUpperCase();
     // Hack to calculate the approximate height
     // https://stackoverflow.com/questions/1134586/how-can-you-find-the-height-of-text-on-an-html-canvas
     const textHeight = ctx.measureText('M').width;
     ctx.beginPath();
-    ctx.font = `bold ${fontSizePx}px Verdana`;
+    ctx.font = `bold ${settings.buttonFontSize}px Verdana`;
     ctx.fillStyle = 'white';
     const textWidth = ctx.measureText(text).width;
     const x = (window.innerWidth - textWidth) / 2;
@@ -138,12 +142,12 @@ export const Advertising: React.FC = () => {
     ctx.fillRect(x, y, width, height);
   }
   function drawButton(ctx: CanvasRenderingContext2D): [Params2D, Params2D] {
-    const fontSizePx = 42;
     const width = 400;
     const height = 80;
     const logosAreaHeight = window.innerHeight * 0.75;
     const buttonAreaHeight = window.innerHeight * 0.25;
-    const y = (logosAreaHeight + (buttonAreaHeight / 2) - (fontSizePx / 2) - (height / 2));
+    // eslint-disable-next-line max-len
+    const y = (logosAreaHeight + (buttonAreaHeight / 2) - (settings.buttonFontSize / 2) - (height / 2));
     const x = (window.innerWidth) / 2 - width / 2;
     const buttonBorderWidthPx = 2;
     drawButtonBorder(ctx, [x, y], [width, height], buttonBorderWidthPx);
@@ -159,8 +163,8 @@ export const Advertising: React.FC = () => {
     return coordsWithSize;
   }
 
-  function playAnimation(ctx: CanvasRenderingContext2D): number {
-    function drawCanvas() {
+  function render(ctx: CanvasRenderingContext2D) {
+    return () => {
       const canvasWidth = window.innerWidth;
       const canvasHeight = window.innerHeight;
       drawCanvasArea(ctx, [canvasWidth, canvasHeight]);
@@ -172,13 +176,7 @@ export const Advertising: React.FC = () => {
         [buttonX, buttonY],
         [buttonWidth, buttonHeight],
       ]);
-    }
-
-    function play(): number {
-      return window.requestAnimationFrame(drawCanvas);
-    }
-
-    return play();
+    };
   }
 
   /**
@@ -193,14 +191,9 @@ export const Advertising: React.FC = () => {
    */
   React.useEffect(() => {
     const ctx = canvasEl.current?.getContext('2d')!;
-    const id = playAnimation(ctx);
+    const frameId = window.requestAnimationFrame(render(ctx));
     return () => {
-      // TODO: add resize
-      // const run = () => playAnimOation(ctx);
-      // window.addEventListener('resize', run);
-      // window.removeEventListener('resize', run);
-      // run();
-      window.cancelAnimationFrame(id);
+      window.cancelAnimationFrame(frameId);
     };
   }, [settings]);
 
@@ -216,7 +209,7 @@ export const Advertising: React.FC = () => {
           borderColor: color,
         };
       });
-    }, 450);
+    }, 500);
     return () => window.clearInterval(id);
   }, []);
 
@@ -254,8 +247,6 @@ export const Advertising: React.FC = () => {
   }, []);
 
   return (
-    <div className={styles.brainFlying}>
-      <canvas ref={canvasEl} id="canvas" />
-    </div>
+    <canvas ref={canvasEl} id="canvas" />
   );
 };

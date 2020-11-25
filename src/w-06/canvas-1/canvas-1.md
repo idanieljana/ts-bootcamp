@@ -33,6 +33,21 @@ We will work in the project folder with base project:
 
 `ts-bootcamp/src/w-06/canvas-1/base`
 
+
+Initial component code should be:
+
+```tsx
+import React from 'react';
+import randomColor from 'randomcolor';
+
+export const Advertising: React.FC = () => (
+  <div style={{ background: randomColor(), width: '100%', height: '100vh' }}>
+    Ads
+  </div>
+);
+
+```
+
 Task:
 
 - Create a canvas element and the react component, fill canvas with color
@@ -105,6 +120,48 @@ Task:
 - Create a react effect and change alpha in background using react state for settings:  `rgba(0, 3, 51, ${a})`
 - A suggested range of values could be`[0.9, 0.95, 1]`
 
+
+Let's start with changing the state:
+
+```tsx
+const [settings] = React.useState<SettingsState>({
+    // ...
+    backgroundColorAlpha: 1,
+});
+```
+
+Let's change this state each `150ms`:
+
+```tsx
+React.useEffect(() => {
+    window.setInterval(() => {
+      setSettings((state) => {
+        // TODO:
+      });
+    }, 150);
+```
+
+Now we will need to calculate next alpa value, so we would need the following function:
+
+```tsx
+function nextAlpha(value: number) {
+    const alphas = [0.9, 0.95, 1];
+    const nextAlphaValue = alphas[0];
+    //  TODO:
+    return nextAlphaValue
+}
+```
+
+We will also need to adjust the render effect to "watch" the state object for changes:
+```tsx
+React.useEffect(() => {
+    const ctx = canvasEl.current?.getContext('2d')!;
+    drawCanvasArea(ctx, [window.innerWidth, window.innerHeight]);
+  }, [settings]);
+```
+
+Now you should see the blinking canvas element
+
 ![image](assets/exercise2.png)
 
 
@@ -125,6 +182,7 @@ Hint:
 ```tsx
 ctx.drawImage(logo, x, y, width, height)
 ```
+
 
 ![image](assets/exercise3.png)
 

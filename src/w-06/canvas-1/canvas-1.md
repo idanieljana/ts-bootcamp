@@ -171,7 +171,7 @@ Now you should see the blinking canvas element
 
 ### Adding logo image to the canvas
 
-Your task would be to add the logo image to the canvas
+Your task would be to add the logos image to the canvas
 
 Task:
 
@@ -183,8 +183,67 @@ Hint:
 ctx.drawImage(logo, x, y, width, height)
 ```
 
+First let's load the image:
 
-![image](assets/exercise3.png)
+```tsx
+import casinoLogo from './assets/starCasino.png';
+
+
+const logo = new Image();
+logo.width = 200;
+logo.height = 200;
+logo.src = casinoLogo;
+```
+
+Now let's draw the image at the background:
+
+```tsx
+React.useEffect(() => {
+    const ctx = canvasEl.current?.getContext('2d')!;
+    drawCanvasArea(ctx, [window.innerWidth, window.innerHeight]);
+    ctx.drawImage(logo, 300, 300, logo.width, logo.height);
+  }, [settings]);
+```
+
+Now you will see the canvas updated
+
+![image](assets/exercise3-1.png)
+
+We will need to adjust the state to store the random coordinates
+
+```tsx
+  logosRandomCoeffs: Params2D[];
+```
+
+And a function to randomly draw several images at the screen
+
+```tsx
+// eslint-disable-next-line max-len
+  function drawLogos(ctx: CanvasRenderingContext2D, [width, height]: Params2D, coeffs : Params2D[]) {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const [randomX, randomY] of coeffs) {
+      const x = Math.floor(randomX * (window.innerWidth - width));
+      const logosAreaHeight = window.innerHeight * 0.75;
+      const y = Math.floor(randomY * (logosAreaHeight - height));
+      drawLogo(ctx, [width, height], [x, y]);
+    }
+  }
+```
+
+To generate random positions we will need to add additional effect to randomly change the coefss. A utility to help:
+```tsx
+function generateRandomLogosPositions(): Params2D[] {
+  return [
+    [Math.random(), Math.random()],
+    [Math.random(), Math.random()],
+    [Math.random(), Math.random()],
+  ];
+}
+```
+
+You should see now the ready random images on the canvas appearing:
+
+![image](assets/exercise3-2.png)
 
 ### Exercise 4
 
@@ -192,14 +251,32 @@ ctx.drawImage(logo, x, y, width, height)
 
 ### Canvas area border
 
-Your task would be to draw the border
+Your task would be to draw the border for the background and change it's color each `500ms`
 
 Task:
 
-- Create a canvas element and the react component, fill canvas with color
+- Create a "border using" set of `ctx.lineTo`, `ctx.moveTo` instructions
+
+Hint:
+```tsx
+ctx.beginPath();
+// ... instructions what to draw
+ctx.closePath();
+```
+
+Hint:
+```tsx
+// Change line props
+ctx.lineWidth = width;
+ctx.strokeStyle = color;
+ctx.stroke();
+```
 
 ![image](assets/exercise4.png)
 
 
 ## Notes
 
+Window request animation frame:
+
+https://developer.mozilla.org/ru/docs/DOM/window.requestAnimationFrame

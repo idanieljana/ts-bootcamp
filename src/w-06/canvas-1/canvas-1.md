@@ -272,6 +272,18 @@ ctx.strokeStyle = color;
 ctx.stroke();
 ```
 
+To change the color you will need an effect and new state property:
+
+```tsx
+setSettings((state) => {
+        const color = randomColor();
+        return {
+          ...state,
+          borderColor: color,
+        };
+      });
+```
+
 ![image](assets/exercise4.png)
 
 

@@ -48,7 +48,7 @@ const canvasEl = React.useRef<HTMLCanvasElement>(null);
 // ...
 
 return (
-    <canvas ref={canvasEl} id="canvas" />
+    <canvas ref={canvasEl} />
   );
 ```
 
@@ -57,9 +57,40 @@ Add state to control your canvas settings
 ```tsx
 const [settings, setSettings] = React.useState<SettingsState>({
     backgroundColor: 'rgba(0, 3, 51, 1)',
-    backgroundColorAlpha: 1,
   });
 ```
+
+Create React effect and get the canvas context:
+
+```tsx
+React.useEffect(() => {
+    const ctx = canvasEl.current?.getContext('2d')!;
+    drawCanvasArea(ctx, [window.innerWidth, window.innerHeight]);
+  }, []);
+```
+
+And now write a function to set canvas width, height and fill it with color from settings: 
+
+```tsx
+function drawCanvasArea(ctx: CanvasRenderingContext2D, [width, height]: Params2D) {
+    ctx.canvas.width = width;
+    ctx.canvas.height = height;
+    ctx.fillStyle = settings.backgroundColor;
+    ctx.fillRect(0, 0, width, height);
+  }
+```
+
+The last thing to finish is to call the random color function from the sample at the initial state:
+
+```tsx
+const [settings] = React.useState<SettingsState>({
+    backgroundColor: randomColor(),
+  });
+```
+
+As a final result you should see the similar output
+
+![image](assets/exercise1.png)
 
 ### Exercise 2
 
@@ -110,3 +141,7 @@ Task:
 - Create a canvas element and the react component, fill canvas with color
 
 ![image](assets/exercise4.png)
+
+
+## Notes
+

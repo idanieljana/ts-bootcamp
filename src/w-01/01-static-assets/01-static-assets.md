@@ -8,6 +8,8 @@ In next lessons we will learn more complex setups.
 However they will also have the same principles described here.
 Also the purpose of this section is to remind how JS works in sync
 with other web technologies.
+Spoiler: there would be no React, Typescript or Webpack - we will go with "hand approach"
+to understand how it works under the hood.
 ```
 
 ### Additional reading
@@ -101,6 +103,8 @@ Hit CTRL-C to stop the server
 Finally, write your name or any other combination of symbols in the input and enjoy the view:
 
 ![image](assets/static-assets-2.png)
+
+Wallpaper App: https://2020-w-1.surge.sh/
 
 ### Notes
 

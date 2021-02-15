@@ -1,14 +1,14 @@
-# Workshop 1: Javascript Project
+# Block 1: Javascript Project
 
 ## Topics described:
 
 Project structuring examples (for web, for nodejs)
 
-Dependency management: npm, yarn (installation, working with cache and registry)
+Dependency management: npm, yarn
 
 ## Goal:
 
-After this workshop you will be able to create your own simple projects.
+After this workshop you will be able to create your own simple web application projects.
 
 ## Sections:
 
@@ -18,7 +18,7 @@ After this workshop you will be able to create your own simple projects.
 
 ## Hometasks:
 
-Home task 1 for Workshop 1:	
+Home task 1 for Week 1:	
 
 Create a web application to generate the QR code from text in url.
 
@@ -38,6 +38,10 @@ Requirements and notes:
 8. Main page `/` endpoint internally should get QR Code
 image from your API endpoint described in `1.`
 9. Deploy your application in Heroku
+
+Example of the working app:
+
+https://qr-code-lva.herokuapp.com/
 
 Links:
 
